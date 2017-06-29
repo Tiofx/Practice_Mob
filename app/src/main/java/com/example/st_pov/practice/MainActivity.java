@@ -1,6 +1,8 @@
 package com.example.st_pov.practice;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.st_pov.practice.Models.ItemHotel;
 import com.example.st_pov.practice.Models.ItemRoom;
@@ -20,11 +23,6 @@ import java.util.List;
  */
 
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
-    private HotelAdapter adapterHotel;
-    private RoomAdapter adapterRoom;
-    private List<ItemHotel> hotelList;
-    private List<ItemRoom> roomList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +30,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Click action
+                Intent intent = new Intent(MainActivity.this, AddReview.class);
+                startActivity(intent);
+            }
+        });
 
-        recyclerView = (RecyclerView) findViewById(R.id.items);
 
-        hotelList = new ArrayList<>();
-        adapterHotel = new HotelAdapter(this, hotelList);
-        roomList = new ArrayList<>();
-        adapterRoom = new RoomAdapter(this, roomList);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.top5)));

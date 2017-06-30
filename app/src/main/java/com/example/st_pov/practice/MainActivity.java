@@ -1,12 +1,22 @@
 package com.example.st_pov.practice;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.example.st_pov.practice.Models.ItemHotel;
+import com.example.st_pov.practice.Models.ItemRoom;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by st_pov on 29.06.2017.
@@ -20,11 +30,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Click action
+                Intent intent = new Intent(MainActivity.this, AddReview.class);
+                startActivity(intent);
+            }
+        });
+
+
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.top5)));
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.listhotel)));
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.maphotel)));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);

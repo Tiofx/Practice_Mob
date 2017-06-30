@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/RootContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.WelcomeActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/indent_large"
+        >
+
+
+        <RelativeLayout
+            android:id="@+id/top_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/indent_normal"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                app:srcCompat="@drawable/jetruby_icon" />
+
+            <Button
+                android:id="@+id/sign_in_btn"
+                style="@style/Button.Transparent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/sign_in" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/Text.MainTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome"
+            android:textAlignment="center" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/indent_normal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/use_google_btn"
+                style="@style/Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/use_google" />
+
+            <Button
+                android:id="@+id/create_account_btn"
+                style="@style/Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/indent_normal"
+                android:layout_weight="1"
+                android:text="@string/create_account" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/agreement_btn"
+        style="@style/Button.Transparent.Bottom"
+        android:text="@string/user_agreement" />
+</RelativeLayout>

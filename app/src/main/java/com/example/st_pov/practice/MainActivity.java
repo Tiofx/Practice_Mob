@@ -6,17 +6,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
-import com.example.st_pov.practice.Models.ItemHotel;
-import com.example.st_pov.practice.Models.ItemRoom;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by st_pov on 29.06.2017.

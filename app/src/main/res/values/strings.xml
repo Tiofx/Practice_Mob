@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Practice</string>
+    <string name="top5">Топ-5</string>
+    <string name="listhotel">Список отелей</string>
+    <string name="maphotel">Отели на карте</string>
+    <string name="breakfast">Завтрак: </string>
+    <string name="detail">Подробнее</string>
+    <string name="review">Оценить</string>
+    <string name="settings">Настройки</string>
+    <string name="refresh">Обновить</string>
+</resources>

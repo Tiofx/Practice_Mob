@@ -23,8 +23,9 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
 
     private Context mContext;
     private List<ItemHotel> hotelList;
+    private static MyClickListener myClickListener;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView titleHotel, address, numberReviews;
         public ImageView photoHotel;
         public RatingBar ratingStar;
@@ -38,6 +39,11 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
             ratingStar = (RatingBar) view.findViewById(R.id.ratingStarHotel);
             isBreakfast = (CheckBox) view.findViewById(R.id.isBreakfast);
             photoHotel = (ImageView) view.findViewById(R.id.photoHotel);
+        }
+
+        @Override
+        public void onClick(View view) {
+
         }
     }
 
@@ -71,5 +77,9 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
     @Override
     public int getItemCount() {
         return hotelList.size();
+    }
+
+    public interface MyClickListener {
+        public void onItemClick(int position, View v);
     }
 }

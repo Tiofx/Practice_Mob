@@ -1,15 +1,14 @@
 package com.example.st_pov.practice.kotlin
 
 import android.view.View
-import com.example.st_pov.practice.R.layout.password_input
 import kotlinx.android.synthetic.main.password_input.view.*
 
-class PasswordInput(var passwordInput: View) {
+class PasswordInput(var passwordContainer: View) {
     val password
-        get() = passwordInput.password
+        get() = passwordContainer.password
 
     init {
-        passwordInput.show_btn
+        passwordContainer.show_btn
                 .setOnClickListener { showPassword() }
     }
 

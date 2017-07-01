@@ -1,7 +1,17 @@
 package com.example.st_pov.practice.kotlin
 
-fun android.app.Activity.showText(text: String, duration: Int = android.widget.Toast.LENGTH_SHORT) =
-        android.widget.Toast.makeText(this, text, duration)
+import android.app.Activity
+import android.content.Intent
+import android.widget.Toast
+
+fun Activity.showText(text: String, duration: Int = Toast.LENGTH_SHORT) =
+        Toast.makeText(this, text, duration)
                 .show()
 
-inline fun <reified T> android.app.Activity.loadActivity() = startActivity(android.content.Intent(this, T::class.java))
+inline fun <reified T> Activity.loadActivity() = startActivity(Intent(this, T::class.java))
+
+
+object Constants {
+    const val MIN_PASSWORD_NUMBER = 8
+    const val MAX_PASSWORD_NUMBER = 40
+}

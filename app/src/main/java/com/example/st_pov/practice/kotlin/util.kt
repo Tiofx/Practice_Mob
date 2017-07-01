@@ -17,4 +17,7 @@ object Constants {
 
     const val MIN_NAME_LENGTH = 3
     const val MAX_NAME_LENGTH = 20
+
+    const val MIN_HOTEL_TITLE_LENGTH = 3
+    const val MAX_HOTEL_TITLE_LENGTH = 40
 }

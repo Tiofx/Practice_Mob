@@ -42,4 +42,7 @@
     <string name="validation_password_error">Пароль должен быть длинной не меньше 8, но не больше 40 символов</string>
     <string name="validation_first_name_error">Имя должно начинаться с заглавной буквы и содержать только буквы</string>
     <string name="validation_last_name_error">Фамилия должно начинаться с заглавной буквы и содеражть только буквы</string>
+    <string name="no_breakfast">нет завтрака</string>
+    <string name="there_is_breakfast">есть завтрак</string>
+    <string name="validation_hotel_title_error">Название отеля должно быть не менее 3 букв, но не более 40</string>
 </resources>

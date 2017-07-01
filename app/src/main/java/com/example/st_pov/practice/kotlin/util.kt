@@ -20,4 +20,9 @@ object Constants {
 
     const val MIN_HOTEL_TITLE_LENGTH = 3
     const val MAX_HOTEL_TITLE_LENGTH = 40
+
+    const val MIN_FEEDBACK_LENGTH = 3
+    const val MAX_FEEDBACK_LENGTH = 300
+
+    val FEEDBACK_RANGE = 3 to 400
 }

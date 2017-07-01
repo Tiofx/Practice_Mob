@@ -30,4 +30,8 @@ class WelcomeActivity : AppCompatActivity() {
 
     @OnClick(R.id.agreement_btn)
     fun userAgreement() = showText("Пользовательское соглашение не работает")
+
+    //TODO: delete
+    @OnClick(R.id.add_hotel_btn)
+    fun addHotel() = loadActivity<HotelAddActivity>()
 }

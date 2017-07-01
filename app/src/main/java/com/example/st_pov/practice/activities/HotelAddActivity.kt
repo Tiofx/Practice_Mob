@@ -50,6 +50,11 @@ class HotelAddActivity : AppCompatActivity() {
                     R.id.hotel_title_txt,
                     Constants.Regex.HOTEL_TITLE,
                     R.string.validation_hotel_title_error)
+
+            addValidation(this@HotelAddActivity,
+                    R.id.hotel_address_txt,
+                    Constants.Regex.ADDRESS,
+                    R.string.validation_address_error)
         }
     }
 }

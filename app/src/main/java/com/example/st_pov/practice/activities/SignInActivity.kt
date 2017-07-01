@@ -35,7 +35,9 @@ class SignInActivity : AppCompatActivity() {
     }
 
     @OnClick(R.id.forget_btn)
-    fun forgetPassword() = showText("Забывать пароль не дозволено")
+    fun forgetPassword() {
+        showText("Забывать пароль не дозволено")
+    }
 
     @OnClick(R.id.sign_in_btn)
     fun signIn() {

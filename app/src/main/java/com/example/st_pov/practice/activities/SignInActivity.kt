@@ -15,20 +15,6 @@ import com.example.st_pov.practice.models.User
 import kotlinx.android.synthetic.main.activity_sign_in.*
 
 class SignInActivity : AppCompatActivity() {
-    val validator by lazy {
-        AwesomeValidation(ValidationStyle.BASIC).apply {
-            addValidation(this@SignInActivity,
-                    R.id.email,
-                    Patterns.EMAIL_ADDRESS,
-                    R.string.validation_email_error)
-
-            addValidation(this@SignInActivity,
-                    R.id.password,
-                    ".{${Constants.MIN_PASSWORD_NUMBER},${Constants.MAX_PASSWORD_NUMBER}}",
-                    R.string.validation_password_error)
-        }
-    }
-
     val passwordInput by lazy {
         PasswordInput(findViewById(password_input))
     }
@@ -56,6 +42,20 @@ class SignInActivity : AppCompatActivity() {
         if (validator.validate()) {
             //TODO:send request to the server
             showText(".....Подождите... Идет загрузка на сервер")
+        }
+    }
+
+    val validator by lazy {
+        AwesomeValidation(ValidationStyle.BASIC).apply {
+            addValidation(this@SignInActivity,
+                    R.id.email,
+                    Patterns.EMAIL_ADDRESS,
+                    R.string.validation_email_error)
+
+            addValidation(this@SignInActivity,
+                    R.id.password,
+                    ".{${Constants.MIN_PASSWORD_LENGTH},${Constants.MAX_PASSWORD_LENGTH}}",
+                    R.string.validation_password_error)
         }
     }
 }

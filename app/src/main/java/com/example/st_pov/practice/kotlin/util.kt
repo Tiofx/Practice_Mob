@@ -12,6 +12,9 @@ inline fun <reified T> Activity.loadActivity() = startActivity(Intent(this, T::c
 
 
 object Constants {
-    const val MIN_PASSWORD_NUMBER = 8
-    const val MAX_PASSWORD_NUMBER = 40
+    const val MIN_PASSWORD_LENGTH = 8
+    const val MAX_PASSWORD_LENGTH = 40
+
+    const val MIN_NAME_LENGTH = 3
+    const val MAX_NAME_LENGTH = 20
 }

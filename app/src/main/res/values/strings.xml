@@ -40,4 +40,6 @@
 
     <string name="validation_email_error">Формат вашей электронной почты не верен</string>
     <string name="validation_password_error">Пароль должен быть длинной не меньше 8, но не больше 40 символов</string>
+    <string name="validation_first_name_error">Имя должно начинаться с заглавной буквы и содержать только буквы</string>
+    <string name="validation_last_name_error">Фамилия должно начинаться с заглавной буквы и содеражть только буквы</string>
 </resources>

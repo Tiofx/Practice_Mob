@@ -22,7 +22,6 @@ class WelcomeActivity : AppCompatActivity() {
     @OnClick(R.id.sign_in_btn)
     fun signIn() = loadActivity<SignInActivity>()
 
-
     @OnClick(R.id.use_google_btn)
     fun useGoogle() = showText("Гугл не работает")
 

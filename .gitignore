@@ -34,3 +34,4 @@ app/libs/
 lib/*
 app/src/main/res/drawable/
 /gradle.properties
+lib/

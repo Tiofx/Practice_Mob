@@ -22,7 +22,6 @@ class WelcomeActivity : AppCompatActivity() {
     @OnClick(R.id.sign_in_btn)
     fun signIn() = loadActivity<SignInActivity>()
 
-
     @OnClick(R.id.use_google_btn)
     fun useGoogle() = showText("Гугл не работает")
 
@@ -31,4 +30,8 @@ class WelcomeActivity : AppCompatActivity() {
 
     @OnClick(R.id.agreement_btn)
     fun userAgreement() = showText("Пользовательское соглашение не работает")
+
+    //TODO: delete
+    @OnClick(R.id.add_hotel_btn)
+    fun addHotel() = loadActivity<HotelAddActivity>()
 }

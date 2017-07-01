@@ -76,6 +76,13 @@
                 android:text="@string/create_account" />
         </LinearLayout>
 
+        <!--//TODO: delete-->
+        <Button
+            android:id="@+id/add_hotel_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Добавить отель" />
+
     </LinearLayout>
 
     <Button

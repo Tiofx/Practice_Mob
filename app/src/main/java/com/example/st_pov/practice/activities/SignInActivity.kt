@@ -1,10 +1,14 @@
 package com.example.st_pov.practice.activities
 
 import android.support.v7.app.AppCompatActivity
+import android.util.Patterns
 import butterknife.ButterKnife
 import butterknife.OnClick
+import com.basgeekball.awesomevalidation.AwesomeValidation
+import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.R
 import com.example.st_pov.practice.R.layout.password_input
+import com.example.st_pov.practice.kotlin.Constants
 import com.example.st_pov.practice.kotlin.PasswordInput
 import com.example.st_pov.practice.kotlin.showText
 import com.example.st_pov.practice.models.User
@@ -31,8 +35,29 @@ class SignInActivity : AppCompatActivity() {
     }
 
     @OnClick(R.id.forget_btn)
-    fun forgetPassword() = showText("Забывать пароль не дозволено")
+    fun forgetPassword() {
+        showText("Забывать пароль не дозволено")
+    }
 
     @OnClick(R.id.sign_in_btn)
-    fun signIn() = showText("войти в аккант еще не реализован")
+    fun signIn() {
+        if (validator.validate()) {
+            //TODO:send request to the server
+            showText(".....Подождите... Идет загрузка на сервер")
+        }
+    }
+
+    val validator by lazy {
+        AwesomeValidation(ValidationStyle.BASIC).apply {
+            addValidation(this@SignInActivity,
+                    R.id.email,
+                    Patterns.EMAIL_ADDRESS,
+                    R.string.validation_email_error)
+
+            addValidation(this@SignInActivity,
+                    R.id.password,
+                    Constants.Regex.PASSWORD,
+                    R.string.validation_password_error)
+        }
+    }
 }

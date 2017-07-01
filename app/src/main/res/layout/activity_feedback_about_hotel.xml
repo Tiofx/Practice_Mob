@@ -31,7 +31,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/add_hotel_btn"
+        android:id="@+id/feedback_btn"
         style="@style/Button.BottomLevel"
         android:text="@string/add" />
 </RelativeLayout>

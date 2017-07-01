@@ -30,6 +30,3 @@ gradle-app.setting
 # other stuff
 *.hprof
 hs_err*
-app/libs/
-lib/*
-app/src/main/res/drawable/

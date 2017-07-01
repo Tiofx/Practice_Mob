@@ -40,7 +40,7 @@ class FeedbackAboutHotelActivity : AppCompatActivity() {
         AwesomeValidation(ValidationStyle.BASIC).apply {
             addValidation(this@FeedbackAboutHotelActivity,
                     R.id.feedback_txt,
-                    "[\\w|\\s]{${Constants.FEEDBACK_RANGE.first},${Constants.FEEDBACK_RANGE.second}}",
+                    Constants.Regex.FEEDBACK,
                     R.string.validation_hotel_title_error)
         }
     }

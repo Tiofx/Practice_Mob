@@ -48,7 +48,7 @@ class HotelAddActivity : AppCompatActivity() {
         AwesomeValidation(ValidationStyle.BASIC).apply {
             addValidation(this@HotelAddActivity,
                     R.id.hotel_title_txt,
-                    "[\\w|\\s]{${Constants.MIN_HOTEL_TITLE_LENGTH},${Constants.MAX_HOTEL_TITLE_LENGTH}}",
+                    Constants.Regex.HOTEL_TITLE,
                     R.string.validation_hotel_title_error)
         }
     }

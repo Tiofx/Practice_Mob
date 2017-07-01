@@ -12,17 +12,16 @@ inline fun <reified T> Activity.loadActivity() = startActivity(Intent(this, T::c
 
 
 object Constants {
-    const val MIN_PASSWORD_LENGTH = 8
-    const val MAX_PASSWORD_LENGTH = 40
+    val NAME_LENGTH_RANGE = 3 to 20
+    val PASSWORD_LENGTH_RANGE = 8 to 40
+    val HOTEL_LENGTH_RANGE = 3 to 40
+    val FEEDBACK_LENGTH_RANGE = 3 to 300
 
-    const val MIN_NAME_LENGTH = 3
-    const val MAX_NAME_LENGTH = 20
-
-    const val MIN_HOTEL_TITLE_LENGTH = 3
-    const val MAX_HOTEL_TITLE_LENGTH = 40
-
-    const val MIN_FEEDBACK_LENGTH = 3
-    const val MAX_FEEDBACK_LENGTH = 300
-
-    val FEEDBACK_RANGE = 3 to 400
+    object Regex {
+        val FIRST_NAME = NAME_LENGTH_RANGE.run { "^[A-Z|А-Я][a-z|а-я]{$first,$second}$" }
+        val LAST_NAME = FIRST_NAME
+        val PASSWORD = PASSWORD_LENGTH_RANGE.run { "^.{$first,$second}$" }
+        val FEEDBACK = FEEDBACK_LENGTH_RANGE.run { "^.{$first,$second}$" }
+        val HOTEL_TITLE = HOTEL_LENGTH_RANGE.run { "[\\w|\\s]{$first,$second}" }
+    }
 }

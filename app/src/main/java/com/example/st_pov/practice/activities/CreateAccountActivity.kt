@@ -50,17 +50,17 @@ class CreateAccountActivity : AppCompatActivity() {
 
             addValidation(this@CreateAccountActivity,
                     R.id.password,
-                    ".{${Constants.MIN_PASSWORD_LENGTH},${Constants.MAX_PASSWORD_LENGTH}}",
+                    Constants.Regex.PASSWORD,
                     R.string.validation_password_error)
 
             addValidation(this@CreateAccountActivity,
                     R.id.first_name,
-                    "^[A-Z|А-Я][a-z|а-я]{${Constants.MIN_NAME_LENGTH},${Constants.MAX_NAME_LENGTH}}$",
+                    Constants.Regex.FIRST_NAME,
                     R.string.validation_first_name_error)
 
             addValidation(this@CreateAccountActivity,
                     R.id.last_name,
-                    "^[A-Z|А-Я][a-z|а-я]{${Constants.MIN_NAME_LENGTH},${Constants.MAX_NAME_LENGTH}}$",
+                    Constants.Regex.LAST_NAME,
                     R.string.validation_last_name_error)
         }
     }

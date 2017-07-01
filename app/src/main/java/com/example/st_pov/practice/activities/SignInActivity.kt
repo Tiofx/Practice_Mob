@@ -54,7 +54,7 @@ class SignInActivity : AppCompatActivity() {
 
             addValidation(this@SignInActivity,
                     R.id.password,
-                    ".{${Constants.MIN_PASSWORD_LENGTH},${Constants.MAX_PASSWORD_LENGTH}}",
+                    Constants.Regex.PASSWORD,
                     R.string.validation_password_error)
         }
     }

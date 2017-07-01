@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.st_pov.practice">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,13 +9,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.MainActivity"></activity>
+        <activity
+            android:name=".activities.WelcomeActivity"
+            android:label="@string/welcome"
+            android:parentActivityName=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.SignInActivity"
+            android:label="@string/sign_in"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity
+            android:name=".activities.CreateAccountActivity"
+            android:label="@string/create_account"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity
+            android:name=".activities.HotelAddActivity"
+            android:label="@string/add_hotel"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity
+            android:name=".activities.FeedbackAboutHotelActivity"
+            android:label="@string/give_feedback"
+            android:parentActivityName=".activities.MainActivity" />
     </application>
 
 </manifest>

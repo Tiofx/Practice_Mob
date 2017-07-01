@@ -33,3 +33,4 @@ hs_err*
 app/libs/
 lib/*
 app/src/main/res/drawable/
+/gradle.properties

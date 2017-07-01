@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/RootContainer"
+    tools:context=".activities.SignInActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/forget_btn"
+            style="@style/Button.Transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forget_password" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/forget_btn"
+            android:layout_toStartOf="@+id/forget_btn"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/email"
+                style="@style/InputField"
+                android:hint="@string/email"
+                android:inputType="textPersonName" />
+
+            <include
+                layout="@layout/password_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/sign_in_btn"
+        style="@style/Button.Small.BottomRight"
+        android:text="@string/sign_in" />
+
+</RelativeLayout>

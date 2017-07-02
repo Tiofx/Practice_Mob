@@ -22,9 +22,9 @@ import java.util.List;
 public class TabFragment1 extends Fragment {
     protected RecyclerView recyclerView;
 //    protected HotelAdapter adapterHotel;
-//    protected RoomAdapter adapterRoom;
+    protected RoomAdapter adapterRoom;
     protected List<ItemHotel> hotelList;
-//    protected List<ItemRoom> roomList;
+    protected List<ItemRoom> roomList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,11 +32,19 @@ public class TabFragment1 extends Fragment {
 
         recyclerView = view.findViewById(R.id.items);
 
-        hotelList = new ArrayList<>();
+//        hotelList = new ArrayList<>();
 //        adapterHotel = new HotelAdapter(getContext(), hotelList);
-////        roomList = new ArrayList<>();
-////        adapterRoom = new RoomAdapter(getContext(), roomList);
-//        recyclerView.setAdapter(adapterHotel);
+        roomList = new ArrayList<>();
+
+        roomList.add(new ItemRoom("седьмая", 123, 32, R.drawable.room));
+        roomList.add(new ItemRoom("сотоая", 3, 123, R.drawable.background));
+        roomList.add(new ItemRoom("не существующая", 0, 0, R.drawable.cosmos_moscow));
+        roomList.add(new ItemRoom("восьмая", 10, 20, R.drawable.room));
+        roomList.add(new ItemRoom("девятая", 110, 20, R.drawable.room));
+        roomList.add(new ItemRoom("десятая", 110, 120, R.drawable.room));
+
+        adapterRoom = new RoomAdapter(getContext(), roomList);
+        recyclerView.setAdapter(adapterRoom);
 
 
         return view;

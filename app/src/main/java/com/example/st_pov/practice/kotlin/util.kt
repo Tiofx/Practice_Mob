@@ -11,7 +11,12 @@ fun Activity.showText(text: String, duration: Int = Toast.LENGTH_SHORT) =
 inline fun <reified T> Activity.loadActivity() = startActivity(Intent(this, T::class.java))
 
 
+//TODO: move out into file
 object Constants {
+    //TODO: change on release
+    const val BASE_URL = "http://falling-paper-6881.getsandbox.com"
+
+
     val NAME_LENGTH_RANGE = 2 to 20
     val PASSWORD_LENGTH_RANGE = 8 to 40
     val HOTEL_LENGTH_RANGE = 3 to 40

@@ -8,11 +8,18 @@ import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.R
 import com.example.st_pov.practice.R.layout.password_input
+import com.example.st_pov.practice.api.UserApi
 import com.example.st_pov.practice.kotlin.Constants
 import com.example.st_pov.practice.kotlin.PasswordInput
 import com.example.st_pov.practice.kotlin.showText
 import com.example.st_pov.practice.models.User
 import kotlinx.android.synthetic.main.activity_create_account.*
+import kotlinx.android.synthetic.main.password_input.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class CreateAccountActivity : AppCompatActivity() {
@@ -21,7 +28,7 @@ class CreateAccountActivity : AppCompatActivity() {
     val user
         get() = User(
                 email.text.toString(),
-                passwordInput.password.text.toString(),
+                password.text.toString(),
                 "${first_name.text} ${last_name.text}"
         )
 
@@ -36,8 +43,33 @@ class CreateAccountActivity : AppCompatActivity() {
     @OnClick(R.id.next_btn)
     fun next() {
         if (validator.validate()) {
-            //TODO: send request to server
             showText("...Подождите произвожу проверку на сервере")
+
+            Retrofit.Builder()
+                    .baseUrl(Constants.BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+                    .create(UserApi::class.java)
+                    .registerUser(user)
+                    .enqueue(object : Callback<Boolean> {
+                        override fun onResponse(call: Call<Boolean>?, response: Response<Boolean>?) {
+                            (response
+                                    ?.let {
+                                        if (it.isSuccessful)
+                                            it.body()?.takeIf { it }
+                                                    ?.let { "Поздравляю вы успешно зарегестированы" }
+                                                    ?: "Пароль или логин неверен"
+                                        else "Произошла ошибка ${it.code()}"
+                                    }
+                                    ?: "Ошибка на строне сервера")
+                                    .let { this@CreateAccountActivity.showText(it) }
+
+                        }
+
+                        override fun onFailure(call: Call<Boolean>?, t: Throwable?) {
+                            this@CreateAccountActivity.showText("Сетевая ошибка\n $t")
+                        }
+                    })
         }
     }
 

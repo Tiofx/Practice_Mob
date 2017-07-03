@@ -8,7 +8,7 @@ import butterknife.OnClick
 import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.R
-import com.example.st_pov.practice.api.HotelApi
+import com.example.st_pov.practice.service.HotelApi
 import com.example.st_pov.practice.kotlin.*
 import com.example.st_pov.practice.models.Hotel
 import kotlinx.android.synthetic.main.activity_hotel_add.*

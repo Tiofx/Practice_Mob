@@ -8,7 +8,7 @@ import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.R
 import com.example.st_pov.practice.R.layout.password_input
-import com.example.st_pov.practice.api.UserApi
+import com.example.st_pov.practice.service.UserApi
 import com.example.st_pov.practice.kotlin.*
 import com.example.st_pov.practice.models.User
 import kotlinx.android.synthetic.main.activity_sign_in.*

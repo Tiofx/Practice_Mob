@@ -8,7 +8,10 @@ import butterknife.OnClick
 import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.R
+import com.example.st_pov.practice.api.HotelApi
 import com.example.st_pov.practice.kotlin.Constants
+import com.example.st_pov.practice.kotlin.FunctionalCallback
+import com.example.st_pov.practice.kotlin.sendToServer
 import com.example.st_pov.practice.kotlin.showText
 import com.example.st_pov.practice.models.Hotel
 import kotlinx.android.synthetic.main.activity_hotel_add.*
@@ -35,8 +38,26 @@ class HotelAddActivity : AppCompatActivity() {
     @OnClick(R.id.add_hotel_btn)
     fun addHotel() {
         if (validator.validate()) {
-            //TODO:send request to the server
             showText("...Подождите произвожу добавление отеля")
+
+            sendToServer<HotelApi> {
+                addHotel(hotel)
+                        .enqueue(FunctionalCallback<Boolean>(
+                                { _, response ->
+                                    (response
+                                            ?.let {
+                                                if (it.isSuccessful)
+                                                    it.body()?.takeIf { it }
+                                                            ?.let { "Отель добавлен" }
+                                                            ?: "Такой отель не валидный"
+                                                else "Произошла ошибка ${it.code()}"
+                                            }
+                                            ?: "Ошибка на строне сервера")
+                                            .let { showText(it) }
+                                },
+                                { _, t -> showText("Сетевая ошибка\n $t") }
+                        ))
+            }
         }
     }
 

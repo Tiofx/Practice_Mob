@@ -9,16 +9,9 @@ import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.R
 import com.example.st_pov.practice.R.layout.password_input
 import com.example.st_pov.practice.api.UserApi
-import com.example.st_pov.practice.kotlin.Constants
-import com.example.st_pov.practice.kotlin.PasswordInput
-import com.example.st_pov.practice.kotlin.showText
+import com.example.st_pov.practice.kotlin.*
 import com.example.st_pov.practice.models.User
 import kotlinx.android.synthetic.main.activity_sign_in.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class SignInActivity : AppCompatActivity() {
     val passwordInput by lazy {
@@ -50,14 +43,9 @@ class SignInActivity : AppCompatActivity() {
         if (validator.validate()) {
             showText(".....Подождите... Идет загрузка на сервер")
 
-            Retrofit.Builder()
-                    .baseUrl(Constants.BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build()
-                    .create(UserApi::class.java)
-                    .validate(user)
-                    .enqueue(object : Callback<Boolean> {
-                        override fun onResponse(call: Call<Boolean>?, response: Response<Boolean>?) {
+            sendToServer<UserApi> {
+                validate(user).enqueue(FunctionalCallback<Boolean>(
+                        { _, response ->
                             (response
                                     ?.let {
                                         if (it.isSuccessful)
@@ -68,13 +56,10 @@ class SignInActivity : AppCompatActivity() {
                                     }
                                     ?: "Ошибка на строне сервера")
                                     .let { this@SignInActivity.showText(it) }
-
-                        }
-
-                        override fun onFailure(call: Call<Boolean>?, t: Throwable?) {
-                            this@SignInActivity.showText("Сетевая ошибка\n $t")
-                        }
-                    })
+                        },
+                        { _, t -> this@SignInActivity.showText("Сетевая ошибка\n $t") }
+                ))
+            }
 
         }
     }

@@ -19,10 +19,11 @@ class HotelAddActivity : AppCompatActivity() {
 
     val hotel
         get() = Hotel(
-                hotel_title_txt.text.toString(),
-                rating_bar.rating.toInt(),
-                hotel_address_txt.text.toString(),
-                photo)
+                title = hotel_title_txt.text.toString(),
+                starRating = rating_bar.rating.toInt(),
+                address = hotel_address_txt.text.toString()
+                        .takeIf(String::isNotBlank),
+                photo = photo)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

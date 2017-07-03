@@ -20,9 +20,10 @@ class CreateAccountActivity : AppCompatActivity() {
 
     val user
         get() = User(
-                email.text.toString(),
-                password.text.toString(),
-                "${first_name.text} ${last_name.text}"
+                email = email.text.toString(),
+                password = password.text.toString(),
+                fullName = "${first_name.text} ${last_name.text}"
+                        .takeIf(String::isNotBlank)
         )
 
     override fun onCreate(savedInstanceState: android.os.Bundle?) {

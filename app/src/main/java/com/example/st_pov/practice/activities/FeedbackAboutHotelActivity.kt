@@ -15,8 +15,8 @@ class FeedbackAboutHotelActivity : AppCompatActivity() {
 
     val feedback
         get() = Feedback(
-                feedback_txt.text.toString(),
-                rating_bar.rating.toInt()
+                comment = feedback_txt.text.toString().trim(),
+                rating = rating_bar.rating.toInt()
         )
 
     override fun onCreate(savedInstanceState: android.os.Bundle?) {

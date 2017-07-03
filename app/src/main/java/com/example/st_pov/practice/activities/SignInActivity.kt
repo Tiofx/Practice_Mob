@@ -12,6 +12,7 @@ import com.example.st_pov.practice.api.UserApi
 import com.example.st_pov.practice.kotlin.*
 import com.example.st_pov.practice.models.User
 import kotlinx.android.synthetic.main.activity_sign_in.*
+import kotlinx.android.synthetic.main.password_input.*
 
 class SignInActivity : AppCompatActivity() {
     val passwordInput by lazy {
@@ -20,8 +21,8 @@ class SignInActivity : AppCompatActivity() {
 
     val user
         get() = User(
-                email.text.toString(),
-                passwordInput.password.text.toString()
+                email = email.text.toString(),
+                password = password.text.toString()
         )
 
     override fun onCreate(savedInstanceState: android.os.Bundle?) {

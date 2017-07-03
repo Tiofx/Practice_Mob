@@ -39,6 +39,8 @@ object Constants {
     }
 }
 
+
+
 inline fun <reified Api> sendToServer(response: Api.() -> Unit) =
         Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
@@ -54,6 +56,7 @@ class FunctionalCallback<T>(var onResponse: (call: Call<T>?, response: Response<
 
     override fun onResponse(call: Call<T>?, response: Response<T>?) {
         onResponse.invoke(call, response)
+
     }
 
     override fun onFailure(call: Call<T>?, t: Throwable?) {

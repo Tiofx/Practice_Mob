@@ -1,18 +1,34 @@
 package com.example.st_pov.practice.models
 
 import android.media.Image
+import com.google.gson.annotations.SerializedName
 
 //TODO: modify
-data class User(var email: String,
-                var password: String,
-                var fullName: String? = null)
+data class User(
+        @SerializedName("id") var id: Int? = null,
+        @SerializedName("email") var email: String,
+        @SerializedName("password") var password: String,
+        @SerializedName("full_name") var fullName: String? = null
+)
 
-data class Hotel(var title: String,
-                 var starRating: Int,
-                 var address: String? = null,
-                 var photo: Image? = null)
+data class Hotel(
+        @SerializedName("id") var id: Int? = null,
+        @SerializedName("title") var title: String,
+        @SerializedName("star_rating") var starRating: Int,
+        @SerializedName("address") var address: String? = null,
+        @SerializedName("photo") var photo: Image? = null
+)
 
-data class Room(var capacity: Int)
+data class Room(
+        @SerializedName("id") var id: Int? = null,
+        @SerializedName("hotel_id") var hotelId: Int,
+        @SerializedName("price") var price: Int,
+        @SerializedName("description") var description: String
+)
 
-data class Feedback(var feedback: String,
-                    var rating: Int)
+data class Feedback(
+        @SerializedName("id") var id: Int? = null,
+        @SerializedName("user_id") var userId: Int? = null,
+        @SerializedName("comment") var comment: String,
+        @SerializedName("rating") var rating: Int
+)

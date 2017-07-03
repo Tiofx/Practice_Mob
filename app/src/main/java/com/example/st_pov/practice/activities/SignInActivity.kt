@@ -8,11 +8,17 @@ import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.R
 import com.example.st_pov.practice.R.layout.password_input
+import com.example.st_pov.practice.api.UserApi
 import com.example.st_pov.practice.kotlin.Constants
 import com.example.st_pov.practice.kotlin.PasswordInput
 import com.example.st_pov.practice.kotlin.showText
 import com.example.st_pov.practice.models.User
 import kotlinx.android.synthetic.main.activity_sign_in.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class SignInActivity : AppCompatActivity() {
     val passwordInput by lazy {
@@ -42,8 +48,34 @@ class SignInActivity : AppCompatActivity() {
     @OnClick(R.id.sign_in_btn)
     fun signIn() {
         if (validator.validate()) {
-            //TODO:send request to the server
             showText(".....Подождите... Идет загрузка на сервер")
+
+            Retrofit.Builder()
+                    .baseUrl(Constants.BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+                    .create(UserApi::class.java)
+                    .validate(user)
+                    .enqueue(object : Callback<Boolean> {
+                        override fun onResponse(call: Call<Boolean>?, response: Response<Boolean>?) {
+                            (response
+                                    ?.let {
+                                        if (it.isSuccessful)
+                                            it.body()?.takeIf { it }
+                                                    ?.let { "Поздравляю вы успешно вошли" }
+                                                    ?: "Пароль или логин неверен"
+                                        else "Произошла ошибка ${it.code()}"
+                                    }
+                                    ?: "Ошибка на строне сервера")
+                                    .let { this@SignInActivity.showText(it) }
+
+                        }
+
+                        override fun onFailure(call: Call<Boolean>?, t: Throwable?) {
+                            this@SignInActivity.showText("Сетевая ошибка\n $t")
+                        }
+                    })
+
         }
     }
 

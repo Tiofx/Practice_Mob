@@ -6,7 +6,9 @@ import retrofit2.http.*
 
 interface RoomApi {
     @POST("/hotel/{id}/room")
-    fun addRoom(@Path("id") hotelId: Int, @Body room: Room): Call<Boolean>
+    fun addRoom(@Path("id") hotelId: Int,
+                @Body room: Room)
+            : Call<Boolean>
 
     @GET("/hotel/{id}/room")
     fun getRoom(@Path("id") hotelId: Int,

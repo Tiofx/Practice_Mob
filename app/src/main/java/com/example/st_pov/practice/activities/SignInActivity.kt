@@ -46,18 +46,12 @@ class SignInActivity : AppCompatActivity() {
             sendToServer<UserApi> {
                 validate(user).enqueue(FunctionalCallback<Boolean>(
                         { _, response ->
-                            (response
-                                    ?.let {
-                                        if (it.isSuccessful)
-                                            it.body()?.takeIf { it }
-                                                    ?.let { "Поздравляю вы успешно вошли" }
-                                                    ?: "Пароль или логин неверен"
-                                        else "Произошла ошибка ${it.code()}"
-                                    }
-                                    ?: "Ошибка на строне сервера")
-                                    .let { this@SignInActivity.showText(it) }
+                            response.simpleResponseParser {
+                                if (this) "Поздравляю вы успешно вошли"
+                                else "Пароль или логин неверен"
+                            }.let { showText(it) }
                         },
-                        { _, t -> this@SignInActivity.showText("Сетевая ошибка\n $t") }
+                        { _, t -> showText("Сетевая ошибка\n $t") }
                 ))
             }
 

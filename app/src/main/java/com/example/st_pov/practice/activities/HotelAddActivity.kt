@@ -9,10 +9,7 @@ import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.R
 import com.example.st_pov.practice.api.HotelApi
-import com.example.st_pov.practice.kotlin.Constants
-import com.example.st_pov.practice.kotlin.FunctionalCallback
-import com.example.st_pov.practice.kotlin.sendToServer
-import com.example.st_pov.practice.kotlin.showText
+import com.example.st_pov.practice.kotlin.*
 import com.example.st_pov.practice.models.Hotel
 import kotlinx.android.synthetic.main.activity_hotel_add.*
 
@@ -44,16 +41,10 @@ class HotelAddActivity : AppCompatActivity() {
                 addHotel(hotel)
                         .enqueue(FunctionalCallback<Boolean>(
                                 { _, response ->
-                                    (response
-                                            ?.let {
-                                                if (it.isSuccessful)
-                                                    it.body()?.takeIf { it }
-                                                            ?.let { "Отель добавлен" }
-                                                            ?: "Такой отель не валидный"
-                                                else "Произошла ошибка ${it.code()}"
-                                            }
-                                            ?: "Ошибка на строне сервера")
-                                            .let { showText(it) }
+                                    response.simpleResponseParser {
+                                        if (this) "Отель добавлен"
+                                        else "Такой отель не валидный"
+                                    }.let { showText(it) }
                                 },
                                 { _, t -> showText("Сетевая ошибка\n $t") }
                         ))

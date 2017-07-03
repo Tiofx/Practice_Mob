@@ -42,19 +42,13 @@ class CreateAccountActivity : AppCompatActivity() {
                 registerUser(user)
                         .enqueue(FunctionalCallback<Boolean>(
                                 { _, response ->
-                                    (response
-                                            ?.let {
-                                                if (it.isSuccessful)
-                                                    it.body()?.takeIf { it }
-                                                            ?.let { "Поздравляю вы успешно зарегестированы" }
-                                                            ?: "Пароль или логин неверен"
-                                                else "Произошла ошибка ${it.code()}"
-                                            }
-                                            ?: "Ошибка на строне сервера")
-                                            .let { this@CreateAccountActivity.showText(it) }
+                                    response.simpleResponseParser {
+                                        if (this) "Поздравляю вы успешно зарегестированы"
+                                        else "Пароль или логин неверен"
+                                    }.let { showText(it) }
 
                                 },
-                                { _, t -> this@CreateAccountActivity.showText("Сетевая ошибка\n $t") }
+                                { _, t -> showText("Сетевая ошибка\n $t") }
                         ))
             }
         }

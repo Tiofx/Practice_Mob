@@ -60,3 +60,12 @@ class FunctionalCallback<T>(var onResponse: (call: Call<T>?, response: Response<
         onFailure.invoke(call, t)
     }
 }
+
+
+fun <T> Response<T>?.simpleResponseParser(onNoBody: String = "Тело ответа отсутствует",
+                                          parseBody: T.() -> String) =
+        this?.let {
+            if (it.isSuccessful)
+                it.body()?.parseBody() ?: onNoBody
+            else "Произошла ошибка ${it.code()}"
+        } ?: "Ошибка на строне сервера"

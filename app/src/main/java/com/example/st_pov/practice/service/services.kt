@@ -18,8 +18,16 @@ interface UserApi {
 
     @GET("/user")
     fun validate(
-            @Body user: User
+            @Query("email") email: String,
+            @Query("password") password: String
     ): Call<Boolean>
+
+    @DELETE("/user")
+    fun signOut(
+    ): Call<Boolean>
+
+    fun validate(user: User) =
+            user.run { validate(email, password) }
 }
 
 

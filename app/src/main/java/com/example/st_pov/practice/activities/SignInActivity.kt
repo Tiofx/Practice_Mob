@@ -13,6 +13,7 @@ import com.example.st_pov.practice.kotlin.*
 import com.example.st_pov.practice.models.User
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.password_input.*
+import org.json.JSONObject
 
 class SignInActivity : AppCompatActivity() {
     val passwordInput by lazy {
@@ -31,7 +32,6 @@ class SignInActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         ButterKnife.bind(this)
-
     }
 
     @OnClick(R.id.forget_btn)

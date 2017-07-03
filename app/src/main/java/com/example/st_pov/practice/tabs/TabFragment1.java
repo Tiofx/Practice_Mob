@@ -1,28 +1,23 @@
-package com.example.st_pov.practice.Tabs;
+package com.example.st_pov.practice.tabs;
 
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-//import com.example.st_pov.practice.HotelAdapter;
-import com.example.st_pov.practice.Models.ItemHotel;
-import com.example.st_pov.practice.Models.ItemRoom;
+import com.example.st_pov.practice.HotelAdapter;
+import com.example.st_pov.practice.models.ItemHotel;
 import com.example.st_pov.practice.R;
-import com.example.st_pov.practice.RoomAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TabFragment1 extends Fragment {
     protected RecyclerView recyclerView;
-//    protected HotelAdapter adapterHotel;
-//    protected RoomAdapter adapterRoom;
+    //    protected HotelAdapter adapterHotel;
+    protected HotelAdapter adapterHotel;
     protected List<ItemHotel> hotelList;
 //    protected List<ItemRoom> roomList;
 
@@ -34,9 +29,13 @@ public class TabFragment1 extends Fragment {
 
         hotelList = new ArrayList<>();
 //        adapterHotel = new HotelAdapter(getContext(), hotelList);
-////        roomList = new ArrayList<>();
-////        adapterRoom = new RoomAdapter(getContext(), roomList);
-//        recyclerView.setAdapter(adapterHotel);
+//        roomList = new ArrayList<>();
+
+        hotelList.add(new ItemHotel("Cosmos", "Moscow", 32, R.drawable.room, 3.0, true));
+        hotelList.add(new ItemHotel("Intercontinental", "Madrid", 32, R.drawable.gostin_fgb, 3.0, true));
+
+        adapterHotel = new HotelAdapter(getContext(), hotelList);
+        recyclerView.setAdapter(adapterHotel);
 
 
         return view;

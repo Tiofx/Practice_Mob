@@ -8,11 +8,11 @@ import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.R
 import com.example.st_pov.practice.R.layout.password_input
-import com.example.st_pov.practice.kotlin.Constants
-import com.example.st_pov.practice.kotlin.PasswordInput
-import com.example.st_pov.practice.kotlin.showText
+import com.example.st_pov.practice.api.UserApi
+import com.example.st_pov.practice.kotlin.*
 import com.example.st_pov.practice.models.User
 import kotlinx.android.synthetic.main.activity_create_account.*
+import kotlinx.android.synthetic.main.password_input.*
 
 
 class CreateAccountActivity : AppCompatActivity() {
@@ -21,7 +21,7 @@ class CreateAccountActivity : AppCompatActivity() {
     val user
         get() = User(
                 email.text.toString(),
-                passwordInput.password.text.toString(),
+                password.text.toString(),
                 "${first_name.text} ${last_name.text}"
         )
 
@@ -36,8 +36,21 @@ class CreateAccountActivity : AppCompatActivity() {
     @OnClick(R.id.next_btn)
     fun next() {
         if (validator.validate()) {
-            //TODO: send request to server
             showText("...Подождите произвожу проверку на сервере")
+
+            sendToServer<UserApi> {
+                registerUser(user)
+                        .enqueue(FunctionalCallback<Boolean>(
+                                { _, response ->
+                                    response.simpleResponseParser {
+                                        if (this) "Поздравляю вы успешно зарегестированы"
+                                        else "Пароль или логин неверен"
+                                    }.let { showText(it) }
+
+                                },
+                                { _, t -> showText("Сетевая ошибка\n $t") }
+                        ))
+            }
         }
     }
 

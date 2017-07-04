@@ -7,9 +7,10 @@ import butterknife.OnClick
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.R
 import com.example.st_pov.practice.R.layout.password_input
-import com.example.st_pov.practice.kotlin.*
+import com.example.st_pov.practice.kotlin.PasswordInput
 import com.example.st_pov.practice.models.User
 import com.example.st_pov.practice.service.UserApi
+import com.example.st_pov.practice.util.validate
 import com.example.st_pov.practice.util.*
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.password_input.*
@@ -45,6 +46,7 @@ class SignInActivity : AppCompatActivity() {
 
             sendToServer<UserApi> {
                 validate(user).enqueue(FunctionalCallback<Boolean>(
+//                validate(user.email, user.password).enqueue(FunctionalCallback<Boolean>(
                         { _, response ->
                             response.simpleResponseParser {
                                 if (this) "Поздравляю вы успешно вошли"

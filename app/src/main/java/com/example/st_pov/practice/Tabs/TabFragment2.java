@@ -1,4 +1,4 @@
-package com.example.st_pov.practice.Tabs;
+package com.example.st_pov.practice.tabs;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

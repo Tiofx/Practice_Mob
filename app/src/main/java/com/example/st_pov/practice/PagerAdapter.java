@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.st_pov.practice.Tabs.TabFragment1;
-import com.example.st_pov.practice.Tabs.TabFragment2;
-import com.example.st_pov.practice.Tabs.TabFragment3;
+import com.example.st_pov.practice.tabs.TabFragment1;
+import com.example.st_pov.practice.tabs.TabFragment2;
+import com.example.st_pov.practice.tabs.TabFragment3;
 
 /**
  * Created by st_pov on 29.06.2017.

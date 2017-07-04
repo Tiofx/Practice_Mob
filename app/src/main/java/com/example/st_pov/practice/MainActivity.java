@@ -11,6 +11,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.st_pov.practice.activities.HotelAddActivity;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+import static com.example.st_pov.practice.util.UtilKt.loadActivity;
+
 /**
  * Created by st_pov on 29.06.2017.
  */
@@ -32,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
@@ -62,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        ButterKnife.bind(this);
     }
 
     @Override
@@ -78,5 +86,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @OnClick(R.id.fab)
+    public void addHotel(View view) {
+//        showText(MainActivity.this, "fab", Toast.LENGTH_SHORT);
+        loadActivity(MainActivity.this, HotelAddActivity.class);
     }
 }

@@ -106,6 +106,7 @@
                     android:layout_marginLeft="5dp"
                     android:background="@android:color/transparent" />
                 <Button
+                    android:id="@+id/mark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/Base.TextAppearance.AppCompat.Widget.Button.Borderless.Colored"

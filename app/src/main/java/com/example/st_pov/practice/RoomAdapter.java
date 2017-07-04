@@ -21,17 +21,24 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
 
     private Context mContext;
     private List<ItemRoom> roomList;
+    private static MyClickListener myClickListener;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView titleRoom, price, people;
         public ImageView photoRoom;
 
         public MyViewHolder(View view) {
             super(view);
-            titleRoom =  view.findViewById(R.id.titleRoom);
-            price =  view.findViewById(R.id.price);
-            people =  view.findViewById(R.id.numberPeople);
-            photoRoom =  view.findViewById(R.id.photoRoom);
+            titleRoom = view.findViewById(R.id.titleRoom);
+            price = view.findViewById(R.id.price);
+            people = view.findViewById(R.id.numberPeople);
+            photoRoom = view.findViewById(R.id.photoRoom);
+        }
+
+        @Override
+        public void onClick(View view) {
+            myClickListener.onItemClick(getAdapterPosition(), view);
         }
     }
 
@@ -61,9 +68,17 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
 
     }
 
+    public void setOnItemClickListener(MyClickListener myClickListener) {
+        this.myClickListener = myClickListener;
+    }
+
 
     @Override
     public int getItemCount() {
         return roomList.size();
+    }
+
+    public interface MyClickListener {
+        void onItemClick(int position, View v);
     }
 }

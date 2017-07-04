@@ -1,4 +1,6 @@
-package com.example.st_pov.practice;
+package com.example.st_pov.practice.api;
+
+import com.example.st_pov.practice.HotelAdapter;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

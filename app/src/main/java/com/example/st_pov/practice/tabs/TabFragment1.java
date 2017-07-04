@@ -8,18 +8,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.st_pov.practice.HotelAdapter;
+import com.example.st_pov.practice.RoomAdapter;
 import com.example.st_pov.practice.models.ItemHotel;
 import com.example.st_pov.practice.R;
+import com.example.st_pov.practice.models.ItemRoom;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TabFragment1 extends Fragment {
     protected RecyclerView recyclerView;
-    //    protected HotelAdapter adapterHotel;
+    protected RoomAdapter roomAdapter;
     protected HotelAdapter adapterHotel;
     protected List<ItemHotel> hotelList;
-//    protected List<ItemRoom> roomList;
+    protected List<ItemRoom> roomList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,14 +42,16 @@ public class TabFragment1 extends Fragment {
 
         return view;
     }
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        ((HotelAdapter) adapterHotel).setOnItemClickListener(new HotelAdapter.MyClickListener() {
-//            @Override
-//            public void onItemClick(int position, View v) {
-//
-//            }
-//        });
-//    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapterHotel.setOnItemClickListener(new HotelAdapter.MyClickListener() {
+            @Override
+            public void onItemClick(int position, View v) {
+                roomAdapter = new RoomAdapter(getContext(), roomList);
+                recyclerView.setAdapter(roomAdapter);
+            }
+        });
+    }
 }

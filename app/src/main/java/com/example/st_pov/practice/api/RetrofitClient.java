@@ -1,4 +1,4 @@
-package com.example.st_pov.practice;
+package com.example.st_pov.practice.api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

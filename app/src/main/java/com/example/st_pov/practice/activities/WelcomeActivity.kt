@@ -4,8 +4,8 @@ import android.support.v7.app.AppCompatActivity
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.example.st_pov.practice.R
-import com.example.st_pov.practice.kotlin.loadActivity
-import com.example.st_pov.practice.kotlin.showText
+import com.example.st_pov.practice.util.loadActivity
+import com.example.st_pov.practice.util.showText
 
 
 class WelcomeActivity : AppCompatActivity() {

@@ -5,12 +5,11 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import butterknife.ButterKnife
 import butterknife.OnClick
-import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.R
-import com.example.st_pov.practice.api.HotelApi
-import com.example.st_pov.practice.kotlin.*
 import com.example.st_pov.practice.models.Hotel
+import com.example.st_pov.practice.service.HotelApi
+import com.example.st_pov.practice.util.*
 import kotlinx.android.synthetic.main.activity_hotel_add.*
 
 class HotelAddActivity : AppCompatActivity() {
@@ -19,10 +18,11 @@ class HotelAddActivity : AppCompatActivity() {
 
     val hotel
         get() = Hotel(
-                hotel_title_txt.text.toString(),
-                rating_bar.rating.toInt(),
-                hotel_address_txt.text.toString(),
-                photo)
+                title = hotel_title_txt.text.toString(),
+                starRating = rating_bar.rating.toInt(),
+                address = hotel_address_txt.text.toString()
+                        .takeIf(String::isNotBlank),
+                photo = photo)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,13 +57,15 @@ class HotelAddActivity : AppCompatActivity() {
 
 
     val validator by lazy {
-        AwesomeValidation(ValidationStyle.BASIC).apply {
-            addValidation(this@HotelAddActivity,
+        kawesomeValidation(ValidationStyle.BASIC) {
+            setActivity { this@HotelAddActivity }
+
+            addValidation(
                     R.id.hotel_title_txt,
                     Constants.Regex.HOTEL_TITLE,
                     R.string.validation_hotel_title_error)
 
-            addValidation(this@HotelAddActivity,
+            addValidation(
                     R.id.hotel_address_txt,
                     Constants.Regex.ADDRESS,
                     R.string.validation_address_error)

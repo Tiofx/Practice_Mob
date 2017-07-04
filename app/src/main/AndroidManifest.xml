@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.st_pov.practice">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -17,6 +18,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.WelcomeActivity"
+            android:label="@string/welcome"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".activities.SignInActivity"
+            android:label="@string/sign_in"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".activities.CreateAccountActivity"
+            android:label="@string/create_account"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".activities.HotelAddActivity"
+            android:label="@string/add_hotel"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".activities.FeedbackAboutHotelActivity"
+            android:label="@string/give_feedback"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

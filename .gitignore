@@ -30,3 +30,7 @@ gradle-app.setting
 # other stuff
 *.hprof
 hs_err*
+app/libs/
+lib/*
+/gradle.properties
+lib/

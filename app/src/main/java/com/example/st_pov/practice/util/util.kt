@@ -1,4 +1,4 @@
-package com.example.st_pov.practice.kotlin
+package com.example.st_pov.practice.util
 
 import android.app.Activity
 import android.content.Intent
@@ -40,7 +40,6 @@ object Constants {
 }
 
 
-
 inline fun <reified Api> sendToServer(response: Api.() -> Unit) =
         Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
@@ -71,3 +70,5 @@ fun <T> Response<T>?.simpleResponseParser(onNoBody: String = "Тело отве�
                 it.body()?.parseBody() ?: onNoBody
             else "Произошла ошибка ${it.code()}"
         } ?: "Ошибка на строне сервера"
+
+

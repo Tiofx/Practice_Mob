@@ -19,6 +19,8 @@ object Constants {
     //TODO: change on release
     const val BASE_URL = "http://divine-leaf-1414.getsandbox.com"
     const val USER_AGENT = "mobile_android"
+    const val TOKEN_NAME = "token"
+    var tokenValue: String? = null
 
 
     val NAME_LENGTH_RANGE = 2 to 20

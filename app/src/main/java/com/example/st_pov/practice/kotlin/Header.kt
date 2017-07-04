@@ -13,13 +13,18 @@ class Header(var headerRoot: View) {
     val signOutBtn
         get() = headerRoot.sign_out_btn
 
-    init {
+    fun updateUserInfo() {
         userInfo.text = Session.currentUser?.let {
             it.fullName ?: "Почта: ${it.email}"
         } ?: "Пользователя НЕТ"
+    }
+
+    init {
+        updateUserInfo()
 
         signOutBtn.setOnClickListener {
             Session.currentUser = null
+            updateUserInfo()
             headerRoot.visibility = View.GONE
         }
     }

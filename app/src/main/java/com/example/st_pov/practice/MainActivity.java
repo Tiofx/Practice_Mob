@@ -12,7 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.st_pov.practice.activities.HotelAddActivity;
+import com.example.st_pov.practice.kotlin.Header;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -23,6 +25,11 @@ import static com.example.st_pov.practice.util.UtilKt.loadActivity;
  */
 
 public class MainActivity extends AppCompatActivity {
+
+    @BindView(R.id.header)
+    protected View headerRoot;
+
+    private Header header;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ButterKnife.bind(this);
+        header = new Header(headerRoot);
     }
 
     @Override

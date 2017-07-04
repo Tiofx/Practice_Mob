@@ -3,6 +3,8 @@ package com.example.st_pov.practice.util
 import android.app.Activity
 import android.content.Intent
 import android.widget.Toast
+import com.example.st_pov.practice.models.User
+import com.example.st_pov.practice.service.UserApi
 import retrofit2.Response
 
 fun Activity.showText(text: String, duration: Int = Toast.LENGTH_SHORT) =
@@ -15,7 +17,7 @@ inline fun <reified T> Activity.loadActivity() = startActivity(Intent(this, T::c
 //TODO: move out into file
 object Constants {
     //TODO: change on release
-    const val BASE_URL = "http://falling-paper-6881.getsandbox.com"
+    const val BASE_URL = "http://divine-leaf-1414.getsandbox.com"
     const val USER_AGENT = "mobile_android"
 
 
@@ -46,3 +48,5 @@ fun <T> Response<T>?.simpleResponseParser(onNoBody: String = "Тело отве�
         } ?: "Ошибка на строне сервера"
 
 
+inline fun UserApi.validate(user: User) =
+        user.run { validate(email, password) }

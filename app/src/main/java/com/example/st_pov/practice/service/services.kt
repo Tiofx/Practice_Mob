@@ -25,11 +25,7 @@ interface UserApi {
     @DELETE("/user")
     fun signOut(
     ): Call<Boolean>
-
-    fun validate(user: User) =
-            user.run { validate(email, password) }
 }
-
 
 interface HotelApi {
 

@@ -2,12 +2,13 @@ package com.example.st_pov.practice.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.util.Patterns
+import android.widget.FrameLayout
+import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.MainActivity
 import com.example.st_pov.practice.R
-import com.example.st_pov.practice.R.layout.password_input
 import com.example.st_pov.practice.kotlin.PasswordInput
 import com.example.st_pov.practice.models.User
 import com.example.st_pov.practice.service.UserApi
@@ -16,8 +17,11 @@ import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.password_input.*
 
 class SignInActivity : AppCompatActivity() {
+    @BindView(R.id.password_container)
+    lateinit var password_input: FrameLayout
+
     val passwordInput by lazy {
-        PasswordInput(findViewById(password_input))
+        PasswordInput(password_input)
     }
 
     val user
@@ -32,6 +36,7 @@ class SignInActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         ButterKnife.bind(this)
+        passwordInput
     }
 
     @OnClick(R.id.forget_btn)
@@ -46,14 +51,13 @@ class SignInActivity : AppCompatActivity() {
 
             sendToServer<UserApi> {
                 validate(user).enqueue(FunctionalCallback<Boolean>(
-//                validate(user.email, user.password).enqueue(FunctionalCallback<Boolean>(
+                        //                validate(user.email, user.password).enqueue(FunctionalCallback<Boolean>(
                         { _, response ->
                             response.simpleResponseParser {
                                 if (this) {
                                     loadActivity<MainActivity>()
                                     "Поздравляю вы успешно вошли"
-                                }
-                                else "Пароль или логин неверен"
+                                } else "Пароль или логин неверен"
                             }.let { showText(it) }
                         },
                         { _, t -> showText("Сетевая ошибка\n $t") }

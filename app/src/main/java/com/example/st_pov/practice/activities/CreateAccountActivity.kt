@@ -5,6 +5,7 @@ import android.util.Patterns
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.basgeekball.awesomevalidation.ValidationStyle
+import com.example.st_pov.practice.MainActivity
 import com.example.st_pov.practice.R
 import com.example.st_pov.practice.R.layout.password_input
 import com.example.st_pov.practice.kotlin.*
@@ -44,7 +45,10 @@ class CreateAccountActivity : AppCompatActivity() {
                         .enqueue(FunctionalCallback<Boolean>(
                                 { _, response ->
                                     response.simpleResponseParser {
-                                        if (this) "Поздравляю вы успешно зарегестированы"
+                                        if (this) {
+                                            loadActivity<MainActivity>()
+                                            "Поздравляю вы успешно зарегестированы"
+                                        }
                                         else "Пароль или логин неверен"
                                     }.let { showText(it) }
 

@@ -1,6 +1,5 @@
 package com.example.st_pov.practice.activities
 
-import android.media.Image
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import butterknife.ButterKnife
@@ -14,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_hotel_add.*
 
 class HotelAddActivity : AppCompatActivity() {
 
-    lateinit var photo: Image
+//    lateinit var photo: Image
 
     val hotel
         get() = Hotel(
@@ -22,7 +21,8 @@ class HotelAddActivity : AppCompatActivity() {
                 starRating = rating_bar.rating.toInt(),
                 address = hotel_address_txt.text.toString()
                         .takeIf(String::isNotBlank),
-                photo = photo)
+                hasBreakfast = has_breakfast.isChecked
+        )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +42,10 @@ class HotelAddActivity : AppCompatActivity() {
                         .enqueue(FunctionalCallback<Boolean>(
                                 { _, response ->
                                     response.simpleResponseParser {
-                                        if (this) "Отель добавлен"
-                                        else "Такой отель не валидный"
+                                        if (this) {
+                                            this@HotelAddActivity.finish()
+                                            "Отель добавлен"
+                                        } else "Такой отель не валидный"
                                     }.let { showText(it) }
                                 },
                                 { _, t -> showText("Сетевая ошибка\n $t") }
@@ -52,8 +54,8 @@ class HotelAddActivity : AppCompatActivity() {
         }
     }
 
-    @OnClick(R.id.add_photo_btn)
-    fun addPhoto() = showText("Добавление фото не работает")
+//    @OnClick(R.id.add_photo_btn)
+//    fun addPhoto() = showText("Добавление фото не работает")
 
 
     val validator by lazy {

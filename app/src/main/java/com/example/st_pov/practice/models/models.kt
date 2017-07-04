@@ -15,8 +15,11 @@ data class Hotel(
         @SerializedName("id") var id: Int? = null,
         @SerializedName("title") var title: String,
         @SerializedName("star_rating") var starRating: Int,
+        @SerializedName("has_breakfast") var hasBreakfast: Boolean? = null,
         @SerializedName("address") var address: String? = null,
-        @SerializedName("photo") var photo: Image? = null
+        @SerializedName("photo") var photo: Image? = null,
+        @SerializedName("reviews_number") var reviewsNumber: Int? = null,
+        @SerializedName("rooms") var rooms: List<Room>? = null
 )
 
 data class Room(
@@ -28,7 +31,8 @@ data class Room(
 
 data class Feedback(
         @SerializedName("id") var id: Int? = null,
-        @SerializedName("user_id") var userId: Int? = null,
+        //TODO: define by token on server
+//        @SerializedName("user_id") var userId: Int? = null,
         @SerializedName("comment") var comment: String,
         @SerializedName("rating") var rating: Int
 )

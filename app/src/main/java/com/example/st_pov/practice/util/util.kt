@@ -11,7 +11,9 @@ fun Activity.showText(text: String, duration: Int = Toast.LENGTH_SHORT) =
         Toast.makeText(this, text, duration)
                 .show()
 
-inline fun <reified T> Activity.loadActivity() = startActivity(Intent(this, T::class.java))
+inline fun <reified T> Activity.loadActivity() = loadActivity(T::class.java)
+fun Activity.loadActivity(loadActivityClass: Class<*>) =
+        startActivity(Intent(this, loadActivityClass))
 
 
 //TODO: move out into file

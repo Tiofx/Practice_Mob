@@ -50,14 +50,14 @@
             android:textOff="@string/no_breakfast"
             android:textOn="@string/there_is_breakfast" />
 
-        <TextView
-            style="@style/Text.Title"
-            android:text="@string/photo" />
+        <!--<TextView-->
+            <!--style="@style/Text.Title"-->
+            <!--android:text="@string/photo" />-->
 
-        <ImageButton
-            android:id="@+id/add_photo_btn"
-            style="@style/Button.Transparent.AddButton"
-            app:srcCompat="@drawable/add_icon" />
+        <!--<ImageButton-->
+            <!--android:id="@+id/add_photo_btn"-->
+            <!--style="@style/Button.Transparent.AddButton"-->
+            <!--app:srcCompat="@drawable/add_icon" />-->
     </LinearLayout>
 
     <Button

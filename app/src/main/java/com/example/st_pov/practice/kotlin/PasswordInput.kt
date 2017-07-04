@@ -27,7 +27,7 @@ class PasswordInput(var passwordContainer: View) {
 
 
     init {
-        passwordContainer.show_btn.setOnClickListener { switchState() }
+        show_btn.setOnClickListener { switchState() }
     }
 
     fun switchState() {

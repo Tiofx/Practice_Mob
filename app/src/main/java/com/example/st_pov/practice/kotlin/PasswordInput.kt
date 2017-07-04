@@ -28,14 +28,6 @@ class PasswordInput(var passwordContainer: View) {
 
     init {
         passwordContainer.show_btn.setOnClickListener { switchState() }
-
-//        show_btn.setOnTouchListener(View.OnTouchListener { v, event ->
-//            when (event.action) {
-//                MotionEvent.ACTION_DOWN -> password.inputType = InputType.TYPE_CLASS_TEXT
-//                MotionEvent.ACTION_UP -> password.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-//            }
-//            true
-//        })
     }
 
     fun switchState() {

@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.fab)
     public void addHotel(View view) {
-//        showText(MainActivity.this, "fab", Toast.LENGTH_SHORT);
         loadActivity(MainActivity.this, HotelAddActivity.class);
     }
 }

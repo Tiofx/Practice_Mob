@@ -37,20 +37,22 @@ class HotelAddActivity : AppCompatActivity() {
         if (validator.validate()) {
             showText("...Подождите произвожу добавление отеля")
 
-            sendToServer<HotelApi> {
-                addHotel(hotel)
-                        .enqueue(FunctionalCallback<Boolean>(
-                                { _, response ->
-                                    response.simpleResponseParser {
-                                        if (this) {
-                                            this@HotelAddActivity.finish()
-                                            "Отель добавлен"
-                                        } else "Такой отель не валидный"
-                                    }.let { showText(it) }
-                                },
-                                { _, t -> showText("Сетевая ошибка\n $t") }
-                        ))
-            }
+            finish()
+
+//            sendToServer<HotelApi> {
+//                addHotel(hotel)
+//                        .enqueue(FunctionalCallback<Boolean>(
+//                                { _, response ->
+//                                    response.simpleResponseParser {
+//                                        if (this) {
+//                                            this@HotelAddActivity.finish()
+//                                            "Отель добавлен"
+//                                        } else "Такой отель не валидный"
+//                                    }.let { showText(it) }
+//                                },
+//                                { _, t -> showText("Сетевая ошибка\n $t") }
+//                        ))
+//            }
         }
     }
 

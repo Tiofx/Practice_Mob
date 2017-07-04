@@ -12,16 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".MainActivity">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity
+            android:name=".activities.WelcomeActivity"
+            android:label="@string/welcome"
+            android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activities.WelcomeActivity"
-            android:label="@string/welcome"
-            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".activities.SignInActivity"
             android:label="@string/sign_in"

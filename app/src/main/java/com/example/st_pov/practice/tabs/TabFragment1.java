@@ -1,20 +1,15 @@
-package com.example.st_pov.practice.Tabs;
+package com.example.st_pov.practice.tabs;
 
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 //import com.example.st_pov.practice.HotelAdapter;
-import com.example.st_pov.practice.Models.ItemHotel;
-import com.example.st_pov.practice.Models.ItemRoom;
+import com.example.st_pov.practice.models.ItemHotel;
 import com.example.st_pov.practice.R;
-import com.example.st_pov.practice.RoomAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

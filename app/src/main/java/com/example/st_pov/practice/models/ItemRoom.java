@@ -1,4 +1,4 @@
-package com.example.st_pov.practice.Models;
+package com.example.st_pov.practice.models;
 
 /**
  * Created by st_pov on 29.06.2017.

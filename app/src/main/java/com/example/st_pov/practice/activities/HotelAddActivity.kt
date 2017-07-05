@@ -1,17 +1,17 @@
 package com.example.st_pov.practice.activities
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.R
 import com.example.st_pov.practice.models.Hotel
-import com.example.st_pov.practice.service.HotelApi
-import com.example.st_pov.practice.util.*
+import com.example.st_pov.practice.util.Constants
+import com.example.st_pov.practice.util.kawesomeValidation
+import com.example.st_pov.practice.util.showText
 import kotlinx.android.synthetic.main.activity_hotel_add.*
 
-class HotelAddActivity : AppCompatActivity() {
+class HotelAddActivity : HeaderActivity() {
 
 //    lateinit var photo: Image
 
@@ -30,6 +30,7 @@ class HotelAddActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         ButterKnife.bind(this)
+        header
     }
 
     @OnClick(R.id.add_hotel_btn)

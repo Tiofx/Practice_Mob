@@ -8,11 +8,19 @@
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
+    <include
+        android:id="@+id/header"
+        layout="@layout/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        tools:visibility="visible" />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
         android:layout_alignParentTop="true"
         android:background="?attr/colorPrimary"
         android:elevation="6dp"
@@ -36,15 +44,6 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
          />
-
-    <include
-        android:id="@+id/header"
-        layout="@layout/header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tab_layout"
-        android:layout_gravity="center"
-        tools:visibility="visible" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

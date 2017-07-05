@@ -32,8 +32,8 @@ class FeedbackAboutHotelActivity : AppCompatActivity() {
     fun feedback() {
         if (validator.validate()) {
             //TODO: send request to server
-            finish()
             showText("...Подождите выполняется добавление вашего отзыва")
+            finish()
         }
     }
 

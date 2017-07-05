@@ -7,25 +7,34 @@ import kotlinx.android.synthetic.main.header.view.*
 
 class Header(var headerRoot: View) {
 
-    val userInfo
+    protected val userInfo
         get() = headerRoot.user_info
 
-    val signOutBtn
+    protected val signOutBtn
         get() = headerRoot.sign_out_btn
 
-    fun updateUserInfo() {
-        userInfo.text = Session.currentUser?.let {
-            it.fullName ?: "Почта: ${it.email}"
-        } ?: "Пользователя НЕТ"
-    }
-
     init {
-        updateUserInfo()
+        updateHeaderState()
 
         signOutBtn.setOnClickListener {
             Session.currentUser = null
-            updateUserInfo()
-            headerRoot.visibility = View.GONE
+            updateHeaderState()
         }
+    }
+
+    fun updateHeaderState() {
+        updateVisibility()
+        updateUserInfo()
+    }
+
+    protected fun updateUserInfo() {
+        userInfo.text = Session.currentUser?.let {
+            it.fullName ?: "Почта: ${it.email}"
+        } ?: ""
+    }
+
+    protected fun updateVisibility() {
+        headerRoot.visibility =
+                if (Session.currentUser != null) View.VISIBLE else View.GONE
     }
 }

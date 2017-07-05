@@ -1,5 +1,6 @@
 package com.example.st_pov.practice.activities
 
+import android.content.Intent
 import android.os.Bundle
 import butterknife.ButterKnife
 import butterknife.OnClick
@@ -9,6 +10,7 @@ import com.example.st_pov.practice.models.Hotel
 import com.example.st_pov.practice.util.Constants
 import com.example.st_pov.practice.util.kawesomeValidation
 import com.example.st_pov.practice.util.showText
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_hotel_add.*
 
 class HotelAddActivity : HeaderActivity() {
@@ -38,7 +40,6 @@ class HotelAddActivity : HeaderActivity() {
         if (validator.validate()) {
             showText("...Подождите произвожу добавление отеля")
 
-            finish()
 
 //            sendToServer<HotelApi> {
 //                addHotel(hotel)
@@ -46,7 +47,11 @@ class HotelAddActivity : HeaderActivity() {
 //                                { _, response ->
 //                                    response.simpleResponseParser {
 //                                        if (this) {
-//                                            this@HotelAddActivity.finish()
+            Intent().apply {
+                Gson().toJson(hotel).let { putExtra("new_hotel", it) }
+                setResult(Constants.HOTEL_REQUEST_CODE)
+            }
+            this@HotelAddActivity.finish()
 //                                            "Отель добавлен"
 //                                        } else "Такой отель не валидный"
 //                                    }.let { showText(it) }

@@ -1,7 +1,6 @@
 package com.example.st_pov.practice.tabs;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -35,6 +34,11 @@ public class TabFragment1 extends Fragment {
     protected HotelAdapter adapterHotel;
     protected List<ItemHotel> hotelList;
     protected List<ItemRoom> roomList;
+
+
+    public List<ItemHotel> getHotelList() {
+        return hotelList;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

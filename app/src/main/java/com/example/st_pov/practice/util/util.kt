@@ -52,6 +52,7 @@ object Constants {
 
     const val USER_AGENT = "mobile_android"
     const val TOKEN_NAME = "token"
+    const val HOTEL_REQUEST_CODE = 1
 
 
     val NAME_LENGTH_RANGE = 2 to 20

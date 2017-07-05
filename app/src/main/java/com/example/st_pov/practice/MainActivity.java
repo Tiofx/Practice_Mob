@@ -9,14 +9,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.st_pov.practice.activities.HeaderActivity;
 import com.example.st_pov.practice.activities.HotelAddActivity;
+import com.example.st_pov.practice.models.Hotel;
+import com.example.st_pov.practice.util.Constants;
+import com.google.gson.Gson;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.example.st_pov.practice.util.UtilKt.loadActivity;
+import static com.example.st_pov.practice.util.UtilKt.showText;
 
 /**
  * Created by st_pov on 29.06.2017.
@@ -90,6 +94,22 @@ public class MainActivity extends HeaderActivity {
 
     @OnClick(R.id.fab)
     public void addHotel(View view) {
-        loadActivity(MainActivity.this, HotelAddActivity.class);
+        Intent intent = new Intent(this, HotelAddActivity.class);
+        startActivityForResult(intent, Constants.HOTEL_REQUEST_CODE);
+//        loadActivity(MainActivity.this, HotelAddActivity.class);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Constants.HOTEL_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                String result = data.getExtras().getString("new_hotel", "");
+                Hotel hotel = new Gson().fromJson(result, Hotel.class);
+                if (hotel != null) {
+                    System.out.println(hotel.toString());
+                    showText(this, hotel.toString(), Toast.LENGTH_LONG);
+                }
+            }
+        }
     }
 }

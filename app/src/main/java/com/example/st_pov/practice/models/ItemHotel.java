@@ -10,7 +10,7 @@ public class ItemHotel {
     final double numberStars;
     final boolean isBreakfast;
 
-    public ItemHotel(String name, int price, String address, int numberReviews, int photoHotel, double numberStars, boolean isBreakfast) {
+    public ItemHotel(String name, String address, int numberReviews, int photoHotel, double numberStars, boolean isBreakfast) {
         this.name = name;
         this.address = address;
         this.numberReviews = numberReviews;

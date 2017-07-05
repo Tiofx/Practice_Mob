@@ -15,6 +15,7 @@ class FeedbackAboutHotelActivity : AppCompatActivity() {
 
     val feedback
         get() = Feedback(
+                //                hotelId = getHotelId(),
                 comment = feedback_txt.text.toString().trim(),
                 rating = rating_bar.rating.toInt()
         )
@@ -31,9 +32,23 @@ class FeedbackAboutHotelActivity : AppCompatActivity() {
     @OnClick(R.id.feedback_btn)
     fun feedback() {
         if (validator.validate()) {
-            //TODO: send request to server
             showText("...Подождите выполняется добавление вашего отзыва")
+
             finish()
+//            sendToServer<FeedbackApi> {
+//                giveFeedback(feedback).enqueue(FunctionalCallback<Boolean>(
+//                        { _, response ->
+//                            response.simpleResponseParser {
+//                                if (this) {
+//                                    finish()
+//                                    "Ваш отзыв добавлен"
+//                                } else "У вас недостаточно прав"
+//                            }.let { showText(it) }
+//
+//                        },
+//                        { _, t -> showText("Сетевая ошибка\n $t") }
+//                ))
+//            }
         }
     }
 

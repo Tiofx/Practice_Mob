@@ -1,6 +1,7 @@
 package com.example.st_pov.practice;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
@@ -18,9 +19,8 @@ import com.example.st_pov.practice.models.ItemHotel;
 import com.example.st_pov.practice.tabs.RoomFragment;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
 import java.util.List;
-
-import static com.example.st_pov.practice.util.UtilKt.loadActivity;
 
 /**
  * Created by st_pov on 29.06.2017.
@@ -28,7 +28,9 @@ import static com.example.st_pov.practice.util.UtilKt.loadActivity;
 
 public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder> implements View.OnClickListener {
 
+    private HashMap<Integer, Integer> сrutch = new HashMap<>();
     private Context mContext;
+
     List<ItemHotel> hotelList;
 
     public HotelAdapter(List<ItemHotel> hotelList) {
@@ -83,34 +85,33 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
         holder.ratingStar.setNumStars((int) hotel.getNumberStars());
         holder.isBreakfast.setEnabled(hotel.isBreakfast());
 
+        сrutch.put(holder.mark.hashCode(), hotel.getId());
         // loading album cover using Picasso library
         Picasso.with(mContext).load(hotel.getPhotoHotel()).into(holder.photoHotel);
 
     }
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case(R.id.detail):
-                Fragment fragment=new RoomFragment();
-                FragmentTransaction transaction=fragment.getFragmentManager().beginTransaction();
+        switch (v.getId()) {
+            case (R.id.detail):
+                Fragment fragment = new RoomFragment();
+                FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
                 transaction.replace(R.id.items, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
                 break;
             case (R.id.mark):
-                //TODO set up hotel_id
-                loadActivity(mContext, FeedbackAboutHotelActivity.class);
+                Intent intent = new Intent(mContext, FeedbackAboutHotelActivity.class);
+                intent.putExtra("hotel_id", сrutch.get(v.hashCode()));
+                mContext.startActivity(intent);
+//                loadActivity(mContext, FeedbackAboutHotelActivity.class);
                 break;
         }
-
-
-
     }
-
 
     @Override
     public int getItemCount() {
         return hotelList.size();
     }
-
 }

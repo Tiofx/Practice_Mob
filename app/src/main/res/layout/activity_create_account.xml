@@ -5,50 +5,58 @@
     style="@style/RootContainer"
     tools:context=".activities.CreateAccountActivity">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_above="@id/next_btn"
+        android:layout_alignParentTop="true">
 
-        <TextView
-            android:id="@+id/textView3"
-            style="@style/Text.Title"
-            android:text="@string/your_name" />
-
-        <EditText
-            android:id="@+id/first_name"
-            style="@style/InputField"
-            android:hint="@string/name"
-            android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/last_name"
-            style="@style/InputField"
-            android:hint="@string/last_name"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:id="@+id/textView5"
-            style="@style/Text.Title"
-            android:text="@string/password_please" />
-
-        <include
-            layout="@layout/password_input"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView4"
-            style="@style/Text.Title"
-            android:text="@string/email_please" />
+            <TextView
+                android:id="@+id/textView3"
+                style="@style/Text.Title"
+                android:text="@string/your_name" />
 
-        <EditText
-            android:id="@+id/email"
-            style="@style/InputField"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress" />
-    </LinearLayout>
+
+            <EditText
+                android:id="@+id/first_name"
+                style="@style/InputField"
+                android:hint="@string/name"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/last_name"
+                style="@style/InputField"
+                android:hint="@string/last_name"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textView5"
+                style="@style/Text.Title"
+                android:text="@string/password_please" />
+
+            <include
+                layout="@layout/password_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textView4"
+                style="@style/Text.Title"
+                android:text="@string/email_please" />
+
+            <EditText
+                android:id="@+id/email"
+                style="@style/InputField"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress" />
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/next_btn"

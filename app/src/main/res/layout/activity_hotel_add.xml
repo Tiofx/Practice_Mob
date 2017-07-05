@@ -5,64 +5,75 @@
     style="@style/RootContainer"
     tools:context=".activities.HotelAddActivity">
 
-    <LinearLayout
+    <include
+        android:id="@+id/header"
+        layout="@layout/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_alignParentTop="true" />
 
-        <include
-            android:id="@+id/header"
-            layout="@layout/header" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/add_hotel_btn"
+        android:layout_below="@id/header"
+        android:fillViewport="true">
 
-        <TextView
-            style="@style/Text.Title"
-            android:text="@string/hotel_title" />
-
-        <EditText
-            android:id="@+id/hotel_title_txt"
-            style="@style/InputField"
-            android:hint="@string/hotel_title"
-            android:inputType="textPersonName" />
-
-        <TextView
-            style="@style/Text.Title"
-            android:text="@string/hotel_address" />
-
-        <EditText
-            android:id="@+id/hotel_address_txt"
-            style="@style/InputField"
-            android:hint="@string/hotel_address"
-            android:inputType="textPersonName" />
-
-        <TextView
-            style="@style/Text.Title"
-            android:text="@string/start_rating" />
-
-        <RatingBar
-            android:id="@+id/rating_bar"
-            style="@style/InputField.Star"
-            android:rating="@integer/hotel_default_star_number" />
-
-        <TextView
-            style="@style/Text.Title"
-            android:text="@string/breakfast" />
-
-        <ToggleButton
-            android:id="@+id/has_breakfast"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textOff="@string/no_breakfast"
-            android:textOn="@string/there_is_breakfast" />
+            android:orientation="vertical">
 
-        <!--<TextView-->
-            <!--style="@style/Text.Title"-->
-            <!--android:text="@string/photo" />-->
+            <TextView
+                style="@style/Text.Title"
+                android:text="@string/hotel_title" />
 
-        <!--<ImageButton-->
-            <!--android:id="@+id/add_photo_btn"-->
-            <!--style="@style/Button.Transparent.AddButton"-->
-            <!--app:srcCompat="@drawable/add_icon" />-->
-    </LinearLayout>
+            <EditText
+                android:id="@+id/hotel_title_txt"
+                style="@style/InputField"
+                android:hint="@string/hotel_title"
+                android:inputType="textPersonName" />
+
+            <TextView
+                style="@style/Text.Title"
+                android:text="@string/hotel_address" />
+
+            <EditText
+                android:id="@+id/hotel_address_txt"
+                style="@style/InputField"
+                android:hint="@string/hotel_address"
+                android:inputType="textPersonName" />
+
+            <TextView
+                style="@style/Text.Title"
+                android:text="@string/start_rating" />
+
+            <RatingBar
+                android:id="@+id/rating_bar"
+                style="@style/InputField.Star"
+                android:rating="@integer/hotel_default_star_number" />
+
+            <TextView
+                style="@style/Text.Title"
+                android:text="@string/breakfast" />
+
+            <ToggleButton
+                android:id="@+id/has_breakfast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOff="@string/no_breakfast"
+                android:textOn="@string/there_is_breakfast" />
+
+            <TextView
+                style="@style/Text.Title"
+                android:text="@string/photo" />
+
+            <ImageButton
+                android:id="@+id/add_photo_btn"
+                style="@style/Button.Transparent.AddButton"
+                app:srcCompat="@drawable/add_icon" />
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/add_hotel_btn"

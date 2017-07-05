@@ -26,6 +26,7 @@ class FeedbackAboutHotelActivity : HeaderActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         ButterKnife.bind(this)
+        showText(feedback.toString())
     }
 
     @OnClick(R.id.feedback_btn)
@@ -33,13 +34,12 @@ class FeedbackAboutHotelActivity : HeaderActivity() {
         if (validator.validate()) {
             showText("...Подождите выполняется добавление вашего отзыва")
 
-            finish()
 //            sendToServer<FeedbackApi> {
 //                giveFeedback(feedback).enqueue(FunctionalCallback<Boolean>(
 //                        { _, response ->
 //                            response.simpleResponseParser {
 //                                if (this) {
-//                                    finish()
+                                    finish()
 //                                    "Ваш отзыв добавлен"
 //                                } else "У вас недостаточно прав"
 //                            }.let { showText(it) }

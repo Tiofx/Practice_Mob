@@ -1,6 +1,5 @@
 package com.example.st_pov.practice.activities
 
-import android.support.v7.app.AppCompatActivity
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.basgeekball.awesomevalidation.ValidationStyle
@@ -11,7 +10,7 @@ import com.example.st_pov.practice.util.kawesomeValidation
 import com.example.st_pov.practice.util.showText
 import kotlinx.android.synthetic.main.activity_feedback_about_hotel.*
 
-class FeedbackAboutHotelActivity : AppCompatActivity() {
+class FeedbackAboutHotelActivity : HeaderActivity() {
 
     val feedback
         get() = Feedback(

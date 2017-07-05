@@ -1,6 +1,7 @@
 package com.example.st_pov.practice.util
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import com.example.st_pov.practice.models.Feedback
@@ -9,7 +10,7 @@ import com.example.st_pov.practice.service.FeedbackApi
 import com.example.st_pov.practice.service.UserApi
 import retrofit2.Response
 
-fun Activity.showText(text: String, duration: Int = Toast.LENGTH_SHORT) =
+fun Context.showText(text: String, duration: Int = Toast.LENGTH_SHORT) =
         Toast.makeText(this, text, duration)
                 .show()
 
@@ -20,7 +21,7 @@ inline fun <reified T> Activity.loadActivity(noinline intentConfig: Intent.() ->
     }
 }
 
-fun Activity.loadActivity(loadActivityClass: Class<*>) =
+fun Context.loadActivity(loadActivityClass: Class<*>) =
         startActivity(Intent(this, loadActivityClass))
 
 

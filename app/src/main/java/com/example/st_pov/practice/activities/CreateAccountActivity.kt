@@ -2,22 +2,27 @@ package com.example.st_pov.practice.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.util.Patterns
+import android.widget.FrameLayout
+import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.MainActivity
 import com.example.st_pov.practice.R
-import com.example.st_pov.practice.R.layout.password_input
-import com.example.st_pov.practice.kotlin.*
+import com.example.st_pov.practice.kotlin.PasswordInput
 import com.example.st_pov.practice.models.User
-import com.example.st_pov.practice.service.UserApi
 import com.example.st_pov.practice.util.*
 import kotlinx.android.synthetic.main.activity_create_account.*
 import kotlinx.android.synthetic.main.password_input.*
 
 
 class CreateAccountActivity : AppCompatActivity() {
-    val passwordInput by lazy { PasswordInput(findViewById(password_input)) }
+    @BindView(R.id.password_container)
+    lateinit var password_input: FrameLayout
+
+    val passwordInput by lazy {
+        PasswordInput(password_input)
+    }
 
     val user
         get() = User(
@@ -33,6 +38,7 @@ class CreateAccountActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         ButterKnife.bind(this)
+        passwordInput
     }
 
     @OnClick(R.id.next_btn)
@@ -40,22 +46,26 @@ class CreateAccountActivity : AppCompatActivity() {
         if (validator.validate()) {
             showText("...Подождите произвожу проверку на сервере")
 
-            sendToServer<UserApi> {
-                registerUser(user)
-                        .enqueue(FunctionalCallback<Boolean>(
-                                { _, response ->
-                                    response.simpleResponseParser {
-                                        if (this) {
-                                            loadActivity<MainActivity>()
-                                            "Поздравляю вы успешно зарегестированы"
-                                        }
-                                        else "Пароль или логин неверен"
-                                    }.let { showText(it) }
+            //TODO:delete stub
+            Session.currentUser = user
+            loadActivity<MainActivity>()
 
-                                },
-                                { _, t -> showText("Сетевая ошибка\n $t") }
-                        ))
-            }
+//            sendToServer<UserApi> {
+//                registerUser(user)
+//                        .enqueue(FunctionalCallback<Boolean>(
+//                                { _, response ->
+//                                    response.simpleResponseParser {
+//                                        if (this) {
+//                                            loadActivity<MainActivity>()
+//                                            "Поздравляю вы успешно зарегестированы"
+//                                        }
+//                                        else "Пароль или логин неверен"
+//                                    }.let { showText(it) }
+//
+//                                },
+//                                { _, t -> showText("Сетевая ошибка\n $t") }
+//                        ))
+//            }
         }
     }
 

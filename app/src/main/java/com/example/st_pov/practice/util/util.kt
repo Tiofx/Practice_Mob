@@ -12,17 +12,24 @@ fun Activity.showText(text: String, duration: Int = Toast.LENGTH_SHORT) =
                 .show()
 
 inline fun <reified T> Activity.loadActivity() = loadActivity(T::class.java)
+
 fun Activity.loadActivity(loadActivityClass: Class<*>) =
         startActivity(Intent(this, loadActivityClass))
+
+object Session {
+    var tokenValue: String? = null
+    var currentUser: User? = null
+}
 
 
 //TODO: move out into file
 object Constants {
     //TODO: change on release
     const val BASE_URL = "http://divine-leaf-1414.getsandbox.com"
+
     const val USER_AGENT = "mobile_android"
     const val TOKEN_NAME = "token"
-    var tokenValue: String? = null
+
 
 
     val NAME_LENGTH_RANGE = 2 to 20

@@ -5,10 +5,10 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.R
+import com.example.st_pov.practice.models.Feedback
 import com.example.st_pov.practice.util.Constants
 import com.example.st_pov.practice.util.kawesomeValidation
 import com.example.st_pov.practice.util.showText
-import com.example.st_pov.practice.models.Feedback
 import kotlinx.android.synthetic.main.activity_feedback_about_hotel.*
 
 class FeedbackAboutHotelActivity : AppCompatActivity() {
@@ -33,6 +33,7 @@ class FeedbackAboutHotelActivity : AppCompatActivity() {
         if (validator.validate()) {
             //TODO: send request to server
             showText("...Подождите выполняется добавление вашего отзыва")
+            finish()
         }
     }
 

@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.st_pov.practice.activities.HeaderActivity;
 import com.example.st_pov.practice.activities.HotelAddActivity;
 
 import butterknife.ButterKnife;
@@ -22,7 +22,7 @@ import static com.example.st_pov.practice.util.UtilKt.loadActivity;
  * Created by st_pov on 29.06.2017.
  */
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends HeaderActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ButterKnife.bind(this);
+        getHeader();
     }
 
     @Override
@@ -90,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.fab)
     public void addHotel(View view) {
-//        showText(MainActivity.this, "fab", Toast.LENGTH_SHORT);
         loadActivity(MainActivity.this, HotelAddActivity.class);
     }
 }

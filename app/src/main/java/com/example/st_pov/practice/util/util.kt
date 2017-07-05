@@ -13,10 +13,16 @@ fun Activity.showText(text: String, duration: Int = Toast.LENGTH_SHORT) =
         Toast.makeText(this, text, duration)
                 .show()
 
-inline fun <reified T> Activity.loadActivity() = loadActivity(T::class.java)
+inline fun <reified T> Activity.loadActivity(noinline intentConfig: Intent.() -> Unit = {}) {
+    Intent(this, T::class.java).apply {
+        intentConfig()
+        startActivity(this)
+    }
+}
 
 fun Activity.loadActivity(loadActivityClass: Class<*>) =
         startActivity(Intent(this, loadActivityClass))
+
 
 object Session {
     var currentUser: User? = null

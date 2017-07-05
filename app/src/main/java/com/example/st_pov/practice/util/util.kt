@@ -19,8 +19,22 @@ fun Activity.loadActivity(loadActivityClass: Class<*>) =
         startActivity(Intent(this, loadActivityClass))
 
 object Session {
-    var tokenValue: String? = null
     var currentUser: User? = null
+        set(value) {
+            field = value
+            if (value == null) {
+                tokenValue = null
+                sendToServer<UserApi> {
+                    //TODO: response
+                    signOut().enqueue(FunctionalCallback<Boolean>(
+                            { _, response -> },
+                            { _, t -> }
+                    ))
+                }
+            }
+        }
+
+    var tokenValue: String? = null
 }
 
 

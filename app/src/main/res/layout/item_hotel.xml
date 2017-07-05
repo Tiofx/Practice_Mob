@@ -9,7 +9,10 @@
         android:id="@+id/card_view_hotel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="5dp"
         android:layout_gravity="center"
+        card_view:cardCornerRadius="@dimen/cardview_default_radius"
+        card_view:cardElevation="@dimen/cardview_default_elevation"
         android:elevation="3dp">
 
         <RelativeLayout
@@ -99,6 +102,7 @@
                 android:orientation="horizontal"
                 android:layout_margin="5dp">
                 <Button
+                    android:id="@+id/detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/Base.TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
@@ -106,6 +110,7 @@
                     android:layout_marginLeft="5dp"
                     android:background="@android:color/transparent" />
                 <Button
+                    android:id="@+id/mark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/Base.TextAppearance.AppCompat.Widget.Button.Borderless.Colored"

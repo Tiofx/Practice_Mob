@@ -24,7 +24,10 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
 
     private Context mContext;
     private static MyClickListener myClickListener;
-    final List<ItemHotel> hotelList;
+    List<ItemHotel> hotelList;
+
+    public HotelAdapter(List<ItemHotel> hotelList) {
+    }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 

@@ -52,14 +52,14 @@ public class TabFragment1 extends Fragment {
         adapterHotel = new HotelAdapter(getContext(), hotelList);
         recyclerView.setAdapter(adapterHotel);
 
-        roomList = new ArrayList<>();
-//        adapterHotel = new HotelAdapter(getContext(), hotelList);
 //        roomList = new ArrayList<>();
-
-        roomList.add(new ItemRoom("Cosmos", 32, 2, R.drawable.room));
-        roomList.add(new ItemRoom("Space", 32, 2, R.drawable.room));
-
-        roomAdapter = new RoomAdapter(getContext(), roomList);
+////        adapterHotel = new HotelAdapter(getContext(), hotelList);
+////        roomList = new ArrayList<>();
+//
+//        roomList.add(new ItemRoom("Cosmos", 32, 2, R.drawable.room));
+//        roomList.add(new ItemRoom("Space", 32, 2, R.drawable.room));
+//
+//        roomAdapter = new RoomAdapter(getContext(), roomList);
 //        recyclerView.setAdapter(roomAdapter);
         loadJSON();
 
@@ -99,15 +99,15 @@ public class TabFragment1 extends Fragment {
         });
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        adapterHotel.setOnItemClickListener(new HotelAdapter.MyClickListener() {
-            @Override
-            public void onItemClick(int position, View v) {
-                roomAdapter = new RoomAdapter(getContext(), roomList);
-                recyclerView.setAdapter(roomAdapter);
-            }
-        });
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        adapterHotel.setOnItemClickListener(new HotelAdapter.MyClickListener() {
+//            @Override
+//            public void onItemClick(int position, View v) {
+//                roomAdapter = new RoomAdapter(getContext(), roomList);
+//                recyclerView.setAdapter(roomAdapter);
+//            }
+//        });
+//    }
 }

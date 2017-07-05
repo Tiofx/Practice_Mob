@@ -86,6 +86,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/isBreakfast"
                     android:saveEnabled="false"
+                    android:clickable="false"
                     android:checked="true"
                     android:layout_marginLeft="10dp"/>
             </LinearLayout>

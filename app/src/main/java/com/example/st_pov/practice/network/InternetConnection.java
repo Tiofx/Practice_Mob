@@ -1,4 +1,4 @@
-package com.example.st_pov.practice.api;
+package com.example.st_pov.practice.network;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

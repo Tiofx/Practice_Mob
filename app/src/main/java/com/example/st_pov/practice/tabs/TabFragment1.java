@@ -1,20 +1,36 @@
 package com.example.st_pov.practice.tabs;
 
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.st_pov.practice.HotelAdapter;
 import com.example.st_pov.practice.RoomAdapter;
+import com.example.st_pov.practice.data.Hotel;
+import com.example.st_pov.practice.data.Hotel_;
 import com.example.st_pov.practice.models.ItemHotel;
 import com.example.st_pov.practice.R;
 import com.example.st_pov.practice.models.ItemRoom;
+import com.example.st_pov.practice.network.JSONResponse;
+import com.example.st_pov.practice.network.RequestInterface;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static android.R.attr.data;
 
 public class TabFragment1 extends Fragment {
     protected RecyclerView recyclerView;
@@ -38,9 +54,41 @@ public class TabFragment1 extends Fragment {
 
         adapterHotel = new HotelAdapter(getContext(), hotelList);
         recyclerView.setAdapter(adapterHotel);
+        loadJSON();
 
 
         return view;
+    }
+    private void loadJSON(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://api.learn2crack.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RequestInterface api = retrofit.create(RequestInterface.class);
+        Call<List<Hotel>> call = api.getHotels();
+        call.enqueue(new Callback<List<Hotel>>() {
+            @Override
+            public void onResponse(Call<List<Hotel>> call, Response<List<Hotel>> response) {
+                    if(response.isSuccessful()){
+                        hotelList = new ArrayList<>();
+                        List<Hotel> result = response.body();
+//                        hotelList = result.get(List<Hotel>);
+
+                        adapterHotel = new HotelAdapter(hotelList);
+                        recyclerView.setAdapter(adapterHotel);
+                    }
+//                JSONResponse jsonResponse = response.body();
+//                data = new ArrayList<>(Arrays.asList(jsonResponse.getHotel()));
+//                adapterHotel = new HotelAdapter(data);
+//                recyclerView.setAdapter(adapterHotel);
+            }
+
+            @Override
+            public void onFailure(Call<List<Hotel>> call, Throwable t) {
+                Log.d("Error",t.getMessage());
+                Snackbar.make(getView(), getResources().getString(R.string.error), Snackbar.LENGTH_INDEFINITE).show();
+            }
+        });
     }
 
     @Override

@@ -9,60 +9,16 @@ import com.google.gson.annotations.SerializedName;
 
 public class Room {
 
-    @SerializedName("id")
+    @SerializedName("room")
     @Expose
-    private long id;
-    @SerializedName("name")
-    @Expose
-    private String name;
-    @SerializedName("photo")
-    @Expose
-    private String photo;
-    @SerializedName("price")
-    @Expose
-    private long price;
-    @SerializedName("people")
-    @Expose
-    private long people;
+    private Room_ room;
 
-    public long getId() {
-        return id;
+    public Room_ getRoom() {
+        return room;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
-    public long getPrice() {
-        return price;
-    }
-
-    public void setPrice(long price) {
-        this.price = price;
-    }
-
-    public long getPeople() {
-        return people;
-    }
-
-    public void setPeople(long people) {
-        this.people = people;
+    public void setRoom(Room_ room) {
+        this.room = room;
     }
 
 }

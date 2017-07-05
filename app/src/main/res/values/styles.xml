@@ -56,7 +56,13 @@
 
     <style name="InputField.Star">
         <item name="android:numStars">@integer/hotel_star_number</item>
-        <!--<item name="android:progressTint">@color/blue</item>-->
+        <!--<item name="android:background">@color/black</item>-->
+        <item name="android:theme">@style/RatingBar</item>
+    </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@android:color/holo_orange_dark</item>
+        <item name="colorControlActivated">@color/black</item>
     </style>
 
     <style name="InputField.Feedback">
@@ -68,8 +74,10 @@
     <style name="Button">
         <item name="android:textSize">@dimen/text_normal_size</item>
         <item name="android:textAllCaps">false</item>
-        <item name="android:textColor">@color/gray</item>
-        <item name="android:background">@color/blue</item>
+        <item name="android:textColor">@android:color/holo_orange_dark</item>
+        <!--<item name="android:textColor">@color/gray</item>-->
+        <!--<item name="android:background">@color/blue</item>-->
+        <item name="android:background">@color/black</item>
     </style>
 
 

@@ -46,4 +46,5 @@
     <string name="there_is_breakfast">есть завтрак</string>
     <string name="validation_hotel_title_error">Название отеля должно быть не менее 3 букв, но не более 40</string>
     <string name="validation_address_error">Вы ввели некоректный адрес</string>
+    <string name="error">Ошибка</string>
 </resources>

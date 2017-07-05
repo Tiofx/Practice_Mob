@@ -15,7 +15,7 @@ class FeedbackAboutHotelActivity : AppCompatActivity() {
 
     val feedback
         get() = Feedback(
-                //                hotelId = getHotelId(),
+                hotelId = intent.getIntExtra("hotel_id", -1).takeIf { it != -1 },
                 comment = feedback_txt.text.toString().trim(),
                 rating = rating_bar.rating.toInt()
         )

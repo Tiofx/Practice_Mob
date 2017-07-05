@@ -2,6 +2,7 @@ package com.example.st_pov.practice.util
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Request
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,16 +26,18 @@ fun getClient(userAgent: String) = OkHttpClient.Builder()
         .addInterceptor {
             it.request()
                     .newBuilder()
-                    .apply {
-                        it.getUrlForNewQueryParam()
-                                .takeUnless { Session.tokenValue.isNullOrBlank() }
-                                ?.let { url(it) }
-                    }
+                    .setUpToken(it)
                     .header("User-Agent", userAgent)
                     .build()
                     .run { it.proceed(this) }
         }
         .build()
+
+fun Request.Builder.setUpToken(chain: Interceptor.Chain) = apply {
+    chain.getUrlForNewQueryParam()
+            .takeUnless { Session.tokenValue.isNullOrBlank() }
+            ?.let { url(it) }
+}
 
 fun Interceptor.Chain.getUrlForNewQueryParam(key: String = Constants.TOKEN_NAME,
                                              value: String? = Session.tokenValue) =

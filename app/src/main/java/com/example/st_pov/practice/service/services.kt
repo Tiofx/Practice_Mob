@@ -44,6 +44,11 @@ interface HotelApi {
     fun getTheBestHotels(
             @Query("number") number: Int
     ): Call<List<Hotel>>
+
+    @Deprecated("for testing")
+    @GET("/hotels")
+    fun getAllHotels(
+    ): Call<List<Hotel>>
 }
 
 
@@ -61,6 +66,13 @@ interface RoomApi {
             @Query("id") roomId: Int
     ): Call<Room>
 
+    @GET("/hotels/{id}/rooms")
+    fun getRooms(
+            @Query("page") page: Int,
+            @Query("per_page") perPage: Int
+    ): Call<List<Room>>
+
+    @Deprecated("for testing")
     @GET("/hotels/{id}/rooms")
     fun getAllRooms(
             @Path("id") hotelId: Int
@@ -81,5 +93,11 @@ interface FeedbackApi {
             @Path("id") hotelId: Int,
             @Query("page") page: Int,
             @Query("per_page") perPage: Int
+    ): Call<List<Feedback>>
+
+    @Deprecated("for testing")
+    @GET("/hotels/{id}/feedbacks")
+    fun getAllRooms(
+            @Path("id") hotelId: Int
     ): Call<List<Feedback>>
 }

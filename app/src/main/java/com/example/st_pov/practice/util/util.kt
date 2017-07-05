@@ -3,7 +3,9 @@ package com.example.st_pov.practice.util
 import android.app.Activity
 import android.content.Intent
 import android.widget.Toast
+import com.example.st_pov.practice.models.Feedback
 import com.example.st_pov.practice.models.User
+import com.example.st_pov.practice.service.FeedbackApi
 import com.example.st_pov.practice.service.UserApi
 import retrofit2.Response
 
@@ -11,14 +13,34 @@ fun Activity.showText(text: String, duration: Int = Toast.LENGTH_SHORT) =
         Toast.makeText(this, text, duration)
                 .show()
 
-inline fun <reified T> Activity.loadActivity() = loadActivity(T::class.java)
+inline fun <reified T> Activity.loadActivity(noinline intentConfig: Intent.() -> Unit = {}) {
+    Intent(this, T::class.java).apply {
+        intentConfig()
+        startActivity(this)
+    }
+}
 
 fun Activity.loadActivity(loadActivityClass: Class<*>) =
         startActivity(Intent(this, loadActivityClass))
 
+
 object Session {
-    var tokenValue: String? = null
     var currentUser: User? = null
+        set(value) {
+            field = value
+            if (value == null) {
+                tokenValue = null
+//                sendToServer<UserApi> {
+//                    //TODO: response
+//                    signOut().enqueue(FunctionalCallback<Boolean>(
+//                            { _, response -> },
+//                            { _, t -> }
+//                    ))
+//                }
+            }
+        }
+
+    var tokenValue: String? = null
 }
 
 
@@ -29,7 +51,6 @@ object Constants {
 
     const val USER_AGENT = "mobile_android"
     const val TOKEN_NAME = "token"
-
 
 
     val NAME_LENGTH_RANGE = 2 to 20
@@ -61,3 +82,6 @@ fun <T> Response<T>?.simpleResponseParser(onNoBody: String = "Тело отве�
 
 inline fun UserApi.validate(user: User) =
         user.run { validate(email, password) }
+
+inline fun FeedbackApi.giveFeedback(feedback: Feedback)
+        = feedback.run { giveFeedback(hotelId!!, feedback) }

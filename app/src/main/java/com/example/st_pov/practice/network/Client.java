@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Client {
 
 
-    public static final String BASE_URL = "http://";
+    public static final String BASE_URL = "http://lingering-flower-2750.getsandbox.com/";
     private static Retrofit retrofit = null;
 
 

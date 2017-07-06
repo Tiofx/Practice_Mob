@@ -3,7 +3,9 @@ package com.example.st_pov.practice;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +16,15 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.st_pov.practice.activities.FeedbackAboutHotelActivity;
 import com.example.st_pov.practice.models.ItemHotel;
 import com.example.st_pov.practice.tabs.RoomFragment;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.st_pov.practice.util.UtilKt.loadActivity;
 
 /**
  * Created by st_pov on 29.06.2017.
@@ -53,6 +58,15 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
             photoHotel = view.findViewById(R.id.photoHotel);
             details = view.findViewById(R.id.detail);
             mark = view.findViewById(R.id.mark);
+            details.setOnClickListener(HotelAdapter.this);
+            mark.setOnClickListener(HotelAdapter.this);
+
+            details.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    FragmentRouter.showFragment(mContext, new RoomFragment);
+                }
+            });
         }
 
     }
@@ -78,8 +92,6 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
         holder.numberReviews.setText(hotel.getNumberReviews() + " отзывов");
         holder.ratingStar.setNumStars((int) hotel.getNumberStars());
         holder.isBreakfast.setEnabled(hotel.isBreakfast());
-
-        // loading album cover using Picasso library
         Picasso.with(mContext).load(hotel.getPhotoHotel()).into(holder.photoHotel);
 
     }
@@ -88,7 +100,8 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
         switch (v.getId()){
             case(R.id.detail):
                 Fragment fragment=new RoomFragment();
-                FragmentTransaction transaction=fragment.getFragmentManager().beginTransaction();
+                FragmentManager manager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+                FragmentTransaction transaction=manager.beginTransaction();
                 transaction.replace(R.id.items, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
@@ -96,8 +109,6 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
             case (R.id.mark):
                 break;
         }
-
-
 
     }
 

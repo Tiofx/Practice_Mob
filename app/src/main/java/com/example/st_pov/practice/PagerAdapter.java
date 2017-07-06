@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.st_pov.practice.tabs.TabFragment1;
 import com.example.st_pov.practice.tabs.TabFragment2;
-import com.example.st_pov.practice.tabs.TabFragment3;
 
 /**
  * Created by st_pov on 29.06.2017.
@@ -30,9 +29,6 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
             case 1:
                 TabFragment2 tab2 = new TabFragment2();
                 return tab2;
-            case 2:
-                TabFragment3 tab3 = new TabFragment3();
-                return tab3;
             default:
                 return null;
         }

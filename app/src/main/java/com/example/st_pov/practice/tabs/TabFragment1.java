@@ -1,7 +1,6 @@
 package com.example.st_pov.practice.tabs;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,10 +11,8 @@ import android.widget.Toast;
 
 import com.example.st_pov.practice.HotelAdapter;
 import com.example.st_pov.practice.R;
-import com.example.st_pov.practice.RoomAdapter;
 import com.example.st_pov.practice.data.Hotel;
 import com.example.st_pov.practice.models.ItemHotel;
-import com.example.st_pov.practice.models.ItemRoom;
 import com.example.st_pov.practice.network.RequestInterface;
 
 import java.util.ArrayList;
@@ -31,10 +28,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TabFragment1 extends Fragment {
     protected RecyclerView recyclerView;
-    protected RoomAdapter roomAdapter;
     protected HotelAdapter adapterHotel;
     protected List<ItemHotel> hotelList;
-    protected List<ItemRoom> roomList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,8 +38,6 @@ public class TabFragment1 extends Fragment {
         recyclerView = view.findViewById(R.id.items);
 
         hotelList = new ArrayList<>();
-//        adapterHotel = new HotelAdapter(getContext(), hotelList);
-//        roomList = new ArrayList<>();
 
         hotelList.add(new ItemHotel("Cosmos", "Moscow", 32, R.drawable.room, 3.0, true));
         hotelList.add(new ItemHotel("Intercontinental", "Madrid", 32, R.drawable.gostin_fgb, 3.0, true));
@@ -52,15 +45,6 @@ public class TabFragment1 extends Fragment {
         adapterHotel = new HotelAdapter(getContext(), hotelList);
         recyclerView.setAdapter(adapterHotel);
 
-//        roomList = new ArrayList<>();
-////        adapterHotel = new HotelAdapter(getContext(), hotelList);
-////        roomList = new ArrayList<>();
-//
-//        roomList.add(new ItemRoom("Cosmos", 32, 2, R.drawable.room));
-//        roomList.add(new ItemRoom("Space", 32, 2, R.drawable.room));
-//
-//        roomAdapter = new RoomAdapter(getContext(), roomList);
-//        recyclerView.setAdapter(roomAdapter);
         loadJSON();
 
 
@@ -69,7 +53,7 @@ public class TabFragment1 extends Fragment {
 
     private void loadJSON() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://api.learn2crack.com")
+                .baseUrl("http://lingering-flower-2750.getsandbox.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface api = retrofit.create(RequestInterface.class);
@@ -79,8 +63,6 @@ public class TabFragment1 extends Fragment {
             public void onResponse(Call<List<Hotel>> call, Response<List<Hotel>> response) {
                 if (response.isSuccessful()) {
                     hotelList = new ArrayList<>();
-                    List<Hotel> result = response.body();
-//                        hotelList = result.get(List<Hotel>);
 
                     adapterHotel = new HotelAdapter(hotelList);
                     recyclerView.setAdapter(adapterHotel);
@@ -99,15 +81,4 @@ public class TabFragment1 extends Fragment {
         });
     }
 
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        adapterHotel.setOnItemClickListener(new HotelAdapter.MyClickListener() {
-//            @Override
-//            public void onItemClick(int position, View v) {
-//                roomAdapter = new RoomAdapter(getContext(), roomList);
-//                recyclerView.setAdapter(roomAdapter);
-//            }
-//        });
-//    }
 }

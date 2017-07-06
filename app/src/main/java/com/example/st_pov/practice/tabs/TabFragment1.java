@@ -50,6 +50,26 @@ public class TabFragment1 extends Fragment {
 //        adapterHotel = new HotelAdapter(getContext(), hotelList);
 //        roomList = new ArrayList<>();
 
+        // TODO: 06/07/2017 request to server
+//        baseRetrofit()
+//                .create(HotelApi.class)
+//                .getAllHotels()
+//                .enqueue(new Callback<List<com.example.st_pov.practice.models.Hotel>>() {
+//                    @Override
+//                    public void onResponse(Call<List<com.example.st_pov.practice.models.Hotel>> call,
+//                                           Response<List<com.example.st_pov.practice.models.Hotel>> response) {
+//                        if (response.isSuccessful()) {
+////                            hotelList.addAll(response.body())
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<List<com.example.st_pov.practice.models.Hotel>> call,
+//                                          Throwable t) {
+//                        Log.d("rest", "Ошибка аааа!");
+//                    }
+//                });
+
         hotelList.add(new ItemHotel("Cosmos", "Moscow", 32, R.drawable.room, 3.0, true));
         hotelList.add(new ItemHotel("Intercontinental", "Madrid", 32, R.drawable.gostin_fgb, 3.0, true));
 

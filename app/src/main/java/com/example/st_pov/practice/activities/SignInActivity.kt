@@ -40,11 +40,6 @@ class SignInActivity : AppCompatActivity() {
         passwordInput
     }
 
-//    @OnClick(R.id.forget_btn)
-//    fun forgetPassword() {
-//        showText("Забывать пароль не дозволено")
-//    }
-
     @OnClick(R.id.sign_in_btn)
     fun signIn() {
         if (validator.validate()) {

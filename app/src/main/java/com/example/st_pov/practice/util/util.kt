@@ -31,13 +31,13 @@ object Session {
             field = value
             if (value == null) {
                 tokenValue = null
-//                sendToServer<UserApi> {
-//                    //TODO: response
-//                    signOut().enqueue(FunctionalCallback<Boolean>(
-//                            { _, response -> },
-//                            { _, t -> }
-//                    ))
-//                }
+                sendToServer<UserApi> {
+                    //TODO: response
+                    signOut().enqueue(FunctionalCallback<Boolean>(
+                            { _, response -> },
+                            { _, t -> }
+                    ))
+                }
             }
         }
 

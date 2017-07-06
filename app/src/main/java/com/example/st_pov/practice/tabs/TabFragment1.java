@@ -59,7 +59,7 @@ public class TabFragment1 extends Fragment {
                     @Override
                     public void onResponse(Call<List<com.example.st_pov.practice.models.Hotel>> call,
                                            Response<List<com.example.st_pov.practice.models.Hotel>> response) {
-                        if (response.isSuccessful()) {
+                        if (response.isSuccessful() && response.body() != null) {
                             hotelList.addAll(response.body());
                         }
                     }
@@ -71,8 +71,8 @@ public class TabFragment1 extends Fragment {
                     }
                 });
 
-        hotelList.add(new Hotel("Cosmos", "Moscow", 32, R.drawable.room, 3, true));
-        hotelList.add(new Hotel("Intercontinental", "Madrid", 32, R.drawable.gostin_fgb, 3, true));
+//        hotelList.add(new Hotel("Cosmos", "Moscow", 32, R.drawable.room, 3, true));
+//        hotelList.add(new Hotel("Intercontinental", "Madrid", 32, R.drawable.gostin_fgb, 3, true));
 
         adapterHotel = new HotelAdapter(getContext(), hotelList);
         recyclerView.setAdapter(adapterHotel);

@@ -57,7 +57,9 @@ class SignInActivity : AppCompatActivity() {
                                 if (!token.isNullOrBlank()) {
                                     Session.currentUser = user
                                     Session.tokenValue = token
+
                                     loadActivity<MainActivity>()
+
                                     "Поздравляю вы успешно вошли"
                                 } else "Пароль или логин неверен"
                             }.let { showText(it) }

@@ -62,7 +62,7 @@ object Constants {
     val FEEDBACK_LENGTH_RANGE = 3 to 300
 
     object Regex {
-        val FIRST_NAME = NAME_LENGTH_RANGE.run { "^[A-Z|А-Я][a-z|а-я]{${first-1},$second}$" }
+        val FIRST_NAME = NAME_LENGTH_RANGE.run { "^[A-Z|А-Я][a-z|а-я]{${first - 1},$second}$" }
         val LAST_NAME = FIRST_NAME
         val PASSWORD = PASSWORD_LENGTH_RANGE.run { "^\\w.{$first,$second}$" }
 

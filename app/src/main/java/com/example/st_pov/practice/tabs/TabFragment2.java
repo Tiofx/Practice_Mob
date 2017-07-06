@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.example.st_pov.practice.HotelAdapter;
 import com.example.st_pov.practice.R;
-import com.example.st_pov.practice.models.ItemHotel;
+import com.example.st_pov.practice.models.Hotel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 
 public class TabFragment2 extends Fragment {
     protected HotelAdapter adapterHotel;
-    protected List<ItemHotel> hotelList;
+    protected List<Hotel> hotelList;
 
     @BindView(R.id.items)
     protected RecyclerView recyclerView;
@@ -42,7 +42,8 @@ public class TabFragment2 extends Fragment {
         recyclerView.setAdapter(adapterHotel);
 
 
-//        // TODO: 06/07/2017 request to server
+//         TODO: 06/07/2017 request to server
+
 //        baseRetrofit()
 //                .create(HotelApi.class)
 //                .getTheBestHotels(BEST_NUMBER)
@@ -52,7 +53,7 @@ public class TabFragment2 extends Fragment {
 //                                           Response<List<Hotel>> response) {
 //                        if (response.isSuccessful()) {
         stab();
-////                            hotelList.addAll(response.body())
+//                            hotelList.addAll(response.body());
 //                        }
 //                    }
 //
@@ -67,10 +68,10 @@ public class TabFragment2 extends Fragment {
     }
 
     private void stab() {
-        hotelList.add(new ItemHotel("Best1", "Moscow", 32, R.drawable.gostin_fgb, 2.0, true));
-        hotelList.add(new ItemHotel("best2", "Madrid", 123, R.color.blue, 1.0, true));
-        hotelList.add(new ItemHotel("best 3", "Moscow", 2, R.color.orange, 5.0, true));
-        hotelList.add(new ItemHotel("best 4", "Madrid", 4, R.drawable.gostin_fgb, 4.0, true));
-        hotelList.add(new ItemHotel("best 5", "Madrid", 1233, R.drawable.gostin_fgb, 3.0, true));
+        hotelList.add(new Hotel("Best1", "Moscow", 32, R.drawable.gostin_fgb, 2, true));
+        hotelList.add(new Hotel("best2", "Madrid", 123, R.color.blue, 1, true));
+        hotelList.add(new Hotel("best 3", "Moscow", 2, R.color.orange, 5, true));
+        hotelList.add(new Hotel("best 4", "Madrid", 4, R.drawable.gostin_fgb, 4, true));
+        hotelList.add(new Hotel("best 5", "Madrid", 1233, R.drawable.gostin_fgb, 3, true));
     }
 }

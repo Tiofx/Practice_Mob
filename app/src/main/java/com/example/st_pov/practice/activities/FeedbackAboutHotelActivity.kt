@@ -38,7 +38,7 @@ class FeedbackAboutHotelActivity : HeaderActivity() {
 //                        { _, response ->
 //                            response.simpleResponseParser {
 //                                if (this) {
-                                    finish()
+            finish()
 //                                    "Ваш отзыв добавлен"
 //                                } else "У вас недостаточно прав"
 //                            }.let { showText(it) }

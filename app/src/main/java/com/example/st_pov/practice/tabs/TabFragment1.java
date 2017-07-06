@@ -12,8 +12,7 @@ import android.widget.Toast;
 import com.example.st_pov.practice.HotelAdapter;
 import com.example.st_pov.practice.R;
 import com.example.st_pov.practice.RoomAdapter;
-import com.example.st_pov.practice.data.Hotel;
-import com.example.st_pov.practice.models.ItemHotel;
+import com.example.st_pov.practice.models.Hotel;
 import com.example.st_pov.practice.models.ItemRoom;
 import com.example.st_pov.practice.network.RequestInterface;
 
@@ -32,11 +31,11 @@ public class TabFragment1 extends Fragment {
     protected RecyclerView recyclerView;
     protected RoomAdapter roomAdapter;
     protected HotelAdapter adapterHotel;
-    protected List<ItemHotel> hotelList;
+    protected List<Hotel> hotelList;
     protected List<ItemRoom> roomList;
 
 
-    public List<ItemHotel> getHotelList() {
+    public List<Hotel> getHotelList() {
         return hotelList;
     }
 
@@ -59,7 +58,7 @@ public class TabFragment1 extends Fragment {
 //                    public void onResponse(Call<List<com.example.st_pov.practice.models.Hotel>> call,
 //                                           Response<List<com.example.st_pov.practice.models.Hotel>> response) {
 //                        if (response.isSuccessful()) {
-////                            hotelList.addAll(response.body())
+//                            hotelList.addAll(response.body());
 //                        }
 //                    }
 //
@@ -70,8 +69,8 @@ public class TabFragment1 extends Fragment {
 //                    }
 //                });
 
-        hotelList.add(new ItemHotel("Cosmos", "Moscow", 32, R.drawable.room, 3.0, true));
-        hotelList.add(new ItemHotel("Intercontinental", "Madrid", 32, R.drawable.gostin_fgb, 3.0, true));
+        hotelList.add(new Hotel("Cosmos", "Moscow", 32, R.drawable.room, 3, true));
+        hotelList.add(new Hotel("Intercontinental", "Madrid", 32, R.drawable.gostin_fgb, 3, true));
 
         adapterHotel = new HotelAdapter(getContext(), hotelList);
         recyclerView.setAdapter(adapterHotel);
@@ -97,13 +96,13 @@ public class TabFragment1 extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface api = retrofit.create(RequestInterface.class);
-        Call<List<Hotel>> call = api.getHotels();
-        call.enqueue(new Callback<List<Hotel>>() {
+        Call<List<com.example.st_pov.practice.data.Hotel>> call = api.getHotels();
+        call.enqueue(new Callback<List<com.example.st_pov.practice.data.Hotel>>() {
             @Override
-            public void onResponse(Call<List<Hotel>> call, Response<List<Hotel>> response) {
+            public void onResponse(Call<List<com.example.st_pov.practice.data.Hotel>> call, Response<List<com.example.st_pov.practice.data.Hotel>> response) {
                 if (response.isSuccessful()) {
                     hotelList = new ArrayList<>();
-                    List<Hotel> result = response.body();
+                    List<com.example.st_pov.practice.data.Hotel> result = response.body();
 //                        hotelList = result.get(List<Hotel>);
 
                     adapterHotel = new HotelAdapter(hotelList);
@@ -116,7 +115,7 @@ public class TabFragment1 extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<Hotel>> call, Throwable t) {
+            public void onFailure(Call<List<com.example.st_pov.practice.data.Hotel>> call, Throwable t) {
                 Log.d("Error", t.getMessage());
                 Toast.makeText(getContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
             }

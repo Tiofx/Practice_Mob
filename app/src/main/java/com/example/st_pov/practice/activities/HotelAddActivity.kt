@@ -22,7 +22,9 @@ class HotelAddActivity : HeaderActivity() {
                 starRating = rating_bar.rating.toInt(),
                 address = hotel_address_txt.text.toString()
                         .takeIf(String::isNotBlank),
-                hasBreakfast = has_breakfast.isChecked
+                hasBreakfast = has_breakfast.isChecked,
+                price = price.text.toString().toInt(),
+                roomDescription = description.text.toString()
         )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,8 +62,8 @@ class HotelAddActivity : HeaderActivity() {
         }
     }
 
-    @OnClick(R.id.add_photo_btn)
-    fun addPhoto() = showText("Добавление фото не работает")
+//    @OnClick(R.id.add_photo_btn)
+//    fun addPhoto() = showText("Добавление фото не работает")
 
 
     val validator by lazy {

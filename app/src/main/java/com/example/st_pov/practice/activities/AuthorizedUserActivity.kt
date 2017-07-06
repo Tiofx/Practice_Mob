@@ -15,7 +15,7 @@ open class AuthorizedUserActivity : AppCompatActivity() {
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
 
-            showText("Пожалуйста6 зайдите в систему")
+            showText("Пожалуйста зайдите в систему")
         }
     }
 

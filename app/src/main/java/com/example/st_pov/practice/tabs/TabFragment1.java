@@ -13,6 +13,7 @@ import com.example.st_pov.practice.HotelAdapter;
 import com.example.st_pov.practice.R;
 import com.example.st_pov.practice.data.Hotel;
 import com.example.st_pov.practice.models.ItemHotel;
+import com.example.st_pov.practice.models.ItemRoom;
 import com.example.st_pov.practice.network.RequestInterface;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class TabFragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_fragment_1, container, false);
 
-        recyclerView = view.findViewById(R.id.items);
+        recyclerView = view.findViewById(R.id.itemsHotels);
 
         hotelList = new ArrayList<>();
 

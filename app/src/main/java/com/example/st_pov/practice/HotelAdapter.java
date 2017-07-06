@@ -1,7 +1,6 @@
 package com.example.st_pov.practice;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -16,15 +15,11 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.example.st_pov.practice.activities.FeedbackAboutHotelActivity;
 import com.example.st_pov.practice.models.ItemHotel;
 import com.example.st_pov.practice.tabs.RoomFragment;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static com.example.st_pov.practice.util.UtilKt.loadActivity;
 
 /**
  * Created by st_pov on 29.06.2017.
@@ -38,7 +33,23 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
     public HotelAdapter(List<ItemHotel> hotelList) {
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case(R.id.detail):
+                Fragment fragment=new RoomFragment();
+                FragmentManager manager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+                FragmentTransaction transaction=manager.beginTransaction();
+                transaction.replace(R.id.itemsHotels, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                break;
+            case (R.id.mark):
+                break;
+        }
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 
         public TextView titleHotel, address, numberReviews;
@@ -46,6 +57,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
         public RatingBar ratingStar;
         public CheckBox isBreakfast;
         public Button details, mark;
+        private ItemClickListener clickListener;
 
 
         public MyViewHolder(View view) {
@@ -58,15 +70,16 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
             photoHotel = view.findViewById(R.id.photoHotel);
             details = view.findViewById(R.id.detail);
             mark = view.findViewById(R.id.mark);
-            details.setOnClickListener(HotelAdapter.this);
-            mark.setOnClickListener(HotelAdapter.this);
+            details.setOnClickListener(this);
+            mark.setOnClickListener(this);
 
-            details.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    FragmentRouter.showFragment(mContext, new RoomFragment);
-                }
-            });
+        }
+        public void setClickListener(ItemClickListener itemClickListener) {
+            this.clickListener = itemClickListener;
+        }
+        @Override
+        public void onClick(View view) {
+            clickListener.onClick(view);
         }
 
     }
@@ -93,29 +106,35 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
         holder.ratingStar.setNumStars((int) hotel.getNumberStars());
         holder.isBreakfast.setEnabled(hotel.isBreakfast());
         Picasso.with(mContext).load(hotel.getPhotoHotel()).into(holder.photoHotel);
+        holder.setClickListener(new ItemClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()){
+                    case(R.id.detail):
+                        Fragment fragment=new RoomFragment();
+                        FragmentManager manager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+                        FragmentTransaction transaction=manager.beginTransaction();
+                        transaction.replace(R.id.itemsHotels, fragment);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                        break;
+                    case (R.id.mark):
+                        break;
+                }
+
+            }
+        });
 
     }
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case(R.id.detail):
-                Fragment fragment=new RoomFragment();
-                FragmentManager manager = ((AppCompatActivity)mContext).getSupportFragmentManager();
-                FragmentTransaction transaction=manager.beginTransaction();
-                transaction.replace(R.id.items, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-                break;
-            case (R.id.mark):
-                break;
-        }
 
-    }
 
 
     @Override
     public int getItemCount() {
         return hotelList.size();
+    }
+    public interface OnItemClickListener {
+        public void onClick(View view, int position);
     }
 
 }

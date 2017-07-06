@@ -21,10 +21,14 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
 
     private Context mContext;
     private List<ItemRoom> roomList;
-    private static MyClickListener myClickListener;
+//    private static MyClickListener myClickListener;
+    public RoomAdapter(List<ItemRoom> hotelList) {
+    }
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MyViewHolder extends RecyclerView.ViewHolder
+//            implements View.OnClickListener
+    {
         public TextView titleRoom, price, people;
         public ImageView photoRoom;
 
@@ -36,10 +40,10 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
             photoRoom = view.findViewById(R.id.photoRoom);
         }
 
-        @Override
-        public void onClick(View view) {
-            myClickListener.onItemClick(getAdapterPosition(), view);
-        }
+//        @Override
+//        public void onClick(View view) {
+//            myClickListener.onItemClick(getAdapterPosition(), view);
+//        }
     }
 
 
@@ -62,15 +66,13 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
         holder.titleRoom.setText(room.getName());
         holder.price.setText(String.valueOf(room.getPrice()));
         holder.people.setText(String.valueOf(room.getPeople()));
-
-        // loading album cover using Picasso library
         Picasso.with(mContext).load(room.getPhotoRoom()).into(holder.photoRoom);
 
     }
 
-    public void setOnItemClickListener(MyClickListener myClickListener) {
-        this.myClickListener = myClickListener;
-    }
+//    public void setOnItemClickListener(MyClickListener myClickListener) {
+//        this.myClickListener = myClickListener;
+//    }
 
 
     @Override
@@ -78,7 +80,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
         return roomList.size();
     }
 
-    public interface MyClickListener {
-        void onItemClick(int position, View v);
-    }
+//    public interface MyClickListener {
+//        void onItemClick(int position, View v);
+//    }
 }

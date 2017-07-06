@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-
+                android:orientation="horizontal"
                 android:layout_below="@+id/photoRoom">
 
                 <ImageView
@@ -68,6 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/linePrice"
                 android:layout_marginLeft="10dp"
+                android:orientation="horizontal"
                 android:layout_alignParentStart="true">
 
                 <ImageView
@@ -85,22 +86,22 @@
                     tools:text=": 2" />
             </LinearLayout>
 
-            <View
-                android:id="@+id/lineRoom"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@id/ratingHotel"
-                android:background="@android:color/darker_gray" />
+            <!--<View-->
+                <!--android:id="@+id/lineRoom"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:layout_below="@id/ratingHotel"-->
+                <!--android:background="@android:color/darker_gray" />-->
 
-            <Button
-                style="@style/Base.TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/lineRoom"
-                android:layout_marginLeft="10dp"
-                android:background="@android:color/transparent"
-                android:text="@string/detail"
-                android:textColor="#0077CC" />
+            <!--<Button-->
+                <!--style="@style/Base.TextAppearance.AppCompat.Widget.Button.Borderless.Colored"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@id/lineRoom"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:text="@string/detail"-->
+                <!--android:textColor="#0077CC" />-->
 
 
         </RelativeLayout>

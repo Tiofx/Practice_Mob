@@ -81,7 +81,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
         Hotel hotel = hotelList.get(position);
         holder.titleHotel.setText(hotel.getTitle());
         holder.address.setText(hotel.getAddress());
-        holder.numberReviews.setText(hotel.getReviewsNumber() + " отзывов");
+//        holder.numberReviews.setText(hotel.getReviewsNumber() + " отзывов");
         holder.ratingStar.setNumStars((int) hotel.getStarRating());
         holder.isBreakfast.setEnabled(hotel.getHasBreakfast());
 
@@ -110,8 +110,10 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
         }
     }
 
+
     @Override
     public int getItemCount() {
         return hotelList.size();
     }
+
 }

@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.example.st_pov.practice.activities.HeaderActivity;
@@ -31,15 +29,6 @@ public class MainActivity extends HeaderActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Click action
-//                Intent intent = new Intent(MainActivity.this, AddReview.class);
-//                startActivity(intent);
-//            }
-//        });
 
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
@@ -73,21 +62,6 @@ public class MainActivity extends HeaderActivity {
         getHeader();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @OnClick(R.id.fab)
     public void addHotel(View view) {
@@ -98,7 +72,7 @@ public class MainActivity extends HeaderActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Constants.HOTEL_REQUEST_CODE) {
+        if (requestCode == Constants.HOTEL_REQUEST_CODE && data != null) {
             String result = data.getExtras().getString("new_hotel", "");
             Hotel hotel = new Gson().fromJson(result, Hotel.class);
             if (hotel != null) {

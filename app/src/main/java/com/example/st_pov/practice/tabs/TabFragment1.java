@@ -1,7 +1,6 @@
 package com.example.st_pov.practice.tabs;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -36,6 +35,11 @@ public class TabFragment1 extends Fragment {
     protected List<ItemHotel> hotelList;
     protected List<ItemRoom> roomList;
 
+
+    public List<ItemHotel> getHotelList() {
+        return hotelList;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_fragment_1, container, false);
@@ -52,14 +56,14 @@ public class TabFragment1 extends Fragment {
         adapterHotel = new HotelAdapter(getContext(), hotelList);
         recyclerView.setAdapter(adapterHotel);
 
-        roomList = new ArrayList<>();
-//        adapterHotel = new HotelAdapter(getContext(), hotelList);
 //        roomList = new ArrayList<>();
-
-        roomList.add(new ItemRoom("Cosmos", 32, 2, R.drawable.room));
-        roomList.add(new ItemRoom("Space", 32, 2, R.drawable.room));
-
-        roomAdapter = new RoomAdapter(getContext(), roomList);
+////        adapterHotel = new HotelAdapter(getContext(), hotelList);
+////        roomList = new ArrayList<>();
+//
+//        roomList.add(new ItemRoom("Cosmos", 32, 2, R.drawable.room));
+//        roomList.add(new ItemRoom("Space", 32, 2, R.drawable.room));
+//
+//        roomAdapter = new RoomAdapter(getContext(), roomList);
 //        recyclerView.setAdapter(roomAdapter);
         loadJSON();
 
@@ -99,15 +103,15 @@ public class TabFragment1 extends Fragment {
         });
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        adapterHotel.setOnItemClickListener(new HotelAdapter.MyClickListener() {
-            @Override
-            public void onItemClick(int position, View v) {
-                roomAdapter = new RoomAdapter(getContext(), roomList);
-                recyclerView.setAdapter(roomAdapter);
-            }
-        });
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        adapterHotel.setOnItemClickListener(new HotelAdapter.MyClickListener() {
+//            @Override
+//            public void onItemClick(int position, View v) {
+//                roomAdapter = new RoomAdapter(getContext(), roomList);
+//                recyclerView.setAdapter(roomAdapter);
+//            }
+//        });
+//    }
 }

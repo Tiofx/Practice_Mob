@@ -1,41 +1,49 @@
 package com.example.st_pov.practice;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.st_pov.practice.activities.FeedbackAboutHotelActivity;
 import com.example.st_pov.practice.models.ItemHotel;
+import com.example.st_pov.practice.tabs.RoomFragment;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by st_pov on 29.06.2017.
  */
 
-public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder> {
+public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder> implements View.OnClickListener {
 
+    private HashMap<Integer, Integer> сrutch = new HashMap<>();
     private Context mContext;
-    private static MyClickListener myClickListener;
+
     List<ItemHotel> hotelList;
 
     public HotelAdapter(List<ItemHotel> hotelList) {
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
 
         public TextView titleHotel, address, numberReviews;
         public ImageView photoHotel;
         public RatingBar ratingStar;
         public CheckBox isBreakfast;
+        public Button details, mark;
 
 
         public MyViewHolder(View view) {
@@ -46,24 +54,19 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
             ratingStar = view.findViewById(R.id.ratingStarHotel);
             isBreakfast = view.findViewById(R.id.isBreakfast);
             photoHotel = view.findViewById(R.id.photoHotel);
-            view.setOnClickListener(this);
+            details = view.findViewById(R.id.detail);
+            mark = view.findViewById(R.id.mark);
+
+            details.setOnClickListener(HotelAdapter.this);
+            mark.setOnClickListener(HotelAdapter.this);
         }
 
-        @Override
-        public void onClick(View v) {
-            myClickListener.onItemClick(getAdapterPosition(), v);
-        }
     }
 
     public HotelAdapter(Context mContext, List<ItemHotel> hotelList) {
         this.mContext = mContext;
         this.hotelList = hotelList;
     }
-
-    public void setOnItemClickListener(MyClickListener myClickListener) {
-        this.myClickListener = myClickListener;
-    }
-
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -82,18 +85,32 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
         holder.ratingStar.setNumStars((int) hotel.getNumberStars());
         holder.isBreakfast.setEnabled(hotel.isBreakfast());
 
+        сrutch.put(holder.mark.hashCode(), hotel.getId());
         // loading album cover using Picasso library
         Picasso.with(mContext).load(hotel.getPhotoHotel()).into(holder.photoHotel);
 
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case (R.id.detail):
+                Fragment fragment = new RoomFragment();
+                FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
+                transaction.replace(R.id.items, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                break;
+            case (R.id.mark):
+                Intent intent = new Intent(mContext, FeedbackAboutHotelActivity.class);
+                intent.putExtra("hotel_id", сrutch.get(v.hashCode()));
+                mContext.startActivity(intent);
+                break;
+        }
+    }
 
     @Override
     public int getItemCount() {
         return hotelList.size();
-    }
-
-    public interface MyClickListener {
-        void onItemClick(int position, View v);
     }
 }

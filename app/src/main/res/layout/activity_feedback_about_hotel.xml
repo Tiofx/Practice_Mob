@@ -4,35 +4,46 @@
     style="@style/RootContainer"
     tools:context=".activities.FeedbackAboutHotelActivity">
 
-    <LinearLayout
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_alignParentTop="true" />
 
-        <include
-            android:id="@+id/header"
-            layout="@layout/header" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/add_hotel_btn"
+        android:layout_below="@id/header">
 
-        <TextView
-            style="@style/Text.Title"
-            android:text="@string/feedback" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/feedback_txt"
-            style="@style/InputField"
-            android:hint="@string/feedback"
-            tools:lines="5" />
+            <TextView
+                style="@style/Text.Title"
+                android:text="@string/feedback" />
 
-        <TextView
-            style="@style/Text.Title"
-            android:text="@string/rating" />
+            <EditText
+                android:id="@+id/feedback_txt"
+                style="@style/InputField"
+                android:hint="@string/feedback"
+                tools:lines="5" />
 
-        <RatingBar
-            android:id="@+id/rating_bar"
-            style="@style/InputField.Star"
-            tools:rating="2" />
+            <TextView
+                style="@style/Text.Title"
+                android:text="@string/rating" />
 
-    </LinearLayout>
+            <RatingBar
+                android:id="@+id/rating_bar"
+                style="@style/InputField.Star"
+                tools:rating="2" />
+
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/feedback_btn"

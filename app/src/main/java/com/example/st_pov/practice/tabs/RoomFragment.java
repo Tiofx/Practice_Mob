@@ -22,25 +22,14 @@ import java.util.List;
 
 public class RoomFragment extends Fragment {
     protected RecyclerView recyclerView;
-    //    protected HotelAdapter adapterHotel;
     protected RoomAdapter roomAdapter;
     protected List<ItemRoom> roomList;
-//    protected List<ItemRoom> roomList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_fragment_1, container, false);
 
         recyclerView = view.findViewById(R.id.items);
-        recyclerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-//        hotelList = new ArrayList<>();
-//        adapterHotel = new HotelAdapter(getContext(), hotelList);
         roomList = new ArrayList<>();
 
         roomList.add(new ItemRoom("Cosmos", 500, 32, R.drawable.room));

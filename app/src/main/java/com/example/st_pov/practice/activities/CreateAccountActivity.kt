@@ -55,6 +55,7 @@ class CreateAccountActivity : AppCompatActivity() {
                                         if (this) {
                                             Session.currentUser = user
                                             loadActivity<MainActivity>()
+
                                             "Поздравляю вы успешно зарегестированы"
                                         } else "Пароль или логин неверен"
                                     }.let { showText(it) }

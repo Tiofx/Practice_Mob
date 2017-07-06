@@ -7,7 +7,7 @@ import com.example.st_pov.practice.models.User
 import retrofit2.Call
 import retrofit2.http.*
 
-//TODO: move our each interface to different file,  
+//TODO: move out each interface to different file
 
 interface UserApi {
 
@@ -82,13 +82,13 @@ interface HotelApi {
 
 interface FeedbackApi {
 
-    @POST("/api/v1/hotels/{id}/review")
+    @POST("/api/v1/reviews/{id}")
     fun giveFeedback(
             @Path("id") hotelId: Int,
             @Body feedback: Feedback
     ): Call<Boolean>
 
-    @GET("/api/v1/hotels/{id}/reviews")
+    @GET("/api/v1/reviews/{id}")
     fun getFeedbacks(
             @Path("id") hotelId: Int,
             @Query("page") page: Int,
@@ -96,8 +96,8 @@ interface FeedbackApi {
     ): Call<List<Feedback>>
 
     @Deprecated("for testing")
-    @GET("/api/v1/hotels/{id}/reviews")
-    fun getAllRooms(
+    @GET("/api/v1/reviews/{id}")
+    fun getAllFeedbacks(
             @Path("id") hotelId: Int
     ): Call<List<Feedback>>
 }

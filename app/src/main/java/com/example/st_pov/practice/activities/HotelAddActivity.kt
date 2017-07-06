@@ -41,28 +41,27 @@ class HotelAddActivity : HeaderActivity() {
 
 
             sendToServer<HotelApi> {
-                addHotel(hotel)
-                        .enqueue(FunctionalCallback<Boolean>(
-                                { _, response ->
-                                    response.simpleResponseParser {
-                                        if (this) {
-                                            Intent().apply {
-                                                Gson().toJson(hotel).let { putExtra("new_hotel", it) }
-                                                setResult(Constants.HOTEL_REQUEST_CODE, this)
-                                            }
-                                            this@HotelAddActivity.finish()
-                                            "Отель добавлен"
-                                        } else "Такой отель не валидный"
-                                    }.let { showText(it) }
-                                },
-                                { _, t -> showText("Сетевая ошибка\n $t") }
-                        ))
+                addHotel(hotel).enqueue(FunctionalCallback<Boolean>(
+                        { _, response ->
+                            response.simpleResponseParser {
+                                if (this) {
+                                    Intent().apply {
+                                        Gson().toJson(hotel).let { putExtra("new_hotel", it) }
+                                        setResult(Constants.HOTEL_REQUEST_CODE, this)
+                                    }
+                                    this@HotelAddActivity.finish()
+                                    "Отель добавлен"
+                                } else "Такой отель не валидный"
+                            }.let { showText(it) }
+                        },
+                        { _, t -> showText("Сетевая ошибка\n $t") }
+                ))
             }
         }
     }
 
-//    @OnClick(R.id.add_photo_btn)
-//    fun addPhoto() = showText("Добавление фото не работает")
+    @OnClick(R.id.add_photo_btn)
+    fun addPhoto() = showText("Добавление фото не работает")
 
 
     val validator by lazy {

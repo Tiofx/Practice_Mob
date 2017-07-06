@@ -12,7 +12,6 @@ import android.view.View;
 import com.example.st_pov.practice.activities.HeaderActivity;
 import com.example.st_pov.practice.activities.HotelAddActivity;
 import com.example.st_pov.practice.models.Hotel;
-import com.example.st_pov.practice.models.ItemHotel;
 import com.example.st_pov.practice.util.Constants;
 import com.google.gson.Gson;
 
@@ -92,7 +91,7 @@ public class MainActivity extends HeaderActivity {
 
     @OnClick(R.id.fab)
     public void addHotel(View view) {
-        Intent intent = new Intent(this, HotelAddActivity.class);
+        Intent intent = new Intent(MainActivity.this, HotelAddActivity.class);
         startActivityForResult(intent, Constants.HOTEL_REQUEST_CODE);
 //        loadActivity(MainActivity.this, HotelAddActivity.class);
     }
@@ -103,15 +102,10 @@ public class MainActivity extends HeaderActivity {
             String result = data.getExtras().getString("new_hotel", "");
             Hotel hotel = new Gson().fromJson(result, Hotel.class);
             if (hotel != null) {
-                adapter.getTab1().getHotelList().add(new ItemHotel(
-                        hotel.getTitle(),
-                        hotel.getAddress(),
-                        0,
-//                        hotel.getReviewsNumber(),
-                        R.drawable.gostin_fgb,
-                        hotel.getStarRating(),
-                        hotel.getHasBreakfast()
-                ));
+                //TODO: delete stab
+                hotel.setPhoto(R.drawable.cosmos_moscow);
+
+                adapter.getTab1().getHotelList().add(hotel);
             }
         }
     }

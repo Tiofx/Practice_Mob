@@ -15,7 +15,7 @@ public class JSONResponse {
         return hotel;
     }
 
-    public Room_[] getRoom(){
+    public Room_[] getRoom() {
         return room;
     }
 }

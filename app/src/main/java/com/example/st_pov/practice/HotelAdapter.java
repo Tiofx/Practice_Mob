@@ -15,7 +15,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.st_pov.practice.activities.FeedbackAboutHotelActivity;
-import com.example.st_pov.practice.models.ItemHotel;
+import com.example.st_pov.practice.models.Hotel;
 import com.example.st_pov.practice.tabs.RoomFragment;
 import com.squareup.picasso.Picasso;
 
@@ -31,9 +31,9 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
     private HashMap<Integer, Integer> сrutch = new HashMap<>();
     private Context mContext;
 
-    List<ItemHotel> hotelList;
+    List<Hotel> hotelList;
 
-    public HotelAdapter(List<ItemHotel> hotelList) {
+    public HotelAdapter(List<Hotel> hotelList) {
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -63,7 +63,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
 
     }
 
-    public HotelAdapter(Context mContext, List<ItemHotel> hotelList) {
+    public HotelAdapter(Context mContext, List<Hotel> hotelList) {
         this.mContext = mContext;
         this.hotelList = hotelList;
     }
@@ -78,16 +78,16 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        ItemHotel hotel = hotelList.get(position);
-        holder.titleHotel.setText(hotel.getName());
+        Hotel hotel = hotelList.get(position);
+        holder.titleHotel.setText(hotel.getTitle());
         holder.address.setText(hotel.getAddress());
-        holder.numberReviews.setText(hotel.getNumberReviews() + " отзывов");
-        holder.ratingStar.setNumStars((int) hotel.getNumberStars());
-        holder.isBreakfast.setEnabled(hotel.isBreakfast());
+        holder.numberReviews.setText(hotel.getReviewsNumber() + " отзывов");
+        holder.ratingStar.setNumStars((int) hotel.getStarRating());
+        holder.isBreakfast.setEnabled(hotel.getHasBreakfast());
 
         сrutch.put(holder.mark.hashCode(), hotel.getId());
         // loading album cover using Picasso library
-        Picasso.with(mContext).load(hotel.getPhotoHotel()).into(holder.photoHotel);
+        Picasso.with(mContext).load(hotel.getPhoto()).into(holder.photoHotel);
 
     }
 

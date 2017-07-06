@@ -11,10 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.st_pov.practice.HotelAdapter;
 import com.example.st_pov.practice.R;
 import com.example.st_pov.practice.RoomAdapter;
-import com.example.st_pov.practice.models.ItemHotel;
 import com.example.st_pov.practice.models.ItemRoom;
 
 import java.util.ArrayList;

@@ -14,7 +14,6 @@ public class Client {
     private static Retrofit retrofit = null;
 
 
-
     public static Retrofit getRetrofit() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
@@ -22,6 +21,6 @@ public class Client {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
-        return  retrofit;
+        return retrofit;
     }
 }

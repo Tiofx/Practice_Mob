@@ -1,9 +1,6 @@
 package com.example.st_pov.practice.service
 
-import com.example.st_pov.practice.models.Feedback
-import com.example.st_pov.practice.models.Hotel
-import com.example.st_pov.practice.models.Room
-import com.example.st_pov.practice.models.User
+import com.example.st_pov.practice.models.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -20,7 +17,7 @@ interface UserApi {
     fun signIn(
             @Query("email") email: String,
             @Query("password") password: String
-    ): Call<Boolean>
+    ): Call<AuthToken>
 
     @DELETE("/user.json")
     fun signOut(

@@ -10,6 +10,7 @@ import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.MainActivity
 import com.example.st_pov.practice.R
 import com.example.st_pov.practice.kotlin.PasswordInput
+import com.example.st_pov.practice.models.AuthToken
 import com.example.st_pov.practice.models.User
 import com.example.st_pov.practice.service.UserApi
 import com.example.st_pov.practice.util.*
@@ -48,13 +49,14 @@ class SignInActivity : AppCompatActivity() {
     fun signIn() {
         if (validator.validate()) {
             showText(".....Подождите... Идет загрузка на сервер")
-            Session.currentUser = user
 
             sendToServer<UserApi> {
-                validate(user).enqueue(FunctionalCallback<Boolean>(
+                validate(user).enqueue(FunctionalCallback<AuthToken>(
                         { _, response ->
                             response.simpleResponseParser {
-                                if (this) {
+                                if (!token.isNullOrBlank()) {
+                                    Session.currentUser = user
+                                    Session.tokenValue = token
                                     loadActivity<MainActivity>()
                                     "Поздравляю вы успешно вошли"
                                 } else "Пароль или логин неверен"

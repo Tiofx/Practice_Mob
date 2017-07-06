@@ -11,6 +11,7 @@ import com.example.st_pov.practice.MainActivity
 import com.example.st_pov.practice.R
 import com.example.st_pov.practice.kotlin.PasswordInput
 import com.example.st_pov.practice.models.User
+import com.example.st_pov.practice.service.UserApi
 import com.example.st_pov.practice.util.*
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.password_input.*
@@ -48,22 +49,20 @@ class SignInActivity : AppCompatActivity() {
         if (validator.validate()) {
             showText(".....Подождите... Идет загрузка на сервер")
             Session.currentUser = user
-            loadActivity<MainActivity>()
 
-//            sendToServer<UserApi> {
-//                validate(user).enqueue(FunctionalCallback<Boolean>(
-//                        //                validate(user.email, user.password).enqueue(FunctionalCallback<Boolean>(
-//                        { _, response ->
-//                            response.simpleResponseParser {
-//                                if (this) {
-//                                    loadActivity<MainActivity>()
-//                                    "Поздравляю вы успешно вошли"
-//                                } else "Пароль или логин неверен"
-//                            }.let { showText(it) }
-//                        },
-//                        { _, t -> showText("Сетевая ошибка\n $t") }
-//                ))
-//            }
+            sendToServer<UserApi> {
+                validate(user).enqueue(FunctionalCallback<Boolean>(
+                        { _, response ->
+                            response.simpleResponseParser {
+                                if (this) {
+                                    loadActivity<MainActivity>()
+                                    "Поздравляю вы успешно вошли"
+                                } else "Пароль или логин неверен"
+                            }.let { showText(it) }
+                        },
+                        { _, t -> showText("Сетевая ошибка\n $t") }
+                ))
+            }
 
         }
     }

@@ -41,17 +41,17 @@ object Session {
             }
         }
 
-    var tokenValue: String? = null
+    var tokenValue: String? = "token_example"
 }
 
 
 //TODO: move out into file
 object Constants {
     //TODO: change on release
-    const val BASE_URL = "http://divine-leaf-1414.getsandbox.com"
+    const val BASE_URL = "http://blue-moon-7797.getsandbox.com"
 
     const val USER_AGENT = "mobile_android"
-    const val TOKEN_NAME = "token"
+    const val TOKEN_NAME = "auth_token"
     const val HOTEL_REQUEST_CODE = 1
 
 
@@ -83,7 +83,7 @@ fun <T> Response<T>?.simpleResponseParser(onNoBody: String = "Тело отве�
 
 
 inline fun UserApi.validate(user: User) =
-        user.run { validate(email, password) }
+        user.run { signIn(email, password) }
 
 inline fun FeedbackApi.giveFeedback(feedback: Feedback)
         = feedback.run { giveFeedback(hotelId!!, feedback) }

@@ -105,7 +105,6 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
                 Intent intent = new Intent(mContext, FeedbackAboutHotelActivity.class);
                 intent.putExtra("hotel_id", сrutch.get(v.hashCode()));
                 mContext.startActivity(intent);
-//                loadActivity(mContext, FeedbackAboutHotelActivity.class);
                 break;
         }
     }

@@ -49,7 +49,7 @@ class HotelAddActivity : HeaderActivity() {
 //                                        if (this) {
             Intent().apply {
                 Gson().toJson(hotel).let { putExtra("new_hotel", it) }
-                setResult(Constants.HOTEL_REQUEST_CODE)
+                setResult(Constants.HOTEL_REQUEST_CODE, this)
             }
             this@HotelAddActivity.finish()
 //                                            "Отель добавлен"

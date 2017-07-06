@@ -5,7 +5,6 @@ package com.example.st_pov.practice.models;
  */
 
 public class ItemHotel {
-    static int counter = 0;
     int id;
     final String name, address;
     final int numberReviews, photoHotel;
@@ -19,9 +18,6 @@ public class ItemHotel {
         this.photoHotel = photoHotel;
         this.numberStars = numberStars;
         this.isBreakfast = isBreakfast;
-
-        this.id = counter;
-        counter++;
     }
 
     public String getName() {

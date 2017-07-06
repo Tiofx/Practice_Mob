@@ -26,7 +26,6 @@ class FeedbackAboutHotelActivity : HeaderActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         ButterKnife.bind(this)
-        showText(feedback.toString())
     }
 
     @OnClick(R.id.feedback_btn)

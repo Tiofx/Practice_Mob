@@ -17,6 +17,7 @@ data class Hotel(
         @SerializedName("has_breakfast") var hasBreakfast: Boolean? = null,
         @SerializedName("address") var address: String? = null,
         @SerializedName("photo") var photo: Int? = null,
+        @SerializedName("price") var price: Int? = null,
         @SerializedName("room") var roomDescription: String? = null,
         //        @SerializedName("photo") var photo: Image? = null,
         @SerializedName("reviews_number") var reviewsNumber: Int = 0
@@ -28,12 +29,12 @@ data class Hotel(
             photo = photo, starRating = starRating, hasBreakfast = hasBreakfast)
 }
 
-data class Room(
-        @SerializedName("id") var id: Int? = null,
-        @SerializedName("hotel_id") var hotelId: Int,
-        @SerializedName("price") var price: Int,
-        @SerializedName("description") var description: String
-)
+//data class Room(
+//        @SerializedName("id") var id: Int? = null,
+//        @SerializedName("hotel_id") var hotelId: Int,
+//        @SerializedName("price") var price: Int,
+//        @SerializedName("description") var description: String
+//)
 
 data class Feedback(
         @SerializedName("id") var id: Int? = null,

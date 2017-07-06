@@ -2,8 +2,6 @@ package com.example.st_pov.practice;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +13,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.st_pov.practice.activities.FeedbackAboutHotelActivity;
+import com.example.st_pov.practice.activities.RoomActivity;
 import com.example.st_pov.practice.models.Hotel;
-import com.example.st_pov.practice.tabs.RoomFragment;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -29,6 +27,7 @@ import java.util.List;
 public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder> implements View.OnClickListener {
 
     private HashMap<Integer, Integer> сrutch = new HashMap<>();
+    private HashMap<Integer, Hotel> сrutch2 = new HashMap<>();
     private Context mContext;
 
     List<Hotel> hotelList;
@@ -86,6 +85,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
         holder.isBreakfast.setEnabled(hotel.getHasBreakfast());
 
         сrutch.put(holder.mark.hashCode(), hotel.getId());
+        сrutch2.put(holder.details.hashCode(), hotel);
         // loading album cover using Picasso library
         Picasso.with(mContext).load(hotel.getPhoto()).into(holder.photoHotel);
 
@@ -95,12 +95,10 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
     public void onClick(View v) {
         switch (v.getId()) {
             case (R.id.detail):
-                Fragment fragment = new RoomFragment();
-                FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
-                transaction.replace(R.id.items, fragment);
-//                putExtra("hotel_id", сrutch.get(v.hashCode()));
-                transaction.addToBackStack(null);
-                transaction.commit();
+                Intent intent1 = new Intent(mContext, RoomActivity.class);
+                intent1.putExtra("price", сrutch2.get(v.hashCode()).getPrice());
+                intent1.putExtra("room_description", сrutch2.get(v.hashCode()).getRoomDescription());
+                mContext.startActivity(intent1);
                 break;
             case (R.id.mark):
                 Intent intent = new Intent(mContext, FeedbackAboutHotelActivity.class);

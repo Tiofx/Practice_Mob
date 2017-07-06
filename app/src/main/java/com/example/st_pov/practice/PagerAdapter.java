@@ -13,6 +13,7 @@ import com.example.st_pov.practice.tabs.TabFragment2;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
+    Fragment[] fragments = new Fragment[2];
     TabFragment1 tab1;
 
     public TabFragment1 getTab1() {
@@ -22,21 +23,17 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     public PagerAdapter(FragmentManager fm, int NumOfTabs) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
+
+        tab1 = new TabFragment1();
+        fragments[0] = tab1;
+        fragments[1] = new TabFragment2();
     }
 
     @Override
     public Fragment getItem(int position) {
-
-        switch (position) {
-            case 0:
-                tab1 = new TabFragment1();
-                return tab1;
-            case 1:
-                TabFragment2 tab2 = new TabFragment2();
-                return tab2;
-            default:
-                return null;
-        }
+        if (fragments.length > position) {
+            return fragments[position];
+        } else return null;
     }
 
     @Override

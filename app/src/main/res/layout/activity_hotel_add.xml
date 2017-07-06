@@ -66,12 +66,30 @@
 
             <TextView
                 style="@style/Text.Title"
-                android:text="@string/photo" />
+                android:text="Цена" />
 
-            <ImageButton
-                android:id="@+id/add_photo_btn"
-                style="@style/Button.Transparent.AddButton"
-                app:srcCompat="@drawable/add_icon" />
+            <EditText
+                android:id="@+id/price"
+                style="@style/InputField"
+                android:inputType="number" />
+
+            <TextView
+                style="@style/Text.Title"
+                android:text="Описание" />
+
+            <EditText
+                android:id="@+id/description"
+                style="@style/InputField"
+                android:inputType="textMultiLine" />
+
+            <!--<TextView-->
+                <!--style="@style/Text.Title"-->
+                <!--android:text="@string/photo" />-->
+
+            <!--<ImageButton-->
+                <!--android:id="@+id/add_photo_btn"-->
+                <!--style="@style/Button.Transparent.AddButton"-->
+                <!--app:srcCompat="@drawable/add_icon" />-->
         </LinearLayout>
     </ScrollView>
 

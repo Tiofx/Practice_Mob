@@ -66,6 +66,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
         holder.titleRoom.setText(room.getName());
         holder.price.setText(String.valueOf(room.getPrice()));
         holder.people.setText(String.valueOf(room.getPeople()));
+
         Picasso.with(mContext).load(room.getPhotoRoom()).into(holder.photoRoom);
 
     }

@@ -54,8 +54,15 @@ public class TabFragment1 extends Fragment {
 //                    }
 //                });
 
-        hotelList.add(new Hotel("Cosmos", "Moscow", 32, R.drawable.room, 3, true));
-        hotelList.add(new Hotel("Intercontinental", "Madrid", 32, R.drawable.gostin_fgb, 3, true));
+        Hotel hotel = new Hotel("Cosmos", "Moscow", 32, R.drawable.room, 3, true);
+        hotel.setPrice(100);
+        hotel.setRoomDescription("Это заглушка за 100 долларов");
+        hotelList.add(hotel);
+
+        hotel = new Hotel("Intercontinental", "Madrid", 32, R.drawable.gostin_fgb, 3, true);
+        hotel.setPrice(123);
+        hotel.setRoomDescription("Это заглушка за 123 доллара!!!!");
+        hotelList.add(hotel);
 
         adapterHotel = new HotelAdapter(getContext(), hotelList);
         recyclerView.setAdapter(adapterHotel);

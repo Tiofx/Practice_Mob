@@ -35,9 +35,9 @@ public class RoomFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.room_fragment, container, false);
+        View view = inflater.inflate(R.layout.activity_room, container, false);
 
-        recyclerView = view.findViewById(R.id.itemsRooms);
+//        recyclerView = view.findViewById(R.id.itemsRooms);
 
         roomList = new ArrayList<>();
 
@@ -47,7 +47,7 @@ public class RoomFragment extends Fragment {
         roomAdapter = new RoomAdapter(getContext(), roomList);
         recyclerView.setAdapter(roomAdapter);
 
-        loadJSON();
+//        loadJSON();
         return view;
     }
 

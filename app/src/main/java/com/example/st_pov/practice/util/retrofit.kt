@@ -11,8 +11,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 fun baseRetrofit() = Retrofit.Builder()
-        .client(getClient(Constants.USER_AGENT))
         .baseUrl(Constants.BASE_URL)
+        .client(getClient(Constants.USER_AGENT))
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
@@ -26,8 +26,8 @@ fun getClient(userAgent: String) = OkHttpClient.Builder()
         .addInterceptor {
             it.request()
                     .newBuilder()
-                    .setUpToken(it)
                     .header("User-Agent", userAgent)
+                    .setUpToken(it)
                     .build()
                     .run { it.proceed(this) }
         }
@@ -41,10 +41,10 @@ fun Request.Builder.setUpToken(chain: Interceptor.Chain) = apply {
 
 fun Interceptor.Chain.getUrlForNewQueryParam(key: String = Constants.TOKEN_NAME,
                                              value: String? = Session.tokenValue) =
-        request().url()
-                .newBuilder()
-                .addQueryParameter(key, value)
-                .build()
+        request().url().addQueryParamToStart(key, value)
+
+fun okhttp3.HttpUrl.addQueryParamToStart(key: String, value: String?) =
+        newBuilder("${encodedPath()}?$key=$value&${query()}")?.build()
 
 
 class FunctionalCallback<T>(var onResponse: (call: Call<T>?, response: Response<T>?) -> Unit,

@@ -98,6 +98,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
                 Fragment fragment = new RoomFragment();
                 FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
                 transaction.replace(R.id.items, fragment);
+//                putExtra("hotel_id", сrutch.get(v.hashCode()));
                 transaction.addToBackStack(null);
                 transaction.commit();
                 break;

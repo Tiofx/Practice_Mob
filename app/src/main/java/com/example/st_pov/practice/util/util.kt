@@ -31,13 +31,13 @@ object Session {
             field = value
             if (value == null) {
                 tokenValue = null
-//                sendToServer<UserApi> {
-//                    //TODO: response
-//                    signOut().enqueue(FunctionalCallback<Boolean>(
-//                            { _, response -> },
-//                            { _, t -> }
-//                    ))
-//                }
+                sendToServer<UserApi> {
+                    //TODO: response
+                    signOut().enqueue(FunctionalCallback<Boolean>(
+                            { _, response -> },
+                            { _, t -> }
+                    ))
+                }
             }
         }
 
@@ -48,10 +48,10 @@ object Session {
 //TODO: move out into file
 object Constants {
     //TODO: change on release
-    const val BASE_URL = "http://divine-leaf-1414.getsandbox.com"
+    const val BASE_URL = "http://blue-moon-7797.getsandbox.com"
 
     const val USER_AGENT = "mobile_android"
-    const val TOKEN_NAME = "token"
+    const val TOKEN_NAME = "auth_token"
     const val HOTEL_REQUEST_CODE = 1
 
 
@@ -62,7 +62,7 @@ object Constants {
     val FEEDBACK_LENGTH_RANGE = 3 to 300
 
     object Regex {
-        val FIRST_NAME = NAME_LENGTH_RANGE.run { "^[A-Z|А-Я][a-z|а-я]{$first,$second}$" }
+        val FIRST_NAME = NAME_LENGTH_RANGE.run { "^[A-Z|А-Я][a-z|а-я]{${first - 1},$second}$" }
         val LAST_NAME = FIRST_NAME
         val PASSWORD = PASSWORD_LENGTH_RANGE.run { "^\\w.{$first,$second}$" }
 
@@ -83,7 +83,7 @@ fun <T> Response<T>?.simpleResponseParser(onNoBody: String = "Тело отве�
 
 
 inline fun UserApi.validate(user: User) =
-        user.run { validate(email, password) }
+        user.run { signIn(email, password) }
 
 inline fun FeedbackApi.giveFeedback(feedback: Feedback)
         = feedback.run { giveFeedback(hotelId!!, feedback) }

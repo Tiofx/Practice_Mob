@@ -5,9 +5,8 @@ import butterknife.OnClick
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.R
 import com.example.st_pov.practice.models.Feedback
-import com.example.st_pov.practice.util.Constants
-import com.example.st_pov.practice.util.kawesomeValidation
-import com.example.st_pov.practice.util.showText
+import com.example.st_pov.practice.service.FeedbackApi
+import com.example.st_pov.practice.util.*
 import kotlinx.android.synthetic.main.activity_feedback_about_hotel.*
 
 class FeedbackAboutHotelActivity : HeaderActivity() {
@@ -33,20 +32,20 @@ class FeedbackAboutHotelActivity : HeaderActivity() {
         if (validator.validate()) {
             showText("...Подождите выполняется добавление вашего отзыва")
 
-//            sendToServer<FeedbackApi> {
-//                giveFeedback(feedback).enqueue(FunctionalCallback<Boolean>(
-//                        { _, response ->
-//                            response.simpleResponseParser {
-//                                if (this) {
-            finish()
-//                                    "Ваш отзыв добавлен"
-//                                } else "У вас недостаточно прав"
-//                            }.let { showText(it) }
-//
-//                        },
-//                        { _, t -> showText("Сетевая ошибка\n $t") }
-//                ))
-//            }
+            sendToServer<FeedbackApi> {
+                giveFeedback(feedback).enqueue(FunctionalCallback<Boolean>(
+                        { _, response ->
+                            response.simpleResponseParser {
+                                if (this) {
+                                    finish()
+                                    "Ваш отзыв добавлен"
+                                } else "У вас недостаточно прав"
+                            }.let { showText(it) }
+
+                        },
+                        { _, t -> showText("Сетевая ошибка\n $t") }
+                ))
+            }
         }
     }
 

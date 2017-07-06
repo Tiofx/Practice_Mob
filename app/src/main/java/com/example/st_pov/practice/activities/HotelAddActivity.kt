@@ -7,9 +7,8 @@ import butterknife.OnClick
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.R
 import com.example.st_pov.practice.models.Hotel
-import com.example.st_pov.practice.util.Constants
-import com.example.st_pov.practice.util.kawesomeValidation
-import com.example.st_pov.practice.util.showText
+import com.example.st_pov.practice.service.HotelApi
+import com.example.st_pov.practice.util.*
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_hotel_add.*
 
@@ -41,29 +40,28 @@ class HotelAddActivity : HeaderActivity() {
             showText("...Подождите произвожу добавление отеля")
 
 
-//            sendToServer<HotelApi> {
-//                addHotel(hotel)
-//                        .enqueue(FunctionalCallback<Boolean>(
-//                                { _, response ->
-//                                    response.simpleResponseParser {
-//                                        if (this) {
-            Intent().apply {
-                Gson().toJson(hotel).let { putExtra("new_hotel", it) }
-                setResult(Constants.HOTEL_REQUEST_CODE, this)
+            sendToServer<HotelApi> {
+                addHotel(hotel).enqueue(FunctionalCallback<Boolean>(
+                        { _, response ->
+                            response.simpleResponseParser {
+                                if (this) {
+                                    Intent().apply {
+                                        Gson().toJson(hotel).let { putExtra("new_hotel", it) }
+                                        setResult(Constants.HOTEL_REQUEST_CODE, this)
+                                    }
+                                    this@HotelAddActivity.finish()
+                                    "Отель добавлен"
+                                } else "Такой отель не валидный"
+                            }.let { showText(it) }
+                        },
+                        { _, t -> showText("Сетевая ошибка\n $t") }
+                ))
             }
-            this@HotelAddActivity.finish()
-//                                            "Отель добавлен"
-//                                        } else "Такой отель не валидный"
-//                                    }.let { showText(it) }
-//                                },
-//                                { _, t -> showText("Сетевая ошибка\n $t") }
-//                        ))
-//            }
         }
     }
 
-//    @OnClick(R.id.add_photo_btn)
-//    fun addPhoto() = showText("Добавление фото не работает")
+    @OnClick(R.id.add_photo_btn)
+    fun addPhoto() = showText("Добавление фото не работает")
 
 
     val validator by lazy {

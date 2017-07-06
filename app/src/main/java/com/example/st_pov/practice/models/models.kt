@@ -17,13 +17,14 @@ data class Hotel(
         @SerializedName("has_breakfast") var hasBreakfast: Boolean? = null,
         @SerializedName("address") var address: String? = null,
         @SerializedName("photo") var photo: Int? = null,
+        @SerializedName("room") var roomDescription: String? = null,
         //        @SerializedName("photo") var photo: Image? = null,
-        @SerializedName("reviews_number") var reviewsNumber: Int = 0,
-        @SerializedName("rooms") var rooms: List<Room>? = null
+        @SerializedName("reviews_number") var reviewsNumber: Int = 0
+//        @SerializedName("rooms") var rooms: List<Room>? = null
 ) {
     constructor(title: String, address: String?, reviewsNumber: Int,
                 photo: Int?, starRating: Int, hasBreakfast: Boolean?)
-            : this(null, title = title, address = address, reviewsNumber = reviewsNumber,
+            : this(null, title = title, address = address,
             photo = photo, starRating = starRating, hasBreakfast = hasBreakfast)
 }
 

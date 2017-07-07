@@ -10,14 +10,15 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-fun baseRetrofit() = Retrofit.Builder()
+fun baseRetrofit(hasUserId: Boolean = true) = Retrofit.Builder()
         .baseUrl(Constants.BASE_URL)
-        .client(getClient(Constants.USER_AGENT))
+        .run { if (hasUserId) client(getClient(Constants.USER_AGENT)) else this }
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-inline fun <reified Api> sendToServer(response: Api.() -> Unit) =
-        baseRetrofit()
+inline fun <reified Api> sendToServer(hasUserId: Boolean = true,
+                                      response: Api.() -> Unit) =
+        baseRetrofit(hasUserId)
                 .create(Api::class.java)
                 .response()
 
@@ -27,20 +28,21 @@ fun getClient(userAgent: String) = OkHttpClient.Builder()
             it.request()
                     .newBuilder()
                     .header("User-Agent", userAgent)
-//                    .setUpToken(it)
+                    .setUpToken(it, "user_id", "4")
                     .build()
                     .run { it.proceed(this) }
         }
         .build()
 
-fun Request.Builder.setUpToken(chain: Interceptor.Chain) = apply {
-    chain.getUrlForNewQueryParam()
-            .takeUnless { Session.tokenValue.isNullOrBlank() }
+fun Request.Builder.setUpToken(chain: Interceptor.Chain,
+                               key: String = Constants.TOKEN_NAME,
+                               value: String? = Session.tokenValue) = apply {
+    chain.getUrlForNewQueryParam(key, value)
+            .takeUnless { value.isNullOrBlank() }
             ?.let { url(it) }
 }
 
-fun Interceptor.Chain.getUrlForNewQueryParam(key: String = Constants.TOKEN_NAME,
-                                             value: String? = Session.tokenValue) =
+fun Interceptor.Chain.getUrlForNewQueryParam(key: String, value: String?) =
         request().url().addQueryParamToStart(key, value)
 
 fun okhttp3.HttpUrl.addQueryParamToStart(key: String, value: String?) =

@@ -5,30 +5,32 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import com.example.st_pov.practice.models.Feedback
+import com.example.st_pov.practice.models.Hotel
 import com.example.st_pov.practice.models.User
 import com.example.st_pov.practice.service.FeedbackApi
+import com.example.st_pov.practice.service.HotelApi
 import com.example.st_pov.practice.service.UserApi
 import retrofit2.Response
 
 object Session {
     var currentUser: User? = null
         set(value) {
-            if (value == null) {
-                tokenValue = null
-                sendToServer<UserApi> {
-                    signOut().enqueue(FunctionalCallback<Boolean>(
-                            { _, response ->
-                                response?.let {
-                                    it.takeIf { it.isSuccessful }
-                                            ?.body()
-                                            ?.let { field = value }
-                                }
-                            }
-                    ))
-                }
-            } else {
+//            if (value == null) {
+//                tokenValue = null
+//                sendToServer<UserApi> {
+//                    signOut().enqueue(FunctionalCallback<Boolean>(
+//                            { _, response ->
+//                                response?.let {
+//                                    it.takeIf { it.isSuccessful }
+//                                            ?.body()
+//                                            ?.let { field = value }
+//                                }
+//                            }
+//                    ))
+//                }
+//            } else {
                 field = value
-            }
+//            }
         }
 
     var tokenValue: String? = null
@@ -36,6 +38,8 @@ object Session {
 
 //TODO: move out into config file
 object Constants {
+    const val VERSION = 1
+
     const val BASE_URL = "https://hotelite.herokuapp.com"
     const val USER_AGENT = "mobile_android"
     const val TOKEN_NAME = "auth_token"
@@ -47,6 +51,7 @@ object Constants {
     val HOTEL_LENGTH_RANGE = 3 to 40
     val ADDRESS_LENGTH_RANGE = 3 to 100
     val FEEDBACK_LENGTH_RANGE = 3 to 300
+
     object Regex {
 
         val FIRST_NAME = NAME_LENGTH_RANGE.run { "^[A-Z|А-Я][a-z|а-я]{${first - 1},$second}$" }
@@ -58,7 +63,6 @@ object Constants {
         val FEEDBACK = FEEDBACK_LENGTH_RANGE.run { "^.{$first,$second}$" }
     }
 }
-
 
 
 fun Context.showText(text: String, duration: Int = Toast.LENGTH_SHORT) =
@@ -90,3 +94,17 @@ inline fun UserApi.signIn(user: User) =
 
 inline fun FeedbackApi.giveFeedback(feedback: Feedback)
         = feedback.run { giveFeedback(hotelId!!, feedback) }
+
+inline fun HotelApi.addHotel(hotel: Hotel) = hotel.run {
+    this@addHotel.addHotel(title,
+            hasBreakfast,
+            starRating,
+            address,
+            roomDescription,
+            price,
+            roomDescription)
+}
+
+
+inline fun FeedbackApi.giveFeedback(hotelId: Int, feedback: Feedback)
+        = feedback.run { giveFeedback(rating, comment, hotelId) }

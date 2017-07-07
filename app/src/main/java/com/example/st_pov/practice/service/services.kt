@@ -1,9 +1,6 @@
 package com.example.st_pov.practice.service
 
-import com.example.st_pov.practice.models.AuthToken
-import com.example.st_pov.practice.models.Feedback
-import com.example.st_pov.practice.models.Hotel
-import com.example.st_pov.practice.models.User
+import com.example.st_pov.practice.models.*
 import com.example.st_pov.practice.util.Constants
 import retrofit2.Call
 import retrofit2.http.*
@@ -27,12 +24,19 @@ interface UserApi {
     ): Call<Boolean>
 }
 
+
 interface HotelApi {
 
     @POST("/api/v${Constants.VERSION}/hotels")
     fun addHotel(
-            @Body hotel: Hotel
-    ): Call<Boolean>
+            @Query("name") name: String,
+            @Query("breakfest") breakfest: Boolean?,
+            @Query("star") star: Int,
+            @Query("address") address: String?,
+            @Query("room") room: String?,
+            @Query("price") price: Int?,
+            @Query("description") description: String?
+    ): Call<SimpleResponse>
 
     @GET("/api/v${Constants.VERSION}/hotels")
     fun getHotels(
@@ -51,42 +55,15 @@ interface HotelApi {
     ): Call<List<Hotel>>
 }
 
-
-//interface RoomApi {
-//
-//    @POST("/api/v${Constants.VERSION}/hotels/{id}/room")
-//    fun addRoom(
-//            @Path("id") hotelId: Int,
-//            @Body room: Room
-//    ): Call<Boolean>
-//
-//    @GET("/api/v${Constants.VERSION}/hotels/{id}/room")
-//    fun getRoom(
-//            @Path("id") hotelId: Int,
-//            @Query("id") roomId: Int
-//    ): Call<Room>
-//
-//    @GET("/api/v${Constants.VERSION}/hotels/{id}/rooms")
-//    fun getRooms(
-//            @Query("page") page: Int,
-//            @Query("per_page") perPage: Int
-//    ): Call<List<Room>>
-//
-//    @Deprecated("for testing")
-//    @GET("/api/v${Constants.VERSION}/hotels/{id}/rooms")
-//    fun getAllRooms(
-//            @Path("id") hotelId: Int
-//    ): Call<List<Room>>
-//}
-
-
 interface FeedbackApi {
 
     @POST("/api/v${Constants.VERSION}/reviews/{id}")
     fun giveFeedback(
-            @Path("id") hotelId: Int,
-            @Body feedback: Feedback
-    ): Call<Boolean>
+            @Query("rate") rate: Int,
+            @Query("review") review: String,
+            @Query("hotel_id") hotelId: Int
+    ): Call<SimpleResponse>
+
 
     @GET("/api/v${Constants.VERSION}/reviews/{id}")
     fun getFeedbacks(

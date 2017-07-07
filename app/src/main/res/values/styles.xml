@@ -57,8 +57,7 @@
     <style name="InputField.Star">
         <item name="android:max">@integer/hotel_star_number</item>
         <item name="android:numStars">@integer/hotel_star_number</item>
-        <item name="android:isIndicator">true</item>
-        <item name="android:stepSize">1</item>
+        <!--<item name="android:isIndicator">true</item>-->
         <!--<item name="android:background">@color/black</item>-->
         <item name="android:theme">@style/RatingBar</item>
     </style>

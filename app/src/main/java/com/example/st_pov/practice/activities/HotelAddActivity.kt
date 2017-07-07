@@ -7,6 +7,7 @@ import butterknife.OnClick
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.R
 import com.example.st_pov.practice.models.Hotel
+import com.example.st_pov.practice.models.SimpleResponse
 import com.example.st_pov.practice.service.HotelApi
 import com.example.st_pov.practice.util.*
 import com.google.gson.Gson
@@ -40,11 +41,12 @@ class HotelAddActivity : HeaderActivity() {
             showText("...Подождите произвожу добавление отеля")
 
             sendToServer<HotelApi> {
-                addHotel(hotel).enqueue(FunctionalCallback<Boolean>(
+                addHotel(hotel).enqueue(FunctionalCallback<SimpleResponse>(
                         { _, response ->
                             response.simpleResponseParser {
-                                if (this) {
+                                if (this.success) {
                                     Intent().apply {
+                                        hotel.photo = R.drawable.room
                                         Gson().toJson(hotel).let { putExtra("new_hotel", it) }
                                         setResult(Constants.HOTEL_REQUEST_CODE, this)
                                     }

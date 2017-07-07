@@ -57,7 +57,7 @@ interface HotelApi {
 
 interface FeedbackApi {
 
-    @POST("/api/v${Constants.VERSION}/reviews/{id}")
+    @POST("/api/v${Constants.VERSION}/reviews")
     fun giveFeedback(
             @Query("rate") rate: Int,
             @Query("review") review: String,
@@ -65,7 +65,7 @@ interface FeedbackApi {
     ): Call<SimpleResponse>
 
 
-    @GET("/api/v${Constants.VERSION}/reviews/{id}")
+    @GET("/api/v${Constants.VERSION}/reviews/")
     fun getFeedbacks(
             @Path("id") hotelId: Int,
             @Query("page") page: Int,
@@ -73,7 +73,7 @@ interface FeedbackApi {
     ): Call<List<Feedback>>
 
     @Deprecated("for testing")
-    @GET("/api/v${Constants.VERSION}/reviews/{id}")
+    @GET("/api/v${Constants.VERSION}/reviews/")
     fun getAllFeedbacks(
             @Path("id") hotelId: Int
     ): Call<List<Feedback>>

@@ -36,8 +36,11 @@ public class TabFragment1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_fragment_1, container, false);
+
         recyclerView = view.findViewById(R.id.itemsHotels);
         hotelList = new ArrayList<>();
+        adapterHotel = new HotelAdapter(getContext(), hotelList);
+        recyclerView.setAdapter(adapterHotel);
 
         baseRetrofit(false)
                 .create(HotelApi.class)
@@ -52,6 +55,7 @@ public class TabFragment1 extends Fragment {
                                 hotel.setPhoto(R.drawable.room);
                             }
                             hotelList.addAll(body);
+                            adapterHotel.notifyDataSetChanged();
                         }
                     }
 
@@ -71,9 +75,6 @@ public class TabFragment1 extends Fragment {
 //        hotel.setPrice(123);
 //        hotel.setRoomDescription("Это заглушка за 123 доллара!!!!");
 //        hotelList.add(hotel);
-
-        adapterHotel = new HotelAdapter(getContext(), hotelList);
-        recyclerView.setAdapter(adapterHotel);
 
         return view;
     }

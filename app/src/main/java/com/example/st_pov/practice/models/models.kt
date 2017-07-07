@@ -40,6 +40,6 @@ data class Feedback(
         @SerializedName("hotel_id") var hotelId: Int? = null,
         //TODO: define by token on server
 //        @SerializedName("user_id") var userId: Int? = null,
-        @SerializedName("comment") var comment: String,
-        @SerializedName("rating") var rating: Int
+        @SerializedName("review") var comment: String,
+        @SerializedName("rate") var rating: Int
 )

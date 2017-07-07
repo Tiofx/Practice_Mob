@@ -80,6 +80,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         Hotel hotel = hotelList.get(position);
+        if (hotel.getHasBreakfast() == null) hotel.setHasBreakfast(false);
         holder.titleHotel.setText(hotel.getTitle());
         holder.address.setText(hotel.getAddress());
 //        holder.numberReviews.setText(hotel.getReviewsNumber() + " отзывов");
@@ -89,7 +90,8 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
         сrutch.put(holder.mark.hashCode(), hotel.getId());
         сrutch2.put(holder.details.hashCode(), hotel);
         // loading album cover using Picasso library
-        Picasso.with(mContext).load(hotel.getPhoto()).into(holder.photoHotel);
+        if (hotel.getPhoto() != null)
+            Picasso.with(mContext).load(hotel.getPhoto()).into(holder.photoHotel);
 
     }
 

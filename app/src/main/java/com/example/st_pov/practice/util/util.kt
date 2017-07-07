@@ -89,11 +89,13 @@ fun <T> Response<T>?.simpleResponseParser(onNoBody: String = "Тело отве�
         } ?: "Ошибка на строне сервера"
 
 
+
+
 inline fun UserApi.signIn(user: User) =
         user.run { signIn(email, password) }
 
-inline fun FeedbackApi.giveFeedback(feedback: Feedback)
-        = feedback.run { giveFeedback(hotelId!!, feedback) }
+//inline fun FeedbackApi.giveFeedback(feedback: Feedback)
+//        = feedback.run { giveFeedback(hotelId!!, feedback) }
 
 inline fun HotelApi.addHotel(hotel: Hotel) = hotel.run {
     this@addHotel.addHotel(title,
@@ -106,5 +108,5 @@ inline fun HotelApi.addHotel(hotel: Hotel) = hotel.run {
 }
 
 
-inline fun FeedbackApi.giveFeedback(hotelId: Int, feedback: Feedback)
-        = feedback.run { giveFeedback(rating, comment, hotelId) }
+inline fun FeedbackApi.giveFeedback(feedback: Feedback)
+        = feedback.run { this@giveFeedback.giveFeedback(rating, comment, hotelId!!) }

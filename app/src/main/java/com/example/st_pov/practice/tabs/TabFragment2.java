@@ -64,6 +64,7 @@ public class TabFragment2 extends Fragment {
                                 hotel.setPhoto(R.drawable.gostin_fgb);
                             }
                             hotelList.addAll(body);
+                            adapterHotel.notifyDataSetChanged();
                         }
                     }
 

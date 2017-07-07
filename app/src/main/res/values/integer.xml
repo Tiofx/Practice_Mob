@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer name="hotel_star_number">5</integer>
+    <integer name="hotel_default_star_number">2</integer>
 </resources>

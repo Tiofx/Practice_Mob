@@ -58,28 +58,35 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/use_google_btn"
-                style="@style/Button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/use_google" />
+            <!--<Button-->
+                <!--android:id="@+id/use_google_btn"-->
+                <!--style="@style/Button"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="@string/use_google" />-->
 
             <Button
                 android:id="@+id/create_account_btn"
                 style="@style/Button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/indent_normal"
                 android:layout_weight="1"
                 android:text="@string/create_account" />
         </LinearLayout>
 
+        <!--&lt;!&ndash;//TODO: delete&ndash;&gt;-->
+        <!--<Button-->
+            <!--android:id="@+id/add_hotel_btn"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Добавить отель" />-->
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/agreement_btn"
-        style="@style/Button.Transparent.Bottom"
-        android:text="@string/user_agreement" />
+    <!--<Button-->
+        <!--android:id="@+id/agreement_btn"-->
+        <!--style="@style/Button.Transparent.Bottom"-->
+        <!--android:text="@string/user_agreement" />-->
 </RelativeLayout>

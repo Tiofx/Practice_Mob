@@ -4,34 +4,49 @@
     style="@style/RootContainer"
     tools:context=".activities.FeedbackAboutHotelActivity">
 
-    <LinearLayout
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_alignParentTop="true" />
 
-        <TextView
-            style="@style/Text.Title"
-            android:text="@string/feedback" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/add_hotel_btn"
+        android:layout_below="@id/header">
 
-        <EditText
-            android:id="@+id/feedback_txt"
-            style="@style/InputField"
-            android:hint="@string/feedback"
-            tools:lines="5" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <TextView
-            style="@style/Text.Title"
-            android:text="@string/rating" />
+            <TextView
+                style="@style/Text.Title"
+                android:text="@string/feedback" />
 
-        <RatingBar
-            android:id="@+id/rating_bar"
-            style="@style/InputField.Star"
-            tools:rating="2" />
+            <EditText
+                android:id="@+id/feedback_txt"
+                style="@style/InputField"
+                android:hint="@string/feedback"
+                tools:lines="5" />
 
-    </LinearLayout>
+            <TextView
+                style="@style/Text.Title"
+                android:text="@string/rating" />
+
+            <RatingBar
+                android:id="@+id/rating_bar"
+                style="@style/InputField.Star"
+                tools:rating="2" />
+
+        </LinearLayout>
+    </ScrollView>
 
     <Button
-        android:id="@+id/add_hotel_btn"
+        android:id="@+id/feedback_btn"
         style="@style/Button.BottomLevel"
         android:text="@string/add" />
 </RelativeLayout>

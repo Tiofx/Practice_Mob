@@ -5,49 +5,95 @@
     style="@style/RootContainer"
     tools:context=".activities.HotelAddActivity">
 
-    <LinearLayout
+    <include
+        android:id="@+id/header"
+        layout="@layout/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_alignParentTop="true" />
 
-        <TextView
-            style="@style/Text.Title"
-            android:text="@string/hotel_title" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/add_hotel_btn"
+        android:layout_below="@id/header"
+        android:fillViewport="true">
 
-        <EditText
-            android:id="@+id/hotel_title_txt"
-            style="@style/InputField"
-            android:hint="@string/hotel_title"
-            android:inputType="textPersonName" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <TextView
-            style="@style/Text.Title"
-            android:text="@string/hotel_address" />
+            <TextView
+                style="@style/Text.Title"
+                android:text="@string/hotel_title" />
 
-        <EditText
-            android:id="@+id/hotel_address_txt"
-            style="@style/InputField"
-            android:hint="@string/hotel_address"
-            android:inputType="textPersonName" />
+            <EditText
+                android:id="@+id/hotel_title_txt"
+                style="@style/InputField"
+                android:hint="@string/hotel_title"
+                android:inputType="textPersonName" />
 
-        <TextView
-            style="@style/Text.Title"
-            android:text="@string/start_rating" />
+            <TextView
+                style="@style/Text.Title"
+                android:text="@string/hotel_address" />
 
-        <RatingBar
-            android:id="@+id/rating_bar"
-            style="@style/InputField.Star"
-            tools:rating="2" />
+            <EditText
+                android:id="@+id/hotel_address_txt"
+                style="@style/InputField"
+                android:hint="@string/hotel_address"
+                android:inputType="textPersonName" />
 
-        <TextView
-            style="@style/Text.Title"
-            android:text="@string/photo" />
+            <TextView
+                style="@style/Text.Title"
+                android:text="@string/start_rating" />
 
-        <ImageButton
-            android:id="@+id/add_photo_btn"
-            style="@style/Button.Transparent.AddButton"
-            app:srcCompat="@drawable/add_icon" />
-    </LinearLayout>
+            <RatingBar
+                android:id="@+id/rating_bar"
+                android:layout_width="wrap_content"
+                style="@style/InputField.Star"
+                android:rating="@integer/hotel_default_star_number" />
+
+            <TextView
+                style="@style/Text.Title"
+                android:text="@string/breakfast" />
+
+            <ToggleButton
+                android:id="@+id/has_breakfast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOff="@string/no_breakfast"
+                android:textOn="@string/there_is_breakfast" />
+
+            <TextView
+                style="@style/Text.Title"
+                android:text="Цена" />
+
+            <EditText
+                android:id="@+id/price"
+                style="@style/InputField"
+                android:digits="0123456789"
+                android:inputType="number" />
+
+            <TextView
+                style="@style/Text.Title"
+                android:text="Описание" />
+
+            <EditText
+                android:id="@+id/description"
+                style="@style/InputField"
+                android:inputType="textMultiLine" />
+
+            <!--<TextView-->
+                <!--style="@style/Text.Title"-->
+                <!--android:text="@string/photo" />-->
+
+            <!--<ImageButton-->
+                <!--android:id="@+id/add_photo_btn"-->
+                <!--style="@style/Button.Transparent.AddButton"-->
+                <!--app:srcCompat="@drawable/add_icon" />-->
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/add_hotel_btn"

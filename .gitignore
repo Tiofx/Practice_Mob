@@ -31,4 +31,6 @@ gradle-app.setting
 *.hprof
 hs_err*
 app/libs/
-app/src/main/res/drawable/
+lib/*
+/gradle.properties
+lib/

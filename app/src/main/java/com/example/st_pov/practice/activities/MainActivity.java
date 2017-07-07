@@ -1,21 +1,27 @@
-package com.example.st_pov.practice;
+package com.example.st_pov.practice.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+
+import com.example.st_pov.practice.PagerAdapter;
+import com.example.st_pov.practice.R;
+import com.example.st_pov.practice.models.Hotel;
+import com.example.st_pov.practice.util.Constants;
+import com.google.gson.Gson;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by st_pov on 29.06.2017.
  */
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends HeaderActivity {
+    PagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,26 +29,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Click action
-                Intent intent = new Intent(MainActivity.this, AddReview.class);
-                startActivity(intent);
-            }
-        });
-
 
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.top5)));
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.listhotel)));
-        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.maphotel)));
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.top5)));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        final PagerAdapter adapter = new PagerAdapter
+        adapter = new PagerAdapter
                 (getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -62,21 +57,29 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        ButterKnife.bind(this);
+        getHeader();
+    }
+
+
+    @OnClick(R.id.fab)
+    public void addHotel(View view) {
+        Intent intent = new Intent(MainActivity.this, HotelAddActivity.class);
+        startActivityForResult(intent, Constants.HOTEL_REQUEST_CODE);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Constants.HOTEL_REQUEST_CODE && data != null) {
+            String result = data.getExtras().getString("new_hotel", "");
+            Hotel hotel = new Gson().fromJson(result, Hotel.class);
+            if (hotel != null) {
+                //TODO: delete stab
+                hotel.setPhoto(R.drawable.cosmos_moscow);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+                adapter.getTab1().getHotelList().add(hotel);
+            }
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }

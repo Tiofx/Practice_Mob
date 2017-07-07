@@ -18,6 +18,4 @@ open class AuthorizedUserActivity : AppCompatActivity() {
             showText("Пожалуйста зайдите в систему")
         }
     }
-
-
 }

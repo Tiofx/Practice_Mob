@@ -12,16 +12,15 @@ data class User(
 
 data class Hotel(
         @SerializedName("id") var id: Int? = null,
-        @SerializedName("title") var title: String,
-        @SerializedName("star_rating") var starRating: Int,
-        @SerializedName("has_breakfast") var hasBreakfast: Boolean? = null,
+        @SerializedName("name") var title: String,
+        @SerializedName("star") var starRating: Int,
+        @SerializedName("breakfast") var hasBreakfast: Boolean? = false,
         @SerializedName("address") var address: String? = null,
         @SerializedName("photo") var photo: Int? = null,
         @SerializedName("price") var price: Int? = null,
-        @SerializedName("room") var roomDescription: String? = null,
-        //        @SerializedName("photo") var photo: Image? = null,
+        @SerializedName("description") var roomDescription: String? = null,
+        @SerializedName("room") var room: String? = null,
         @SerializedName("reviews_number") var reviewsNumber: Int = 0
-//        @SerializedName("rooms") var rooms: List<Room>? = null
 ) {
     constructor(title: String, address: String?, reviewsNumber: Int,
                 photo: Int?, starRating: Int, hasBreakfast: Boolean?)
@@ -41,6 +40,6 @@ data class Feedback(
         @SerializedName("hotel_id") var hotelId: Int? = null,
         //TODO: define by token on server
 //        @SerializedName("user_id") var userId: Int? = null,
-        @SerializedName("comment") var comment: String,
-        @SerializedName("rating") var rating: Int
+        @SerializedName("review") var comment: String,
+        @SerializedName("rate") var rating: Int
 )

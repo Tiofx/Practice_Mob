@@ -50,6 +50,7 @@
 
             <RatingBar
                 android:id="@+id/rating_bar"
+                android:layout_width="wrap_content"
                 style="@style/InputField.Star"
                 android:rating="@integer/hotel_default_star_number" />
 
@@ -71,6 +72,7 @@
             <EditText
                 android:id="@+id/price"
                 style="@style/InputField"
+                android:digits="0123456789"
                 android:inputType="number" />
 
             <TextView

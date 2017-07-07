@@ -1,4 +1,4 @@
-package com.example.st_pov.practice;
+package com.example.st_pov.practice.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.example.st_pov.practice.activities.HeaderActivity;
-import com.example.st_pov.practice.activities.HotelAddActivity;
+import com.example.st_pov.practice.PagerAdapter;
+import com.example.st_pov.practice.R;
 import com.example.st_pov.practice.models.Hotel;
 import com.example.st_pov.practice.util.Constants;
 import com.google.gson.Gson;
@@ -67,7 +67,6 @@ public class MainActivity extends HeaderActivity {
     public void addHotel(View view) {
         Intent intent = new Intent(MainActivity.this, HotelAddActivity.class);
         startActivityForResult(intent, Constants.HOTEL_REQUEST_CODE);
-//        loadActivity(MainActivity.this, HotelAddActivity.class);
     }
 
     @Override

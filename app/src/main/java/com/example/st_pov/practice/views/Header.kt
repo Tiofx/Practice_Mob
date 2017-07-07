@@ -1,4 +1,4 @@
-package com.example.st_pov.practice.kotlin
+package com.example.st_pov.practice.views
 
 import android.view.View
 import com.example.st_pov.practice.util.Session

@@ -5,6 +5,7 @@ import butterknife.OnClick
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.R
 import com.example.st_pov.practice.models.Feedback
+import com.example.st_pov.practice.models.SimpleResponse
 import com.example.st_pov.practice.service.FeedbackApi
 import com.example.st_pov.practice.util.*
 import kotlinx.android.synthetic.main.activity_feedback_about_hotel.*
@@ -13,7 +14,7 @@ class FeedbackAboutHotelActivity : HeaderActivity() {
 
     val feedback
         get() = Feedback(
-                hotelId = intent.getIntExtra("hotel_id", -1).takeIf { it != -1 },
+                hotelId = intent.getIntExtra("hotel_id", -1),
                 comment = feedback_txt.text.toString().trim(),
                 rating = rating_bar.rating.toInt()
         )
@@ -33,10 +34,10 @@ class FeedbackAboutHotelActivity : HeaderActivity() {
             showText("...Подождите выполняется добавление вашего отзыва")
 
             sendToServer<FeedbackApi> {
-                giveFeedback(feedback).enqueue(FunctionalCallback<Boolean>(
+                giveFeedback(feedback).enqueue(FunctionalCallback<SimpleResponse>(
                         { _, response ->
                             response.simpleResponseParser {
-                                if (this) {
+                                if (this.success) {
                                     finish()
                                     "Ваш отзыв добавлен"
                                 } else "У вас недостаточно прав"

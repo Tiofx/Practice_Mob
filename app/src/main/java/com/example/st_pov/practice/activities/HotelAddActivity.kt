@@ -7,14 +7,13 @@ import butterknife.OnClick
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.R
 import com.example.st_pov.practice.models.Hotel
+import com.example.st_pov.practice.models.SimpleResponse
 import com.example.st_pov.practice.service.HotelApi
 import com.example.st_pov.practice.util.*
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_hotel_add.*
 
 class HotelAddActivity : HeaderActivity() {
-
-//    lateinit var photo: Image
 
     val hotel
         get() = Hotel(
@@ -41,13 +40,13 @@ class HotelAddActivity : HeaderActivity() {
         if (validator.validate()) {
             showText("...Подождите произвожу добавление отеля")
 
-
             sendToServer<HotelApi> {
-                addHotel(hotel).enqueue(FunctionalCallback<Boolean>(
+                addHotel(hotel).enqueue(FunctionalCallback<SimpleResponse>(
                         { _, response ->
                             response.simpleResponseParser {
-                                if (this) {
+                                if (this.success) {
                                     Intent().apply {
+                                        hotel.photo = R.drawable.room
                                         Gson().toJson(hotel).let { putExtra("new_hotel", it) }
                                         setResult(Constants.HOTEL_REQUEST_CODE, this)
                                     }
@@ -61,9 +60,6 @@ class HotelAddActivity : HeaderActivity() {
             }
         }
     }
-
-//    @OnClick(R.id.add_photo_btn)
-//    fun addPhoto() = showText("Добавление фото не работает")
 
 
     val validator by lazy {

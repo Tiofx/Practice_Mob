@@ -94,8 +94,6 @@ fun List<Hotel>.getBestHotels(number: Int) = sortedBy { it.starRating }.take(num
 inline fun UserApi.signIn(user: User) =
         user.run { signIn(email, password) }
 
-//inline fun FeedbackApi.giveFeedback(feedback: Feedback)
-//        = feedback.run { giveFeedback(hotelId!!, feedback) }
 
 inline fun HotelApi.addHotel(hotel: Hotel) = hotel.run {
     this@addHotel.addHotel(title,

@@ -23,6 +23,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.example.st_pov.practice.util.RetrofitKt.baseRetrofit;
+import static com.example.st_pov.practice.util.UtilKt.getBestHotels;
 
 /**
  * Created by st_pov on 29.06.2017.
@@ -35,7 +36,7 @@ public class TabFragment2 extends Fragment {
     @BindView(R.id.items)
     protected RecyclerView recyclerView;
 
-//    final static int BEST_NUMBER = 5;
+    final static int BEST_NUMBER = 5;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class TabFragment2 extends Fragment {
                             for (Hotel hotel : body) {
                                 hotel.setPhoto(R.drawable.gostin_fgb);
                             }
-                            hotelList.addAll(body);
+                            hotelList.addAll(getBestHotels(body, BEST_NUMBER));
                             adapterHotel.notifyDataSetChanged();
                         }
                     }

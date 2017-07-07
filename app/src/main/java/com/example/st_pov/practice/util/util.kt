@@ -29,7 +29,7 @@ object Session {
 //                    ))
 //                }
 //            } else {
-                field = value
+            field = value
 //            }
         }
 
@@ -88,7 +88,7 @@ fun <T> Response<T>?.simpleResponseParser(onNoBody: String = "Тело отве�
             else "Произошла ошибка ${it.code()}"
         } ?: "Ошибка на строне сервера"
 
-
+fun List<Hotel>.getBestHotels(number: Int) = sortedBy { it.starRating }.take(number)
 
 
 inline fun UserApi.signIn(user: User) =

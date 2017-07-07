@@ -14,8 +14,6 @@ import kotlinx.android.synthetic.main.activity_hotel_add.*
 
 class HotelAddActivity : HeaderActivity() {
 
-//    lateinit var photo: Image
-
     val hotel
         get() = Hotel(
                 title = hotel_title_txt.text.toString(),
@@ -41,7 +39,6 @@ class HotelAddActivity : HeaderActivity() {
         if (validator.validate()) {
             showText("...Подождите произвожу добавление отеля")
 
-
             sendToServer<HotelApi> {
                 addHotel(hotel).enqueue(FunctionalCallback<Boolean>(
                         { _, response ->
@@ -61,9 +58,6 @@ class HotelAddActivity : HeaderActivity() {
             }
         }
     }
-
-//    @OnClick(R.id.add_photo_btn)
-//    fun addPhoto() = showText("Добавление фото не работает")
 
 
     val validator by lazy {

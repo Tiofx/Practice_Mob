@@ -27,7 +27,7 @@ fun getClient(userAgent: String) = OkHttpClient.Builder()
             it.request()
                     .newBuilder()
                     .header("User-Agent", userAgent)
-                    .setUpToken(it)
+//                    .setUpToken(it)
                     .build()
                     .run { it.proceed(this) }
         }
@@ -47,8 +47,8 @@ fun okhttp3.HttpUrl.addQueryParamToStart(key: String, value: String?) =
         newBuilder("${encodedPath()}?$key=$value&${query()}")?.build()
 
 
-class FunctionalCallback<T>(var onResponse: (call: Call<T>?, response: Response<T>?) -> Unit,
-                            var onFailure: (call: Call<T>?, t: Throwable?) -> Unit = { _, _ -> })
+open class FunctionalCallback<T>(var onResponse: (call: Call<T>?, response: Response<T>?) -> Unit,
+                                 var onFailure: (call: Call<T>?, t: Throwable?) -> Unit = { _, _ -> })
     : Callback<T> {
 
     override fun onResponse(call: Call<T>?, response: Response<T>?) {

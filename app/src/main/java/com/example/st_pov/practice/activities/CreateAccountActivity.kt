@@ -8,7 +8,7 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.example.st_pov.practice.R
-import com.example.st_pov.practice.kotlin.PasswordInput
+import com.example.st_pov.practice.views.PasswordInput
 import com.example.st_pov.practice.models.User
 import com.example.st_pov.practice.service.UserApi
 import com.example.st_pov.practice.util.*

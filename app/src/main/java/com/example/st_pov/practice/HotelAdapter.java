@@ -26,7 +26,9 @@ import java.util.List;
 
 public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder> implements View.OnClickListener {
 
+    @Deprecated
     private HashMap<Integer, Integer> сrutch = new HashMap<>();
+    @Deprecated
     private HashMap<Integer, Hotel> сrutch2 = new HashMap<>();
     private Context mContext;
 

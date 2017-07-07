@@ -10,6 +10,57 @@ import com.example.st_pov.practice.service.FeedbackApi
 import com.example.st_pov.practice.service.UserApi
 import retrofit2.Response
 
+object Session {
+    var currentUser: User? = null
+        set(value) {
+            if (value == null) {
+                tokenValue = null
+                sendToServer<UserApi> {
+                    signOut().enqueue(FunctionalCallback<Boolean>(
+                            { _, response ->
+                                response?.let {
+                                    it.takeIf { it.isSuccessful }
+                                            ?.body()
+                                            ?.let { field = value }
+                                }
+                            }
+                    ))
+                }
+            } else {
+                field = value
+            }
+        }
+
+    var tokenValue: String? = null
+}
+
+//TODO: move out into config file
+object Constants {
+    const val BASE_URL = "https://hotelite.herokuapp.com"
+    const val USER_AGENT = "mobile_android"
+    const val TOKEN_NAME = "auth_token"
+    const val HOTEL_REQUEST_CODE = 1
+    val NAME_LENGTH_RANGE = 2 to 20
+
+
+    val PASSWORD_LENGTH_RANGE = 8 to 40
+    val HOTEL_LENGTH_RANGE = 3 to 40
+    val ADDRESS_LENGTH_RANGE = 3 to 100
+    val FEEDBACK_LENGTH_RANGE = 3 to 300
+    object Regex {
+
+        val FIRST_NAME = NAME_LENGTH_RANGE.run { "^[A-Z|А-Я][a-z|а-я]{${first - 1},$second}$" }
+        val LAST_NAME = FIRST_NAME
+        val PASSWORD = PASSWORD_LENGTH_RANGE.run { "^\\w.{$first,$second}$" }
+        val ADDRESS = ADDRESS_LENGTH_RANGE.run { "^(.{0}|[А-Яа-я\\w\\s\\.]{$first,$second})$" }
+
+        val HOTEL_TITLE = HOTEL_LENGTH_RANGE.run { "^[А-Яа-я\\w\\s]{$first,$second}$" }
+        val FEEDBACK = FEEDBACK_LENGTH_RANGE.run { "^.{$first,$second}$" }
+    }
+}
+
+
+
 fun Context.showText(text: String, duration: Int = Toast.LENGTH_SHORT) =
         Toast.makeText(this, text, duration)
                 .show()
@@ -25,54 +76,6 @@ fun Context.loadActivity(loadActivityClass: Class<*>) =
         startActivity(Intent(this, loadActivityClass))
 
 
-object Session {
-    var currentUser: User? = null
-        set(value) {
-            field = value
-            if (value == null) {
-                tokenValue = null
-                sendToServer<UserApi> {
-                    //TODO: response
-                    signOut().enqueue(FunctionalCallback<Boolean>(
-                            { _, response -> },
-                            { _, t -> }
-                    ))
-                }
-            }
-        }
-
-    var tokenValue: String? = null
-}
-
-
-//TODO: move out into file
-object Constants {
-    //TODO: change on release
-    const val BASE_URL = "http://blue-moon-7797.getsandbox.com"
-
-    const val USER_AGENT = "mobile_android"
-    const val TOKEN_NAME = "auth_token"
-    const val HOTEL_REQUEST_CODE = 1
-
-
-    val NAME_LENGTH_RANGE = 2 to 20
-    val PASSWORD_LENGTH_RANGE = 8 to 40
-    val HOTEL_LENGTH_RANGE = 3 to 40
-    val ADDRESS_LENGTH_RANGE = 3 to 100
-    val FEEDBACK_LENGTH_RANGE = 3 to 300
-
-    object Regex {
-        val FIRST_NAME = NAME_LENGTH_RANGE.run { "^[A-Z|А-Я][a-z|а-я]{${first - 1},$second}$" }
-        val LAST_NAME = FIRST_NAME
-        val PASSWORD = PASSWORD_LENGTH_RANGE.run { "^\\w.{$first,$second}$" }
-
-        val ADDRESS = ADDRESS_LENGTH_RANGE.run { "^(.{0}|[А-Яа-я\\w\\s\\.]{$first,$second})$" }
-        val HOTEL_TITLE = HOTEL_LENGTH_RANGE.run { "^[А-Яа-я\\w\\s]{$first,$second}$" }
-        val FEEDBACK = FEEDBACK_LENGTH_RANGE.run { "^.{$first,$second}$" }
-    }
-}
-
-
 fun <T> Response<T>?.simpleResponseParser(onNoBody: String = "Тело ответа отсутствует",
                                           parseBody: T.() -> String) =
         this?.let {
@@ -82,7 +85,7 @@ fun <T> Response<T>?.simpleResponseParser(onNoBody: String = "Тело отве�
         } ?: "Ошибка на строне сервера"
 
 
-inline fun UserApi.validate(user: User) =
+inline fun UserApi.signIn(user: User) =
         user.run { signIn(email, password) }
 
 inline fun FeedbackApi.giveFeedback(feedback: Feedback)

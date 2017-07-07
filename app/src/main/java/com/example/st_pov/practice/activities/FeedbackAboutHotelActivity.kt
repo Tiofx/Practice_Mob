@@ -13,7 +13,7 @@ class FeedbackAboutHotelActivity : HeaderActivity() {
 
     val feedback
         get() = Feedback(
-                hotelId = intent.getIntExtra("hotel_id", -1).takeIf { it != -1 },
+                hotelId = intent.getIntExtra("hotel_id", null),
                 comment = feedback_txt.text.toString().trim(),
                 rating = rating_bar.rating.toInt()
         )

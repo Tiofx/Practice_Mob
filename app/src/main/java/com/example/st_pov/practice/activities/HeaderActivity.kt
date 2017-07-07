@@ -3,9 +3,8 @@ package com.example.st_pov.practice.activities
 import android.os.Bundle
 import android.view.View
 import butterknife.BindView
-import butterknife.ButterKnife
 import com.example.st_pov.practice.R
-import com.example.st_pov.practice.kotlin.Header
+import com.example.st_pov.practice.views.Header
 
 open class HeaderActivity : AuthorizedUserActivity() {
 

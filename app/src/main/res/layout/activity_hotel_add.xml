@@ -50,6 +50,7 @@
 
             <RatingBar
                 android:id="@+id/rating_bar"
+                android:layout_width="wrap_content"
                 style="@style/InputField.Star"
                 android:rating="@integer/hotel_default_star_number" />
 
@@ -79,6 +80,7 @@
 
             <EditText
                 android:id="@+id/description"
+                android:digits="0123456789"
                 style="@style/InputField"
                 android:inputType="textMultiLine" />
 
